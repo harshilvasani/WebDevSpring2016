@@ -1,21 +1,21 @@
 #!/bin/env node
 //  OpenShift sample Node application
 var express = require('express');
-var app = express();
+var app = express();// app is instance of express library
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 
-app.get('/', function(req, res){
-    res.send('hello my friend');
-});
-
-app.get('/hello', function(req, res){
+/*app.get('/hello', function(req, res){
     res.send('hello world');
-});
+});*/
 
-app.listen(port, ipaddress);
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(req, res){// tells what to do when certain Http requests comes in
+    res.send('hello my friend......');
+});
 
 app.get('/api/users', function (req,res) {
    var users = [
@@ -27,4 +27,5 @@ app.get('/api/users', function (req,res) {
     //res.send(users); also works its just we knew the format so used .json
 });
 
-app.listen(3000);
+app.listen(port, ipaddress);
+//app.listen(3000);
