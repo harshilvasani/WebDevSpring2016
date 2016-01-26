@@ -104,3 +104,29 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+.form1{
+
+    width: 750px;
+    height: 200px;
+    padding-left: 10px;
+    border-size:1px;
+    border-style:solid;
+    border-color: #cacaca;
+}
+
+.complete_elem{
+    float: left;
+}
+.element1{
+    padding-top: 15px;
+    width: 300px;
+    float: left;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.glyph{
+    padding-top: 50px;
+    padding-left: 100px;
+}
