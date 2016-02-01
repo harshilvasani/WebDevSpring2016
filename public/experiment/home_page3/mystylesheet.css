@@ -51,11 +51,16 @@ body{
     width: 100%;
     height: auto;
     top: 0;
-    left: 160px;
+    left: 170px;
     position: absolute;
-
-
-
+}
+#me{
+    max-width: 60%;
+    width: 100%;
+    height: auto;
+    top: -30px;
+    left: 45px;
+    position: absolute;
 }
 .head a{
     color: black;

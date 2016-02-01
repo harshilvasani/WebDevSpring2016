@@ -39,10 +39,12 @@
                 function () {
                     $('#hi').addClass('animated jello');
                     $('#guy').removeClass('animated wobble');
+                    $('#me').removeClass('animated wobble');
                 },
                 function () {
                     $('#hi').removeClass('animated jello');
                     $('#guy').addClass('animated wobble');
+                    $('#me').addClass('animated wobble');
                 }
         );
 
@@ -80,6 +82,7 @@
                 <li><a href="#aboutme">me</a></li>
                 <li><a href="#project_assignment">WebDev 2016</a></li>
                 <li><a href="#end">Contact</a></li>
+                <li><a href="#end">Contact</a></li>
             </ul>
             <!-- <form class="navbar-form navbar-right">
                  <input type="text" class="form-control" placeholder="Search...">
@@ -94,6 +97,7 @@
     <div class="row ">
         <div class="col-sm-2 col-md-2 col-xs-3 imgs">
             <img src="guy2.png" id="guy"/>
+            <img src="me.jpg" class="img-circle" id="me"/>
             <img src="hi.png" id="hi"/>
         </div>
 
