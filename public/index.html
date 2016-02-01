@@ -19,13 +19,26 @@
     <!-- Custom styles for this template -->
     <link href="experiment/home_page3/mystylesheet.css" rel="stylesheet">
 
+    <!-- jQuery--------->
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Amatic+SC" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Petit+Formal+Script" />
 
 </head>
+
 <!-- NAVBAR
 ================================================== -->
 <body>
+
+<script>
+    $(document).ready(function(){
+        $("#guy").mouseenter(function(){
+            $("#hi").effect( "shake", { times: 2 }, "slow");
+        });
+    });
+</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid head">
@@ -55,11 +68,16 @@
 <hr>
 <div class="container" id="intro">
     <div class="row data">
+        <div class="col-sm-2 col-md-2 col-xs-3">
             <img src="guy2.png" id="guy"/>
+        </div>
+        <div class="col-sm-2 col-md-2 col-xs-3">
             <img src="hi.png" id="hi"/>
-
+        </div>
     </div>
+
 </div>
+
 
 
 <div class="container" id="aboutme">
@@ -220,8 +238,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script></div>
 </body>
 </html>
