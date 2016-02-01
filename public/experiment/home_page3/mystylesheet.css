@@ -35,6 +35,7 @@ body{
 /*------------------------INTRO Section-----------------*/
 #intro{
     background-color: #ddecdf;
+    background-image: url("tile.png");
     width: auto;
     height: auto;
     color: black;
@@ -46,6 +47,7 @@ body{
 
 /*------------------------About me Section-----------------*/
 #aboutme{
+    background-color: #ddecdf;
     width: auto;
     height: auto;
     padding: 2%;
