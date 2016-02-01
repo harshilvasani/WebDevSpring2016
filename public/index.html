@@ -12,6 +12,7 @@
 
     <title>Harshil's home page</title>
 
+    <link rel="stylesheet" href="animate.css" />
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -34,9 +35,32 @@
 
 <script>
     $(document).ready(function(){
-        $("#guy").mouseenter(function(){
-            $("#hi").effect( "shake", { times: 2 }, "slow");
-        });
+        $("#guy").hover(
+                function () {
+                    $('#hi').addClass('animated jello');
+                    $('#guy').removeClass('animated wobble');
+                },
+                function () {
+                    $('#hi').removeClass('animated jello');
+                    $('#guy').addClass('animated wobble');
+                }
+        );
+
+        $(".grad").hover(
+                function () {
+                    $('.NE').addClass('animated jello');
+                    $('.CS').removeClass('animated jello');
+                },
+
+                function () {
+                    $('.NE').removeClass('animated jello');
+                    $('.CS').addClass('animated jello');
+                }
+        );
+
+
+
+
     });
 </script>
 
@@ -67,12 +91,25 @@
 
 <hr>
 <div class="container" id="intro">
-    <div class="row data">
-        <div class="col-sm-2 col-md-2 col-xs-3">
+    <div class="row ">
+        <div class="col-sm-2 col-md-2 col-xs-3 imgs">
             <img src="guy2.png" id="guy"/>
-        </div>
-        <div class="col-sm-2 col-md-2 col-xs-3">
             <img src="hi.png" id="hi"/>
+        </div>
+
+
+        <div class="cd-intro col-sm-3 col-md-3 col-xs-5 col-sm-offset-3 col-md-offset-3 col-xs-offset-4" >
+
+            <h1 class="cd-headline clip is-full-width" >
+                <span class="grad">Graduate Student at.</span><br>
+
+                <h2 class="NE">NorthEastern University.</h2>
+                <h2 class="CS">Computer Science.</h2>
+                <h2 class="WD">Web Development CS5610.</h2>
+
+
+            </h1>
+
         </div>
     </div>
 
@@ -167,6 +204,9 @@
 
 
 <div class="container" id="project_assignment">
+    <div class="row col-md-12">
+        <h1 class="title">Web Dev 2016.</h1>
+    </div>
     <div class="row data col-sm-12 col-md-12" >
         <!-- Carousel
  ================================================== -->
