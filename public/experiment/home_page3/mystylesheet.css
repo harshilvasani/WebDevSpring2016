@@ -1,0 +1,143 @@
+body{
+    margin: 1.5%;
+}
+
+/* blue section*/
+.head{
+    background-color: #ddecdf;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    color: black;
+}
+
+.home{
+    font-size: 35px;
+    float: left;
+}
+
+#guy{
+    width: 150px;
+    height: 275px;
+}
+
+#hi{
+    width: 10%;
+    position: absolute;
+
+    left: 180px;
+
+}
+.head a{
+    color: black;
+    font-family: "Berlin Sans FB";
+}
+
+/*------------------------INTRO Section-----------------*/
+#intro{
+    background-color: #ddecdf;
+    width: auto;
+    height: auto;
+    color: black;
+}
+.navbar-inverse{
+    background-color: white;
+    border-color: transparent;
+}
+
+/*------------------------About me Section-----------------*/
+#aboutme{
+    width: auto;
+    height: auto;
+    padding: 2%;
+}
+
+#aboutme h1{
+    color: #3a3a3a;
+    font: 400 3em/125% 'Amatic SC', Helvetica, Sans-serif;
+    color: #333;
+    font-size: 75px;
+}
+
+#aboutme h3{
+    color: #3a3a3a;
+    font: 400 3.5em/125% 'Amatic SC', Helvetica, Sans-serif;
+    color: #333;
+    font-size: 35px;
+
+}
+
+.summary,.knowledge{
+    background-color: transparent;
+    border-color: transparent;
+
+    font: 400 3.5em/125% "Comic Sans MS", cursive, sans-serif;
+    color: #333;
+    font-size: 15px;
+    margin-top: 15px;
+    padding-left: 50px;
+}
+
+#end{
+    background-color: #3a3a3a;
+    width: auto;
+    height: auto;
+    color: white;
+}
+
+
+/*---------------------PROJECT/ASSIGNENT-----------------------*/
+
+#project_assignment{
+    background-color: #fd5f54;
+    width: auto;
+    height: auto;
+    color: white;
+    padding: 5%;
+
+    width: 100%; text-align: center;
+}
+
+h1{
+    color: #3a3a3a;
+    font: 400 3em/125% 'Amatic SC', Helvetica, Sans-serif;
+    color: #333;
+    font-size: 75px;
+}
+
+.data{
+    padding: 10px;
+    margin: 1%;
+}
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+.carousel-control.left, .carousel-control.right {
+    background-image:none;
+    filter:none;
+}
+
+/* Carousel base class */
+.carousel {
+    height: auto;
+
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 550px;
+    width: auto;
+    /* background-color: cadetblue;*/
+    /*background-color: #fd5f54;*/
+
+    /*background-color:#fd5f54;*/
+
+}
+.carousel-inner > .item > img {
+
+    height: auto;
+}
+
