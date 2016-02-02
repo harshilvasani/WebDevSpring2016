@@ -104,33 +104,3 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
-/*
-.form1{
-
-    width: 100%;
-    height: 100%;
-   // overflow: auto;
-    padding-left: 10px;
-    border-size:1px;
-    border-style:solid;
-    border-radius: 10px;
-    border-width: thin;
-    border-color: #cacaca;
-}
-*/
-/*.complete_elem{
-    float: left;
-}
-.element1{
-    padding-top: 15px;
-    width: auto;
-    float: left;
-    padding-left: 15px;
-
-}
-
-.glyph{
-    padding-top: 50px;
-    padding-left: 250px;
-    float: right;
-}*/

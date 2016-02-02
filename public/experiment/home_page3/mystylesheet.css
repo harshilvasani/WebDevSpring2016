@@ -19,6 +19,10 @@ body{
 
 }
 
+#intro{
+    padding:2%;
+
+}
 .cd-intro{
     width: auto;
     height: auto;
