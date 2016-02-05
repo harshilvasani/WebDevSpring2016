@@ -5,11 +5,21 @@
     padding: inherit;
     border-size:1px;
     border-style:solid;
-    border-radius: 5px;
+   /* border-radius: 5px;*/
     border-width: thin;
-    border-color: #cacaca;
+    border-color: #cccccc;
 }
 
 .MyGlyph{
     padding-top: 24px;
+}
+
+.myButton{
+    width: 100%;
+    background-color: #428bca;
+    border-color: #555555;
+}
+
+.emptySpace{
+    padding-left: 45px;
 }
