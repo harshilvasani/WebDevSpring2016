@@ -15,7 +15,7 @@
             {id:"234",title:"dhoom",year:"2001"}
         ];
 
-        //1st moices variable is used inredering data by view, 2nd one is local movies declared here
+        //1st movies variable is used inredering data by view, 2nd one is local movies declared here
         $scope.movies = Movies;
 
         //Event Handlers
