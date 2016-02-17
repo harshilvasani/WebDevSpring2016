@@ -8,7 +8,7 @@
         .config(function($routeProvider){
             $routeProvider
                 .when("/", {
-                    templateUrl: "home.html"
+                    templateUrl: "home.view.html"
                 })
 
                 .when("/profile", {
@@ -16,7 +16,7 @@
                 })
 
                 .when("/admin", {
-                    templateUrl: "admin.html"
+                    templateUrl: "admin.view.html"
                 })
                 .otherwise({
                     redirectTo: "/"
