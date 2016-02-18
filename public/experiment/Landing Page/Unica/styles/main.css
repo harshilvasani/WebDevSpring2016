@@ -701,7 +701,7 @@ a.alignright {
 }
 
 #intro .bg {
-    background-image: url("../images/header-bg.jpg");
+    background-image: url("tile.png");
 }
 
 #intro #particles {
@@ -712,7 +712,7 @@ a.alignright {
 }
 
 #contacts .bg {
-    background-image: url("../images/footer-bg.jpg");
+    background-image: url("tile.png");
 }
 
 .widget h3 {
@@ -1369,13 +1369,17 @@ html[style*='margin-right'] .main-nav {
     box-sizing: border-box;
 }
 
-.site-photo img,
-.profile-photo img {
+.site-photo img {
     width: 100%;
     max-width: 100%;
     height: 100px;
 }
 
+.profile-photo img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
 .intro {
     position: relative;
     padding: 100px 0;
