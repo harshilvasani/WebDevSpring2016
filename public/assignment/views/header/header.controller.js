@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope,UserService) {
+    function HeaderController($scope) {
 
         $rootScope=null;
 
@@ -15,17 +15,17 @@
             if($rootScope==null){
                 return true;
             }
-            else{
+            else
+            {
                 $scope.username=$rootScope.username;
                 return false;
             }
         }
 
         function updateRootScope() {
-
             $rootScope=null;
-
         }
+
         function isAdmin(){
             if($rootScope!=null)
             {
@@ -34,7 +34,6 @@
                     for (var i in roles) {
                         if (roles[i] == "admin") {
                             return true;
-                            alert();
                         }
                     }
                 }

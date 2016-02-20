@@ -27,7 +27,7 @@
         }
 
         function render(user){
-            $scopeRoot=user;
+            $rootScope=user;
         }
     }
 })();

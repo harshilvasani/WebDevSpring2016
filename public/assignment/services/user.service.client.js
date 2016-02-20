@@ -36,7 +36,7 @@
             var user=null;
             for(var i in users){
                 if(users[i].username==username && users[i].password==password){
-                    user=users[i]
+                    user=users[i];
                     break;
                }
             }

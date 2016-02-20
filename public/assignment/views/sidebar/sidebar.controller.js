@@ -3,13 +3,36 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function HeaderController($scope, CourseService) {
+    function SidebarController($scope) {
 
-        $scope.courses = CourseService.getAllCourses();
+        $rootScope=null;
 
-        $scope.removeCourse = function(index) {
-            console.log(index);
-            $scope.courses.splice(index, 1);
+        $scope.checkRootScope=checkRootScope;
+        $scope.isAdmin=isAdmin;
+
+        function checkRootScope() {
+            if($rootScope==null){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isAdmin(){
+            if($rootScope!=null)
+            {
+                var roles=$rootScope.roles;
+                if(roles!=null) {
+                    for (var i in roles) {
+                        if (roles[i] == "admin") {
+                            return true;
+                            alert();
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 })();
