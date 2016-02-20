@@ -34,9 +34,9 @@
 
         function findUserByUsernameAndPassword(username, password, callback) {
             var flag=false;
-           for(i in users){
+            for(var i in users){
                 if(users[i].username==username && users[i].password==password){
-                callback(users[i]);
+                    callback(users[i]);
                     flag=true;
                }
             }
@@ -61,7 +61,12 @@
         }
 
         function updateUser(userId, user, callback) {
-
+            for(i in users){
+                if(users[i]._id==userId){
+                    users[i]=user;
+                    callback(users[i]);
+                }
+            }
         }
 
     }

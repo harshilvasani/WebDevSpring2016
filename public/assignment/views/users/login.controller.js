@@ -13,8 +13,8 @@
         }
 
         function render(user){
-            if(user!=null){
-                $scope.$rootScope=user;
+            if(user != null){
+                $rootScope = user;
                 $location.path('/profile');
             }
 
