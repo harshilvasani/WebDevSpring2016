@@ -27,7 +27,6 @@
                     for (var i in roles) {
                         if (roles[i] == "admin") {
                             return true;
-                            alert();
                         }
                     }
                 }

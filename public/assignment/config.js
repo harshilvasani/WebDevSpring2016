@@ -35,7 +35,7 @@
                 //  controller
             })
 
-            .when("/form-fields", {
+            .when("/fields", {
                 templateUrl: "views/forms/fields.view.html"
                 //  controller
             })
