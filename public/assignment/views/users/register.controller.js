@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        . module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope, UserService,$location) {

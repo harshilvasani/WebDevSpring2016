@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="FormController">
     <h1 class="page-header">Forms</h1>
 
     <ul class="nav nav-tabs">
@@ -22,56 +22,34 @@
             <tr>
                 <td>
                     <div class="row-fluid form-inline">
-                        <input class="form-control input-sm" type="text" id="inputFormname1" placeholder="name">
+                        <input ng-model="formName" class="form-control input-sm" type="text" placeholder="name">
                     </div>
                 </td>
 
                 <td>
-                    <a class="btn btn-default">
+                    <a ng-click="addForm(formName)" class="btn btn-default">
                         <span class="glyphicon glyphicon-plus"> </span>
                     </a>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-ok"></span>
+                    <a ng-click="updateForm(formName)" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
                     </a>
                 </td>
 
             </tr>
-            <tr>
-                <td><a href="/assignment/views/forms/form-fields.view.html">Registration Form</a></td>
 
-                <td>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"> </span>
-                    </a>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="/assignment/views/forms/form-fields.view.html">Contact List</a></td>
+            <tr ng-repeat="form in forms">
+                <td> {{form.title}} </td>
 
                 <td>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"> </span>
+                    <a ng-click="deleteForm($index)" class="btn btn-default">
+                        <span class="glyphicon glyphicon-minus"></span>
                     </a>
-                    <a class="btn btn-default">
+                    <a ng-click="selectForm($index)" class="btn btn-default">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </td>
             </tr>
-            <tr>
-                <td><a href="/assignment/views/forms/form-fields.view.html">To Do List</a></td>
 
-                <td>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"> </span>
-                    </a>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </a>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>

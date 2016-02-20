@@ -18,6 +18,11 @@
                 $location.path('/profile');
             }
 
+            else {
+                $scope.password = null;
+                alert("Check your password OR username");
+            }
+
 
         }
     }

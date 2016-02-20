@@ -4,13 +4,21 @@
         .controller("ProfileController", ProfileController);
 
     function ProfileController($scope, UserService,$location) {
-        $scope.update=update;
 
         var currentUser = $rootScope;
 
-        $scope.username = currentUser.username;
-        $scope.firstName = currentUser.firstName;
-        $scope.lastName = currentUser.lastName;
+        if(currentUser == null){
+            $location.path("/home");
+        }
+
+        else{
+            $scope.username = currentUser.username;
+            $scope.password = currentUser.password;
+            $scope.firstName = currentUser.firstName;
+            $scope.lastName = currentUser.lastName;
+        }
+
+        $scope.update=update;
 
         function update(username,password,firstName,lastName,email){
 
