@@ -36,7 +36,7 @@
             })
 
             .when("/form-fields", {
-                templateUrl: "../assignment/views/forms/form-fields.view.html"
+                templateUrl: "views/forms/fields.view.html"
                 //  controller
             })
 
