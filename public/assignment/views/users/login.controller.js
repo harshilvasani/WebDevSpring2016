@@ -8,7 +8,7 @@
 
         function login(username,password){
 
-            UserService.findUserByUsernameAndPassword(username,password,render);
+            UserService.findUserByCredentials(username,password,render);
 
         }
 
