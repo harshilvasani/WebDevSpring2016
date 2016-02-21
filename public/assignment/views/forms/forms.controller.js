@@ -5,10 +5,15 @@
 
     function FormController($scope, FormService, $location) {
 
-        var currentUser;
-        var currentUserAllForms;
-        var allForms;
-        var selectedForm = null;
+        //Event Handler's declaration
+        $scope.addForm = addForm;
+        $scope.selectForm = selectForm;
+        $scope.deleteForm = deleteForm;
+        $scope.updateForm = updateForm;
+
+        var currentUser = null;
+        var currentUserAllForms = [];
+        var selectedFormIndex = -1;
 
         if($rootScope == null){
             $location.path("/home");
@@ -16,32 +21,20 @@
 
         else{
             currentUser = $rootScope;
-            allForms = FormService.forms;
-            updateCurrentUserAllForms(allForms);
+            FormService.findAllFormsForUser(currentUser._id,renderUserForms);
         }
 
-        function updateCurrentUserAllForms(allForms){
-            currentUserAllForms = [];
-
-            for(i in allForms){
-                if(allForms[i].userId == currentUser._id){
-                    currentUserAllForms.push(allForms[i]);
-                }
-            }
-
-            $scope.forms = currentUserAllForms;
+        function renderUserForms(userAllForms) {
+            $scope.forms = userAllForms;
+            currentUserAllForms = userAllForms;
         }
-
-        //Event Handler's declaration
-        $scope.addForm = addForm;
-        $scope.selectForm = selectForm;
-        $scope.deleteForm = deleteForm;
-        $scope.updateForm = updateForm;
 
         //Event Handler's implementation
         function addForm(formName){
-            var newForm = {"_id": null, "title": formName, "userId": null};
-            FormService.createFormForUser(currentUser._id,newForm,renderAddForm);
+            if(formName != null) {
+                var newForm = {"_id": null, "title": formName, "userId": null};
+                FormService.createFormForUser(currentUser._id, newForm, renderAddForm);
+            }
         }
 
         function renderAddForm(newForm){
@@ -51,9 +44,9 @@
         }
 
         function selectForm(index){
-            selectedForm = currentUserAllForms[index];
+            selectedFormIndex = index;
+            var selectedForm = currentUserAllForms[index];
             $scope.formName = selectedForm.title;
-
         }
 
         function deleteForm(index){
@@ -61,22 +54,22 @@
         }
 
         function renderdeleteForm(allforms){
-            updateCurrentUserAllForms(allforms);
+            FormService.findAllFormsForUser(currentUser._id,renderUserForms);
         }
 
         function updateForm(formName){
-
-            if(selectForm != null)
+            if(selectedFormIndex != -1 && formName != null)
             {
+                var selectedForm = currentUserAllForms[selectedFormIndex];
                 selectedForm.title = formName;
-                FormService.updateFormById(selectForm._id,selectedForm,renderUpdateForm);
-                selectedForm = null;
+                FormService.updateFormById(selectedForm._id,selectedForm,renderUpdateForm);
+                selectedFormIndex = -1;
                 $scope.formName = null;
             }
         }
 
         function renderUpdateForm (newForm){
-            updateCurrentUserAllForms(FormService.forms);
+            FormService.findAllFormsForUser(currentUser._id,renderUserForms);
         }
     }
 })();

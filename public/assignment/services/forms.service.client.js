@@ -20,7 +20,6 @@
                 findAllFormsForUser : findAllFormsForUser,
                 deleteFormById : deleteFormById,
                 updateFormById : updateFormById,
-                forms : forms
             }
 
             return api;
@@ -56,12 +55,12 @@
             function updateFormById(formId, newForm, callback) {
                 for(var i in forms){
                     if(forms[i]._id == formId){
-                        forms[i] = newForm;
+                        forms[i].userId = newForm.userId;
+                        forms[i].title = newForm.title;
                         callback(forms[i]);
                         break;
                     }
                 }
-
             }
 
         }
