@@ -1,6 +1,4 @@
-/**
- * Created by Harshin on 19-Feb-16.
- */
+"use strict";
 
 (function () {
     angular
@@ -56,7 +54,7 @@
         }
 
         function deleteUserById(userId, callback) {
-            for(i in users){
+            for(var i in users){
                 if(users[i]._id==userId){
                     users.splice(i,1);
                     break;
@@ -66,7 +64,7 @@
         }
 
         function updateUser(userId, user, callback) {
-            for(i in users){
+            for(var i in users){
                 if(users[i]._id==userId){
                     users[i]=user;
                     callback(users[i]);

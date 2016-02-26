@@ -1,9 +1,12 @@
+"use strict";
+
 (function(){
     angular
         . module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope, UserService,$location) {
+
         $scope.register=register;
 
         function register(username,password,verifyPassword, email){

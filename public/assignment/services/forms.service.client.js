@@ -1,6 +1,4 @@
-/**
- * Created by Harshin on 20-Feb-16.
- */
+"use strict";
 (function () {
     angular
         .module("FormBuilderApp")
