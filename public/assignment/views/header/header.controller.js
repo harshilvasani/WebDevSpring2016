@@ -8,12 +8,12 @@
 
     function HeaderController($scope, UserService) {
 
-
-
+        //Event Handler's declaration
         $scope.checkRootScope=checkRootScope;
         $scope.updateRootScope=updateRootScope;
         $scope.isAdmin=isAdmin;
 
+        //Event Handler's implementation
         function checkRootScope() {
             var curUser = UserService.getCurrentUser();
 

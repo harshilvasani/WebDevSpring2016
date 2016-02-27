@@ -21,11 +21,11 @@
             $scope.lastName = curUser.lastName;
         }
 
+        //Event Handler's declaration
         $scope.update=update;
 
+        //Event Handler's implementation
         function update(username,password,firstName,lastName,email){
-
-
             var newUser={"_id":curUser._id,
                 "firstName":firstName,
                 "lastName":lastName,

@@ -10,9 +10,11 @@
 
         UserService.setCurrentUser(null);
 
+        //Event Handler's declaration
         $scope.checkRootScope=checkRootScope;
         $scope.isAdmin=isAdmin;
 
+        //Event Handler's implementation
         function checkRootScope() {
             var curUser = UserService.getCurrentUser();
             if(curUser==null){

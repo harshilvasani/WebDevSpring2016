@@ -8,8 +8,10 @@
 
     function LoginController($scope, UserService, $location) {
 
+        //Event Handler's declaration
         $scope.login = login;
 
+        //Event Handler's implementation
         function login(username,password){
              UserService.findUserByCredentials(username,password,render);
         }
