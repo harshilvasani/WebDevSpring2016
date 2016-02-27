@@ -8,6 +8,9 @@
 
     function ProfileController($scope, UserService, $location) {
 
+        //Event Handler's declaration
+        $scope.update=update;
+
         var curUser = UserService.getCurrentUser();
 
         if(curUser == null){
@@ -20,9 +23,6 @@
             $scope.firstName = curUser.firstName;
             $scope.lastName = curUser.lastName;
         }
-
-        //Event Handler's declaration
-        $scope.update=update;
 
         //Event Handler's implementation
         function update(username,password,firstName,lastName,email){

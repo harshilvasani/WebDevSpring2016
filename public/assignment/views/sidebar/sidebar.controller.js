@@ -8,11 +8,11 @@
 
     function SidebarController($scope,UserService) {
 
-        UserService.setCurrentUser(null);
-
         //Event Handler's declaration
         $scope.checkRootScope=checkRootScope;
         $scope.isAdmin=isAdmin;
+
+        UserService.setCurrentUser(null);
 
         //Event Handler's implementation
         function checkRootScope() {
