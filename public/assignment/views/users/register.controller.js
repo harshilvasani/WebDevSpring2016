@@ -1,8 +1,9 @@
-"use strict";
-
 (function(){
+
+    "use strict";
+
     angular
-        . module("FormBuilderApp")
+        .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope, UserService,$location) {
@@ -26,7 +27,8 @@
 
         function render(user){
 
-            $rootScope=user;
+           // $rootScope=user;
+            UserService.setCurrentUser(user);
             $location.path('/profile');
         }
     }

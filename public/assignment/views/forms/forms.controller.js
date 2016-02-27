@@ -1,11 +1,12 @@
-"use strict";
-
 (function(){
+
+    "use strict";
+
     angular
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($scope, FormService, $location) {
+    function FormController($scope, FormService, $location, UserService) {
 
         //Event Handler's declaration
         $scope.addForm = addForm;
@@ -16,12 +17,12 @@
 
         $scope.index = -1;
 
-        if($rootScope == null){
+        if(UserService.getCurrentUser() == null){
             $location.path("/home");
         }
 
         else{
-            FormService.findAllFormsForUser($rootScope._id,renderUserForms);
+            FormService.findAllFormsForUser(UserService.getCurrentUser()._id,renderUserForms);
         }
 
         function renderUserForms(userAllForms) {
@@ -32,7 +33,7 @@
         function addForm(formName){
             if(formName != null) {
                 var newForm = {"_id": null, "title": formName, "userId": null};
-                FormService.createFormForUser($rootScope._id, newForm, renderAddForm);
+                FormService.createFormForUser(UserService.getCurrentUser()._id, newForm, renderAddForm);
             }
         }
 
@@ -52,7 +53,7 @@
         }
 
         function renderdeleteForm(allforms){
-            FormService.findAllFormsForUser($rootScope._id,renderUserForms);
+            FormService.findAllFormsForUser(UserService.getCurrentUser()._id,renderUserForms);
         }
 
         function updateForm(formName){
@@ -67,7 +68,7 @@
         }
 
         function renderUpdateForm (newForm){
-            FormService.findAllFormsForUser($rootScope._id,renderUserForms);
+            FormService.findAllFormsForUser(UserService.getCurrentUser()._id,renderUserForms);
         }
     }
 })();

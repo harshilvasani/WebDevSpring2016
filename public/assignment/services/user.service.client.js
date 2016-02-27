@@ -1,13 +1,14 @@
-"use strict";
-
 (function () {
+
+    "use strict";
+
     angular
         .module("FormBuilderApp")
         .factory("UserService",UserService);
 
     var users = [];
 
-    function UserService() {
+    function UserService($rootScope) {
         var users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
                 "username":"alice",  "password":"alice",   "roles": ["student"]		},
@@ -27,10 +28,20 @@
             findAllUsers : findAllUsers,
             createUser : createUser,
             deleteUserById : deleteUserById,
-            updateUser : updateUser
+            updateUser : updateUser,
+            setCurrentUser: setCurrentUser,
+            getCurrentUser: getCurrentUser
         }
 
         return api;
+
+        function setCurrentUser (user) {
+            $rootScope.currentUser = user;
+        }
+
+        function getCurrentUser () {
+            return $rootScope.currentUser;
+        }
 
         function findUserByCredentials(username, password, callback) {
             var user=null;

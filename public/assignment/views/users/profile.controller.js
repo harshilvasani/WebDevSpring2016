@@ -1,21 +1,24 @@
-"use strict";
-
 (function(){
+
+    "use strict";
+
     angular
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, UserService,$location) {
+    function ProfileController($scope, UserService, $location) {
 
-        if($rootScope == null){
+        var curUser = UserService.getCurrentUser();
+
+        if(curUser == null){
             $location.path("/home");
         }
 
         else{
-            $scope.username = $rootScope.username;
-            $scope.password = $rootScope.password;
-            $scope.firstName = $rootScope.firstName;
-            $scope.lastName = $rootScope.lastName;
+            $scope.username = curUser.username;
+            $scope.password = curUser.password;
+            $scope.firstName = curUser.firstName;
+            $scope.lastName = curUser.lastName;
         }
 
         $scope.update=update;
@@ -23,19 +26,20 @@
         function update(username,password,firstName,lastName,email){
 
 
-            var newUser={"_id":$rootScope._id,
+            var newUser={"_id":curUser._id,
                 "firstName":firstName,
                 "lastName":lastName,
                 "username":username,
                 "password":password,
-                "roles": $rootScope.roles	}
+                "roles": curUser.roles	}
 
-            UserService.updateUser($rootScope._id,newUser,render);
+            UserService.updateUser(curUser._id,newUser,render);
 
         }
 
         function render(user){
-            $rootScope=user;
+          //  curUser=user;
+            UserService.setCurrentUser(user);
         }
     }
 })();

@@ -1,37 +1,42 @@
-"use strict";
-
 (function(){
+
+    "use strict";
+
     angular
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope) {
+    function HeaderController($scope, UserService) {
 
-        $rootScope=null;
+
 
         $scope.checkRootScope=checkRootScope;
         $scope.updateRootScope=updateRootScope;
         $scope.isAdmin=isAdmin;
 
         function checkRootScope() {
-            if($rootScope==null){
+            var curUser = UserService.getCurrentUser();
+
+            if(curUser==null){
                 return true;
             }
             else
             {
-                $scope.username=$rootScope.username;
+                $scope.username=curUser.username;
                 return false;
             }
         }
 
         function updateRootScope() {
-            $rootScope=null;
+            UserService.setCurrentUser(null);
         }
 
         function isAdmin(){
-            if($rootScope!=null)
+            var curUser = UserService.getCurrentUser();
+
+            if(curUser!=null)
             {
-                var roles=$rootScope.roles;
+                var roles=curUser.roles;
                 if(roles!=null) {
                     for (var i in roles) {
                         if (roles[i] == "admin") {
