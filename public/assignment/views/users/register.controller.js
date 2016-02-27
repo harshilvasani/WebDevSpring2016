@@ -28,8 +28,6 @@
         }
 
         function render(user){
-
-           // $rootScope=user;
             UserService.setCurrentUser(user);
             $location.path('/profile');
         }

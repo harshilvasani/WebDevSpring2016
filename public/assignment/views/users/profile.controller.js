@@ -26,6 +26,8 @@
 
         //Event Handler's implementation
         function update(username,password,firstName,lastName,email){
+            var curUser = UserService.getCurrentUser();
+
             var newUser={"_id":curUser._id,
                 "firstName":firstName,
                 "lastName":lastName,
@@ -38,7 +40,6 @@
         }
 
         function render(user){
-          //  curUser=user;
             UserService.setCurrentUser(user);
         }
     }

@@ -16,13 +16,14 @@
 
 
         $scope.index = -1;
+        var curUser = UserService.getCurrentUser();
 
         if(UserService.getCurrentUser() == null){
             $location.path("/home");
         }
 
         else{
-            FormService.findAllFormsForUser(UserService.getCurrentUser()._id,renderUserForms);
+            FormService.findAllFormsForUser(curUser._id,renderUserForms);
         }
 
         function renderUserForms(userAllForms) {
