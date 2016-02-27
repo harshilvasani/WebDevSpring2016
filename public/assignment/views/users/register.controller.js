@@ -24,7 +24,6 @@
                             "roles": []	}
             }
             UserService.createUser(newUser,render);
-
         }
 
         function render(user){

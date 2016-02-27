@@ -16,7 +16,9 @@
 
         //Event Handler's implementation
         function checkRootScope() {
+
             var curUser = UserService.getCurrentUser();
+
             if(curUser==null){
                 return true;
             }
