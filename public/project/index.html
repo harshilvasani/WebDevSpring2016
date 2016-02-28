@@ -1,10 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>project</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Home page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+
+    <!-- Main Stylesheet-->
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
+
 <body>
 
+<div>
+
+    <!-- BEGIN NAV-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">VehicleBooking.com</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/project/views/login.view.html">Log In</a></li>
+                    <li><a href="#/register">Company Registration</a></li>
+                    <li><a href="#/Username">Username</a></li>
+                    <li><a href="#">Role</a></li>
+                    <li><a href="#/logout">Log out</a></li>
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <!-- END NAV-->
+
+    <!-- BEGIN HEADER-->
+    <section id="intro" class="section section-bg-overlay section-bottom-rise">
+        <div>
+            <div id="section1">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <form class="searchTab">
+                            <label>Location</label>
+                            <div class="form-group left-inner-addon right-inner-addon">
+                                <i class="glyphicon glyphicon-map-marker left"></i>
+                                <i class="glyphicon glyphicon-search right"></i>
+                                <input value="rajkot" id="origin" class="controls location form-control "
+                                       type="text" placeholder="Enter a start location">
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div id="type-selector" class="controls form-group">
+                                    <div class="col-sm-3">
+                                    <input type="radio" name="type" id="changetype-all" checked="checked">
+                                    <label for="changetype-all">All</label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                    <input type="radio" name="type" id="changetype-establishment">
+                                    <label for="changetype-establishment">Establishments</label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                    <input type="radio" name="type" id="changetype-address">
+                                    <label for="changetype-address">Addresses</label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                    <input type="radio" name="type" id="changetype-geocode">
+                                    <label for="changetype-geocode">Geocodes</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                            <br>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Booking Date:</label>
+                                    <div class="left-inner-addon">
+                                        <i class="glyphicon glyphicon-calendar left"></i>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Booking Time:</label>
+                                    <div class="left-inner-addon">
+                                        <i class="glyphicon glyphicon-time left"></i>
+                                        <input type="time" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Company:</label>
+                                    <select class="form-control">
+                                        <option>Single Line Text</option>
+                                        <option>Date</option>
+                                        <option>Dropdown</option>
+                                        <option>Checkboxes</option>
+                                        <option>Radio Buttons</option>
+                                        <option>Paragraph Text</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Vehice:</label>
+                                    <select class="form-control">
+                                        <option>Single Line Text</option>
+                                        <option>Date</option>
+                                        <option>Dropdown</option>
+                                        <option>Checkboxes</option>
+                                        <option>Radio Buttons</option>
+                                        <option>Paragraph Text</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+
+                            <div class="form-group">
+                                <a href="#" id="search" class="btn btn-primary myButton">Search</a>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- <div class="col-md-6">
+                         <div class="sideImg">
+                             <img src="images/bck-truck.JPG">
+                         </div>
+                     </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END HEADER-->
+
+    <!-- BEGIN TESTIMONIALS SECTION-->
+    <section class="section section-bg-light section-top-rise">
+        <div class="section-inner">
+
+            <div class="container">
+
+                <ul class="nav nav-pills nav-justified">
+                    <li role="presentation" class="active"><a href="#">About</a></li>
+                    <li role="presentation"><a href="#/contact">Contact</a></li>
+                </ul>
+
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                    BOOK. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum passages, and more recently with DESKTOP publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- END TESTIMONIALS SECTION-->
+    <footer>
+        <p>&copy; 2016 Harshil Vasani</p>
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
+
