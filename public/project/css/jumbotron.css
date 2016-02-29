@@ -115,10 +115,12 @@ form.searchTab{
 #companyInfo,
 #branchInfo,
 #ownerProfile,
+#managerProfile,
 #companyBooking,
 #BranchInfoEdit,
 #companyInfoEdit,
-#ownerInfoEdit{
+#ownerInfoEdit,
+#managerEdit{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 10%;
@@ -143,7 +145,7 @@ table tbody td.branchHead a{
     background-color: rgba(200, 200, 200, .75);
 }
 
-#quote{
+.quote{
     color: white;
 }
 

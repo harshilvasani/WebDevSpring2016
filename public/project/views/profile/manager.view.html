@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Owner's Profile</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="../../css/jumbotron.css" rel="stylesheet">
+
+    <!-- Main Stylesheet-->
+    <link rel="stylesheet" href="../../css/main.css">
+
+</head>
+
+<body>
+
+<div>
+
+    <!-- BEGIN NAV-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">VehicleBooking.com</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="active">Username</a></li>
+                    <li><a href="../Bookings/companyBooking.view.html">Bookings</a></li>
+                    <li><a href="../../index.html">Logout</a></li>
+
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <!-- END NAV-->
+
+    <!-- BEGIN HEADER-->
+    <section id="intro" class="section section-bg-overlay section-bottom-rise">
+        <div>
+            <div id="managerProfile">
+                <h1>Profile</h1>
+
+                <div class="container">
+                    <div class="row">
+                        <h2>Owner's Info</h2>
+                        <hr>
+                        <div class="col-sm-4 col-md-3">
+                            <img id="ownerImg" src="../../images/user.png"
+                                 alt="" class="img-rounded img-responsive" />
+                        </div>
+                        <div class="col-sm-8 col-md-9">
+                            <blockquote>
+                                <h3>thea</h3>
+                            </blockquote>
+                            <h4>
+                                <i class="glyphicon glyphicon-user"></i> Thea Queen
+                                <br/>
+                                <i class="glyphicon glyphicon-home"></i> B-01
+                                <br/>
+                                <i class="glyphicon glyphicon-briefcase"></i> 75 Saint Alphonsus Street, Starling City, MA
+                                <br/>
+                                <i class="glyphicon glyphicon-envelope"></i> theaqueen@arrow.com
+                                <br/>
+                                <i class="glyphicon glyphicon-earphone"></i> 617 854 2255
+                                <br/>
+                            </h4>
+                        </div>
+
+                    </div>
+
+
+                    <br>
+                    <br>
+
+                    <a href="#" class="btn btn-primary myButton"> Edit</a>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <h2>Vehicle's Info</h2>
+                        <hr>
+                        <table class="table table-responsive" id="myTable">
+                            <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Count</th>
+                                <th>Fare ($/hr)</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="form-group ">
+                                    <input class="form-control"
+                                           type="text" placeholder="egs: truck">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group ">
+                                        <input class="form-control"
+                                               type="text" placeholder="egs: 2">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group ">
+                                        <input class="form-control"
+                                               type="text" placeholder="egs: 9.00">
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-success">
+                                        <span class="glyphicon glyphicon-plus"> </span>
+                                    </a>
+                                    <a class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Truck</td>
+                                <td>5</td>
+                                <td>5.00</td>
+
+                                <td>
+                                    <a class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                    <a class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bus</td>
+                                <td>2</td>
+                                <td>7.00</td>
+
+                                <td>
+                                    <a class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                    <a class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tractor</td>
+                                <td>10</td>
+                                <td>3.50</td>
+
+                                <td>
+                                    <a class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                    <a class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END HEADER-->
+
+    <!-- BEGIN TESTIMONIALS SECTION-->
+    <section class="section section-bg-light section-top-rise">
+        <div class="section-inner">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>About us</h1>
+                </div>
+
+                <div class="col-md-6">
+                    <h1>Contact</h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- END TESTIMONIALS SECTION-->
+    <footer>
+        <p>&copy; 2016 Harshil Vasani</p>
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
+
