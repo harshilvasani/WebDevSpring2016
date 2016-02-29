@@ -22,6 +22,16 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    margin: 0 0 30px;
+    font: 2em / 1 loveloline_bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #cacaca;
+
+}
+
+
 .section {
     position: relative;
 }
