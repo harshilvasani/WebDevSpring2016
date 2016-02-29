@@ -115,7 +115,10 @@ form.searchTab{
 #companyInfo,
 #branchInfo,
 #ownerProfile,
-#companyBooking{
+#companyBooking,
+#BranchInfoEdit,
+#companyInfoEdit,
+#ownerInfoEdit{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 10%;
