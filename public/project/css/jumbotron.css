@@ -120,7 +120,8 @@ form.searchTab{
 #BranchInfoEdit,
 #companyInfoEdit,
 #ownerInfoEdit,
-#managerEdit{
+#managerEdit,
+#details{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 10%;

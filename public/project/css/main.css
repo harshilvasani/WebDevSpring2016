@@ -38,6 +38,11 @@ h4 {
     font-size: 175%;
 }
 
+h5 {
+    font-size: 150%;
+    color: white;
+}
+
 .section {
     position: relative;
 }
@@ -80,4 +85,5 @@ h4 {
     padding: 10px;
     padding-bottom: 160px;
     background-image: url("../images/wood.jpg");
+
 }
