@@ -116,7 +116,9 @@ form.searchTab{
 #branchInfo,
 #ownerProfile,
 #managerProfile,
+#custProfile,
 #companyBooking,
+#customerEdit,
 #BranchInfoEdit,
 #companyInfoEdit,
 #ownerInfoEdit,
@@ -142,7 +144,7 @@ table tbody td.branchHead a{
     float: right;
 }
 
-#user,#company,#ownerImg {
+#user,#company,#ownerImg,#custImg {
     background-color: rgba(200, 200, 200, .75);
 }
 
