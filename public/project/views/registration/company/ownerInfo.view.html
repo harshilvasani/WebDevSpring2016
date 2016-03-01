@@ -1,169 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Company Registration</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="../../../css/jumbotron.css" rel="stylesheet">
-
-    <!-- Main Stylesheet-->
-    <link rel="stylesheet" href="../../../css/main.css">
-
-</head>
-
-<body>
-
-<div>
-
-    <!-- BEGIN NAV-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">VehicleBooking.com</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/login">Log In</a></li>
-                    <li><a href="#/register">Company Registration</a></li>
-                    <li><a href="#/Username">Username</a></li>
-                    <li><a href="#">Role</a></li>
-                    <li><a href="#/logout">Log out</a></li>
-                </ul>
-            </div><!--/.navbar-collapse -->
-        </div>
-    </nav>
-
-    <!-- END NAV-->
-
-    <!-- BEGIN HEADER-->
-    <section id="intro" class="section section-bg-overlay section-bottom-rise">
-        <div>
-            <div id="ownerInfo">
-                <h1>Company Registration</h1>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <ul class="nav nav-pills nav-justified ">
-                            <li role="presentation" class="active"><a href="#">Owner Info</a></li>
-                            <li role="presentation"><a href="companyInfo.view.html">Company Info</a></li>
-                            <li role="presentation"><a href="branchInfo.view.html">Branch Info</a></li>
-                        </ul>
-
-                        <form class="form-horizontal searchTab">
-
-                            <div class="form-group">
-                                <label class="col-sm-2">First Name:</label>
-                                <div class="col-sm-10">
-                                    <input ng-model="firstName" type="text" class="form-control" placeholder="First Name">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2">Last Name:</label>
-                                <div class="col-sm-10">
-                                    <input ng-model="lastName" type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2">Image:</label>
-                                <div class="col-sm-10">
-                                    <img class="img-thumbnail img-rounded img-responsive" height="128px" width="128px" src="../../../images/user.png"/>
-                                    <br>
-                                    <br>
-                                    <a type="submit"  class="btn btn-info">Browse</a>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2">Username:</label>
-                                <div class="col-sm-10">
-                                    <input ng-model="username" type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2">Password:</label>
-                                <div class="col-sm-10">
-                                    <input ng-model="password" type="password" class="form-control"  placeholder="Password">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2">Co. Number:</label>
-                                <div class="col-sm-10">
-                                    <input ng-model="contactNumber" type="number" class="form-control" placeholder="6177921855">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2">Email Id:</label>
-                                <div class="col-sm-10">
-                                    <input ng-model="email" type="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <a type="submit"  class="btn btn-primary myButton">Save</a>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END HEADER-->
-
-    <!-- BEGIN TESTIMONIALS SECTION-->
-    <section class="section section-bg-light section-top-rise">
-        <div class="section-inner">
+<section id="intro" class="section section-bg-overlay section-bottom-rise">
+    <div>
+        <div id="ownerInfo">
+            <h1>Company Registration</h1>
             <div class="row">
-                <div class="col-md-6">
-                    <h1>About us</h1>
+
+                <div class="col-md-12">
+                    <ul class="nav nav-pills nav-justified ">
+                        <li role="presentation" class="active"><a href="#">Owner Info</a></li>
+                        <li role="presentation"><a href="#/companyInfo">Company Info</a></li>
+                        <li role="presentation"><a href="#/branchInfo">Branch Info</a></li>
+                    </ul>
+
+                    <form class="form-horizontal searchTab">
+
+                        <div class="form-group">
+                            <label class="col-sm-2">First Name:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="firstName" type="text" class="form-control" placeholder="First Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Last Name:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="lastName" type="text" class="form-control" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Image:</label>
+                            <div class="col-sm-10">
+                                <img class="img-thumbnail img-rounded img-responsive" height="128px" width="128px" src="images/user.png"/>
+                                <br>
+                                <br>
+                                <a type="submit"  class="btn btn-info">Browse</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Username:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="username" type="text" class="form-control" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Password:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="password" type="password" class="form-control"  placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Co. Number:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="contactNumber" type="number" class="form-control" placeholder="6177921855">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Email Id:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="email" type="email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a type="submit"  class="btn btn-primary myButton">Save</a>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
 
-                <div class="col-md-6">
-                    <h1>Contact</h1>
-                </div>
             </div>
-
         </div>
-    </section>
-    <!-- END TESTIMONIALS SECTION-->
-    <footer>
-        <p>&copy; 2016 Harshil Vasani</p>
-    </footer>
-</div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</body>
-</html>
-
+    </div>
+</section>
