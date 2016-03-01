@@ -52,6 +52,54 @@
                 // controller
             })
 
+            .when("/managerEditProfile",{
+                templateUrl: "views/EditProfile/managerEdit.view.html"
+                // controller
+            })
+
+            .when("/customerEditProfile",{
+                templateUrl: "views/EditProfile/customerEdit.view.html"
+                // controller
+            })
+
+            .when("/ownerInfoEdit",{
+                templateUrl: "views/EditProfile/company/ownerInfoEdit.view.html"
+                // controller
+            })
+
+            .when("/companyInfoEdit",{
+                templateUrl: "views/EditProfile/company/companyInfoEdit.view.html"
+                // controller
+            })
+
+            .when("/branchInfoEdit",{
+                templateUrl: "views/EditProfile/company/branchInfoEdit.view.html"
+                // controller
+            })
+
+            .when("/branchBooking",{
+                templateUrl: "views/Bookings/branchBooking.view.html"
+                // controller
+            })
+
+            .when("/companyBooking",{
+                templateUrl: "views/Bookings/companyBooking.view.html"
+                // controller
+            })
+
+            .when("/customerBooking",{
+                templateUrl: "views/Bookings/customerBooking.view.html"
+                // controller
+            })
+
+            .when("/bookingDtails",{
+                templateUrl: "views/Bookings/details.view.html"
+                // controller
+            })
+            .when("/vehicleBooking",{
+                templateUrl: "views/Bookings/vehicleBooking.view.html"
+                // controller
+            })
 
             .otherwise({
                 redirectTo: "/mainhome"
