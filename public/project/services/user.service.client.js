@@ -10,14 +10,21 @@
 
     function UserService($rootScope) {
         var users = [
-            {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "role": "customer"		},
-            {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
-                "username":"charlie","password":"charlie", "role": "owner"		},
-            {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
-                "username":"dan",    "password":"dan",     "role": "manager"},
-            {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
-                "username":"ed",     "password":"ed",      "role": "manager"		}
+            {	"_id":101,
+                "username":"alice",  "password":"alice",
+                "role": "customer"},
+            {	"_id":102,
+                "username":"a","password":"a",
+                "role": "customer"},
+            {	"_id":103,
+                "username":"charlie","password":"charlie",
+                "role": "owner"},
+            {	"_id":104,
+                "username":"dan",    "password":"dan",
+                "role": "manager"},
+            {	"_id":105,
+                "username":"ed",     "password":"ed",
+                "role": "manager"}
         ]
 
 
@@ -25,7 +32,6 @@
             findUserByCredentials : findUserByCredentials,
             findAllUsers : findAllUsers,
             createUser : createUser,
-            updateUser : updateUser,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser
         }
@@ -60,16 +66,5 @@
             users.push(user);
             callback(user);
         }
-
-        function updateUser(userId, user, callback) {
-            for(var i in users){
-                if(users[i]._id==userId){
-                    users[i]=user;
-                    callback(users[i]);
-                    break;
-                }
-            }
-        }
-
     }
 })();

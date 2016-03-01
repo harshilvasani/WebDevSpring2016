@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerProfileController">
     <div>
         <div id="custProfile">
             <h1>Profile</h1>
@@ -12,16 +12,16 @@
                     </div>
                     <div class="col-sm-8 col-md-9">
                         <blockquote>
-                            <h3>anushka</h3>
+                            <h3>{{curCustomer.username}}</h3>
                         </blockquote>
                         <h4>
-                            <i class="glyphicon glyphicon-user"></i> Virat Kohli
+                            <i class="glyphicon glyphicon-user"></i> {{curCustomer.firstName}} {{curCustomer.lastName}}
                             <br/>
-                            <i class="glyphicon glyphicon-home"></i> 75 Saint Alphonsus Street, Starling City, MA ,02120
+                            <i class="glyphicon glyphicon-home"></i> {{curCustomer.address}}, {{curCustomer.city}}, {{curCustomer.state}} ,{{curCustomer.zip}}
                             <br/>
-                            <i class="glyphicon glyphicon-envelope"></i> virarkohli@cricket.com
+                            <i class="glyphicon glyphicon-envelope"></i> {{curCustomer.emailid}}
                             <br/>
-                            <i class="glyphicon glyphicon-earphone"></i> 617 854 2255
+                            <i class="glyphicon glyphicon-earphone"></i> {{curCustomer.contactnum}}
                             <br/>
                         </h4>
                     </div>
@@ -31,7 +31,7 @@
                 <br>
                 <br>
 
-                <a href="#" class="btn btn-primary myButton"> Edit</a>
+                <a href="#/customerEditProfile" class="btn btn-primary myButton"> Edit</a>
             </div>
         </div>
     </div>

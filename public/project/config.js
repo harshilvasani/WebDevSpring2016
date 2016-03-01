@@ -48,8 +48,8 @@
             })
 
             .when("/customerProfile",{
-                templateUrl: "views/profile/customer.view.html"
-                // controller
+                templateUrl: "views/profile/customer.view.html",
+                controller: "CustomerProfileController"
             })
 
             .when("/managerEditProfile",{

@@ -18,7 +18,6 @@
 
         function renderLogin(loggedUser){
             if(loggedUser != null){
-
                 UserService.setCurrentUser(loggedUser);
                 if(loggedUser.role == "customer"){
                     console.log(loggedUser);
