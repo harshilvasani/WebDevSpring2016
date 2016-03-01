@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="LoginController">
     <div>
         <div id="logIn">
             <h1>Log In</h1>
@@ -11,17 +11,19 @@
                         <div class="form-group left-inner-addon">
                             <i class="glyphicon glyphicon-user left"></i>
                             <input class="controls location form-control"
-                                   type="text" placeholder="Username">
+                                   type="text" placeholder="Username"
+                                    ng-model="username">
                         </div>
 
                         <label>Password</label>
                         <div class="form-group ">
                             <input class="controls location form-control "
-                                   type="text" placeholder="password">
+                                   type="password" placeholder="password"
+                                    ng-model="password">
                         </div>
 
                         <div class="form-group">
-                            <a href="#"  class="btn btn-primary myButton">log in</a>
+                            <a ng-click="login(username,password)" class="btn btn-primary myButton">log in</a>
                         </div>
 
                         <br>

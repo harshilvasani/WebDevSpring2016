@@ -8,13 +8,13 @@
     function Configure($routeProvider) {
         $routeProvider
             .when("/mainhome",{
-                templateUrl: "views/home/mainHome.view.html"
-                // controller
+                templateUrl: "views/home/mainHome.view.html",
+                controller : "mainHomeController"
             })
 
             .when("/login",{
-                templateUrl: "views/login/login.view.html"
-                // controller
+                templateUrl: "views/login/login.view.html",
+                controller : "LoginController"
             })
 
             .when("/ownerInfo",{

@@ -27,12 +27,17 @@
 
     <script src="config.js"></script>
 
+    <script src="services/user.service.client.js"></script>
+
+    <script src="views/main/MainController.js"></script>
+    <script src="views/home/mainHome.controller.js"></script>
+    <script src="views/login/login.controller.js"></script>
+
 </head>
 
 <body>
 
-<div>
-
+<div ng-controller="MainController">
     <!-- BEGIN NAV-->
     <div ng-include="'../project/views/header/header.view.html'"></div>
     <!-- END NAV-->
@@ -46,6 +51,9 @@
     <!-- END TESTIMONIALS SECTION-->
 
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3nKVMjeVHJbKe7D8M6U8SFlg4kTZU1bg&signed_in=true&libraries=places"
+        async defer></script>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

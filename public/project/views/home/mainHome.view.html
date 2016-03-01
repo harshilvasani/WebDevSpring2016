@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="mainHomeController">
     <div>
         <div id="section1">
             <div class="row">
@@ -8,15 +8,16 @@
                         <label>Location</label>
                         <div class="form-group left-inner-addon right-inner-addon">
                             <i class="glyphicon glyphicon-map-marker left"></i>
-                            <a class="glyphicon glyphicon-search right btn btn-primary"></a>
-                            <input value="rajkot" id="origin" class="controls location form-control "
-                                   type="text" placeholder="Enter a start location">
+                            <a ng-click="getLocation(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
+                            <input ng-model="Origin" id="origin" class="controls location form-control "
+                                   type="text" placeholder="Enter a start location"
+                                   ng-change="autoComplete()">
                         </div>
 
                         <br>
 
                         <div class="row">
-                            <div id="type-selector" class="controls form-group">
+                            <div id="type-selector" class="controls form-group" >
                                 <div class="col-sm-3">
                                     <input type="radio" name="type" id="changetype-all" checked="checked">
                                     <label for="changetype-all">All</label>
