@@ -14,6 +14,7 @@
 
         function renderCurCustomer(curCustomer){
             $scope.curCustomer = curCustomer;
+            CustomerProfileService.setCurrentCustomer(curCustomer);
         }
     }
 

@@ -58,8 +58,8 @@
             })
 
             .when("/customerEditProfile",{
-                templateUrl: "views/EditProfile/customerEdit.view.html"
-                // controller
+                templateUrl: "views/EditProfile/customerEdit.view.html",
+                controller : "CustomerEditProfileController"
             })
 
             .when("/ownerInfoEdit",{

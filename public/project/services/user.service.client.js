@@ -32,6 +32,7 @@
             findUserByCredentials : findUserByCredentials,
             findAllUsers : findAllUsers,
             createUser : createUser,
+            updateUser : updateUser,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser
         }
@@ -65,6 +66,16 @@
         function createUser(user, callback) {
             users.push(user);
             callback(user);
+        }
+
+        function updateUser(userId, user, callback) {
+            for(var i in users){
+                if(users[i]._id==userId){
+                    users[i]=user;
+                    callback(users[i]);
+                    break;
+                }
+            }
         }
     }
 })();

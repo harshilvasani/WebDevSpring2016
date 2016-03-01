@@ -12,13 +12,13 @@
         var customers = [
             {	"_id":101, "firstName":"Alice","lastName":"Wonderland",
                 "username":"alice", "password":"alice",
-                "address":"75 Saint alphonsus", "city":"Boston", "state":"MA", "zip":"02120",
+                "address":"75 Saint alphonsus", "city":"Boston", "state":"MA", "zip":21200,
                 "emailid":"alice@alice.com", "contactnum":"120 345 6789",
                 "role": "customer"		},
             {	"_id":345, "firstName":"Virat","lastName":"Kohli",
                 "username":"a","password":"a",
-                "address":"75 Saint alphonsus", "city":"Munbai", "state":"Maharashtra", "zip":"02120",
-                "emailid":"virat@kohli.com", "contactnum":"120 345 6789",
+                "address":"75 Saint alphonsus", "city":"Munbai", "state":"MA", "zip":21220,
+                "emailid":"virat@kohli.com", "contactnum":1203456789,
                 "role": "customer"		}
 
         ]
