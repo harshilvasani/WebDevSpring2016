@@ -8,7 +8,7 @@
 
     var managers = [];
 
-    function CustomerProfileService($rootScope) {
+    function ManagerProfileService($rootScope) {
         var managers = [
             {	"_id":101, "company":"company-1", "branchId":"B-01",
                 "firstName":"Thea","lastName":"Queen",

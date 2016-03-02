@@ -43,8 +43,8 @@
             })
 
             .when("/managerProfile",{
-                templateUrl: "views/profile/manager.view.html"
-                // controller
+                templateUrl: "views/profile/manager.view.html",
+                controller: "ManagerProfileController"
             })
 
             .when("/customerProfile",{
@@ -53,8 +53,8 @@
             })
 
             .when("/managerEditProfile",{
-                templateUrl: "views/EditProfile/managerEdit.view.html"
-                // controller
+                templateUrl: "views/EditProfile/managerEdit.view.html",
+                controller : "ManagerEditProfileController"
             })
 
             .when("/customerEditProfile",{
