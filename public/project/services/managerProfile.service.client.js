@@ -10,65 +10,73 @@
 
     function CustomerProfileService($rootScope) {
         var managers = [
-            {	"_id":101, "branchId":"B-01","firstName":"Thea","lastName":"Queen",
+            {	"_id":101, "company":"company-1", "branchId":"B-01",
+                "firstName":"Thea","lastName":"Queen",
                 "username":"dan", "password":"dan",
-                "address":"75 Saint alphonsus", "city":"Boston", "state":"MA", "zip":"21200",
-                "emailid":"alice@alice.com", "contactnum":"120 345 6789",
-                "role": "customer"		},
-            {	"_id":345, "branchId":"B-02","firstName":"Oliver","lastName":"Queen",
-                "username":"ed","password":"ed",
-                "address":"75 Saint alphonsus", "city":"Munbai", "state":"MA", "zip":"21220",
-                "emailid":"virat@kohli.com", "contactnum":"120 345 6789",
-                "role": "customer"		}
+                "address":"221 Baker Street", "city":"Hell's Kitche ", "state":"NY", "zip":"61200",
+                "emailid":"thea@qween.com", "contactnum":"920 345 6789",
+                "role": "manager"		},
 
+            {	"_id":102, "company":"company-2","branchId":"B-02",
+                "firstName":"Oliver","lastName":"Queen",
+                "username":"ed","password":"ed",
+                "address":"345 Palmer Street", "city":"Starling City", "state":"MA", "zip":"61220",
+                "emailid":"oliver@queen.com", "contactnum":"880 345 6789",
+                "role": "manager"		}
         ]
 
 
         var api = {
-            findCustomerByCredentials : findCustomerByCredentials,
-            findAllCustomers : findAllCustomers,
-            createCustomer : createCustomer,
-            updateCustomer : updateCustomer,
-            setCurrentCustomer: setCurrentCustomer,
-            getCurrentCustomer: getCurrentCustomer
+            findManagerByCredentials : findManagerByCredentials,
+            findAllManagerByCompany : findAllManagerByCompany,
+            createManager : createManager,
+            updateManager : updateManager,
+            setCurrentManager: setCurrentManager,
+            getCurrentManager: getCurrentManager
         }
 
         return api;
 
-        function setCurrentCustomer (customer) {
-            $rootScope.currentCustomer = customer;
+        function setCurrentManager (manager) {
+            $rootScope.currentManager = manager;
         }
 
-        function getCurrentCustomer () {
-            return $rootScope.currentCustomer;
+        function getCurrentManager () {
+            return $rootScope.currentManager;
         }
 
-        function findCustomerByCredentials(username, password, callback) {
-            var customer=null;
-            for(var i in customers){
-                if(customers[i].username==username && customers[i].password==password){
-                    customer=customers[i];
+        function findManagerByCredentials(username, password, callback) {
+            var manager = null;
+            for(var i in managers){
+                if(managers[i].username==username && managers[i].password==password){
+                    manager=managers[i];
                     break;
                 }
             }
-            callback(customer);
+            callback(manager);
 
         }
 
-        function findAllCustomers(callback) {
+        function findAllManagerByCompany(company, callback) {
+            var managers = [];
+            for(var i in customers){
+                if(customers[i].company==company){
+                    managers.push(customers[i]);
+                }
+            }
             callback(customers);
         }
 
-        function createCustomer(customer, callback) {
-            customers.push(customer);
-            callback(customer);
+        function createManager(manager, callback) {
+            managers.push(manager);
+            callback(manager);
         }
 
-        function updateCustomer(customerId, customer, callback) {
-            for(var i in customers){
-                if(customers[i]._id==customerId){
-                    customers[i]=customer;
-                    callback(customers[i]);
+        function updateManager(managerId, manager, callback) {
+            for(var i in managers){
+                if(managers[i]._id == managerId){
+                    managers[i]= manager;
+                    callback(managers[i]);
                     break;
                 }
             }
