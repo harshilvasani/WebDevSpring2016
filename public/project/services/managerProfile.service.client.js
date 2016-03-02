@@ -12,13 +12,13 @@
         var managers = [
             {	"_id":101, "branchId":"B-01","firstName":"Thea","lastName":"Queen",
                 "username":"dan", "password":"dan",
-                "address":"75 Saint alphonsus", "city":"Boston", "state":"MA", "zip":21200,
+                "address":"75 Saint alphonsus", "city":"Boston", "state":"MA", "zip":"21200",
                 "emailid":"alice@alice.com", "contactnum":"120 345 6789",
                 "role": "customer"		},
             {	"_id":345, "branchId":"B-02","firstName":"Oliver","lastName":"Queen",
                 "username":"ed","password":"ed",
-                "address":"75 Saint alphonsus", "city":"Munbai", "state":"MA", "zip":21220,
-                "emailid":"virat@kohli.com", "contactnum":1203456789,
+                "address":"75 Saint alphonsus", "city":"Munbai", "state":"MA", "zip":"21220",
+                "emailid":"virat@kohli.com", "contactnum":"120 345 6789",
                 "role": "customer"		}
 
         ]
