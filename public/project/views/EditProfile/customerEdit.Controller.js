@@ -9,13 +9,13 @@
     function CustomerEditProfileController($scope,UserService, CustomerProfileService) {
 
         $scope.customer  = CustomerProfileService.getCurrentCustomer();
+
         var curUser = UserService.getCurrentUser();
 
         $scope.update = update;
 
         function update(updatedCustomer){
             CustomerProfileService.updateCustomer($scope.customer._id,$scope.customer,renderUpdateCustomer);
-            alert();
             var updatedUser = {"_id":curUser._id,
                                 "username":$scope.customer.username,
                                 "password":$scope.customer.password,

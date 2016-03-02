@@ -33,8 +33,8 @@
             })
 
             .when("/customerRegistration",{
-                templateUrl: "views/registration/customer.view.html"
-                // controller
+                templateUrl: "views/registration/customer.view.html",
+                controller : "CustomerRegistrationController"
             })
 
             .when("/ownerProfile",{
