@@ -66,9 +66,13 @@
             if(vehicles!=null)
             $scope.searches = $scope.searches.concat(vehicles);
         }
+
+
+        function book(index){
+
+        }
+
+
     }
-
-
-
 
 })();

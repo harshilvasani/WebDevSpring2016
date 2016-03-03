@@ -88,8 +88,8 @@
             })
 
             .when("/customerBooking",{
-                templateUrl: "views/Bookings/customerBooking.view.html"
-                // controller
+                templateUrl: "views/Bookings/customerBooking.view.html",
+                 controller : "CustomerBookingController"
             })
 
             .when("/bookingDtails",{

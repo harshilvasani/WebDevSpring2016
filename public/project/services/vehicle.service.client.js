@@ -10,8 +10,8 @@
 
     function VehicleService($rootScope) {
         var vehicles = [
-            {	"_id":101, "company":"company-1", "branchId":"B-01",
-                "type":"truck","count":5, "fare" : "5.00"},
+            {	"_id":102, "company":"company-1", "branchId":"B-01",
+                "type":"truck","count":2, "fare" : "7.00"},
 
             {	"_id":102, "company":"company-1", "branchId":"B-01",
                 "type":"bus","count":12, "fare" : "8.00"},
@@ -20,7 +20,7 @@
                 "type":"truck","count":7, "fare" : "3.00"},
 
             {	"_id":104, "company":"company-2", "branchId":"B-01",
-                "type":"bus","count":11, "fare" : "6.50"},
+                "type":"bus","count":11, "fare" : "6.50"}
         ]
 
 
@@ -33,8 +33,6 @@
         }
 
         return api;
-
-
 
         function findAllVehicleByCompanyandBranch(company, branchId, callback) {
             var myVehicles = [];
