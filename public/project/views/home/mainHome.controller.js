@@ -6,15 +6,10 @@
         .module("VehicleBookingApp")
         .controller("mainHomeController", mainHomeController);
 
-    function mainHomeController($scope) {
+    function mainHomeController($scope,ManagerProfileService,VehicleService) {
 
         $scope.autoComplete = autoComplete;
-        $scope.getLocation = getLocation;
-        $scope.radioChange = radioChange;
-
-        function radioChange(id){
-            console.log(id);
-        }
+        $scope.search = search;
 
         function autoComplete() {
 
@@ -28,24 +23,47 @@
             var autocompleteOrigin = new google.maps.places.Autocomplete(input_origin,localityOptions);
 
             $scope.origin=input_origin.value;
-            var types = document.getElementById('type-selector');
-
-            function setupClickListener(id, types) {
-                var radioButton = document.getElementById(id);
-                radioButton.addEventListener('click', function() {
-                    autocompleteOrigin.setTypes(types);
-                });
-            }
-
-            setupClickListener('changetype-all', []);
-            setupClickListener('changetype-address', ['address']);
-            setupClickListener('changetype-establishment', ['establishment']);
-            setupClickListener('changetype-geocode', ['geocode']);
         }
 
-        function getLocation(origin){
+        function search(){
             var input_origin = document.getElementById("origin").value;
-            alert(input_origin);
+            var addr = input_origin.split(", ");
+
+
+            if(addr.length==3){
+                $scope.searches = [];
+                var city = addr[0];
+                var state = addr [1];
+
+                if($scope.company == null || $scope.company == "None"){
+                    ManagerProfileService.findAllManagerByLocation(city,state,renderAllBrances);
+                }
+
+                else{
+                    ManagerProfileService.findAllManagerByLocationandComapany(city,state,$scope.company,renderAllBrances);
+                }
+            }
+        }
+
+        function renderAllBrances(allBranches){
+
+            if($scope.type == null || $scope.type == "None"){
+                for(var i in allBranches){
+                    VehicleService.findAllVehicleByCompanyandBranch(allBranches[i].company,allBranches[i].branchId,renderAllVehicles)
+                }
+            }
+
+            else if($scope.type != null){
+                for(var i in allBranches){
+                    VehicleService.findVehicleByCompany_Branch_Type(allBranches[i].company,allBranches[i].branchId,
+                                                                    $scope.type,renderAllVehicles)
+                }
+            }
+        }
+
+        function renderAllVehicles(vehicles){
+            if(vehicles!=null)
+            $scope.searches = $scope.searches.concat(vehicles);
         }
     }
 

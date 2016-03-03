@@ -8,36 +8,10 @@
                         <label>Location</label>
                         <div class="form-group left-inner-addon right-inner-addon">
                             <i class="glyphicon glyphicon-map-marker left"></i>
-                            <a ng-click="getLocation(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
+                            <a ng-click="search(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
                             <input ng-model="Origin" id="origin" class="controls location form-control "
-                                   type="text" placeholder="Enter a start location"
+                                   type="text" placeholder="Enter a city in United States"
                                    ng-change="autoComplete()">
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-                            <div id="type-selector" class="controls form-group" >
-                                <div class="col-sm-3">
-                                    <input type="radio" name="type" id="changetype-all" checked="checked">
-                                    <label for="changetype-all">All</label>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <input type="radio" name="type" id="changetype-establishment">
-                                    <label for="changetype-establishment">Establishments</label>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <input type="radio" name="type" id="changetype-address">
-                                    <label for="changetype-address">Addresses</label>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <input type="radio" name="type" id="changetype-geocode">
-                                    <label for="changetype-geocode">Geocodes</label>
-                                </div>
-                            </div>
                         </div>
 
                         <br>
@@ -67,24 +41,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Company:</label>
-                                <select class="form-control">
-                                    <option>Single Line Text</option>
-                                    <option>Date</option>
-                                    <option>Dropdown</option>
-                                    <option>Checkboxes</option>
-                                    <option>Radio Buttons</option>
-                                    <option>Paragraph Text</option>
+                                <select class="form-control" ng-model="company">
+                                    <option>company-1</option>
+                                    <option>company-2</option>
+                                    <option>None</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label>Vehice:</label>
-                                <select class="form-control">
-                                    <option>Single Line Text</option>
-                                    <option>Date</option>
-                                    <option>Dropdown</option>
-                                    <option>Checkboxes</option>
-                                    <option>Radio Buttons</option>
-                                    <option>Paragraph Text</option>
+                                <select class="form-control" ng-model="type">
+                                    <option>truck</option>
+                                    <option>bus</option>
+                                    <option>None</option>
                                 </select>
                             </div>
                         </div>
@@ -94,18 +62,55 @@
 
 
                         <div class="form-group">
-                            <a href="#" id="search" class="btn btn-primary myButton">Search</a>
+                            <a href="#" ng-click="search()" class="btn btn-primary myButton">Search</a>
                         </div>
                     </form>
 
                 </div>
 
-                <!-- <div class="col-md-6">
-                     <div class="sideImg">
-                         <img src="images/bck-truck.JPG">
+                 <div class="col-md-6">
+
+                     <div class="row" ng-show="searches.length >= 0">
+
+                         <h3>Search Results</h3>
+                         <hr>
+                         <h5 ng-show="searches.length == 0"> No Results Found</h5>
+                         <table class="table table-responsive" id="myTable">
+                             <thead>
+                             <tr>
+                                 <th>Company</th>
+                                 <th>Branch</th>
+                                 <th>Vehicle-type</th>
+                                 <th>Count</th>
+                                 <th>Fare ($/hr)</th>
+                                 <th></th>
+                             </tr>
+                             </thead>
+                             <tbody>
+
+                             <tr ng-repeat="search in searches">
+                                 <td>{{search.company}}</td>
+                                 <td>{{search.branchId}}</td>
+                                 <td>{{search.type}}</td>
+                                 <td>{{search.count}}</td>
+                                 <td>{{search.fare}}</td>
+
+                                 <td>
+                                     <a class="btn btn-info myButton">
+                                         Book Now
+                                     </a>
+                                 </td>
+                             </tr>
+
+                             </tbody>
+                         </table>
                      </div>
-                 </div>-->
+
+
+                 </div>
             </div>
+
+
         </div>
     </div>
 </section>

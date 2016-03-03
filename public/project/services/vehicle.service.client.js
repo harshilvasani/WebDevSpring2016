@@ -14,19 +14,19 @@
                 "type":"truck","count":5, "fare" : "5.00"},
 
             {	"_id":102, "company":"company-1", "branchId":"B-01",
-                "type":"bus","count":4, "fare" : "6.00"},
+                "type":"bus","count":12, "fare" : "8.00"},
 
-            {	"_id":101, "company":"company-1", "branchId":"B-02",
-                "type":"truck","count":5, "fare" : "5.00"},
+            {	"_id":103, "company":"company-1", "branchId":"B-02",
+                "type":"truck","count":7, "fare" : "3.00"},
 
-            {	"_id":102, "company":"company-2", "branchId":"B-01",
-                "type":"bus","count":5, "fare" : "6.00"},
+            {	"_id":104, "company":"company-2", "branchId":"B-01",
+                "type":"bus","count":11, "fare" : "6.50"},
         ]
 
 
         var api = {
             findAllVehicleByCompanyandBranch : findAllVehicleByCompanyandBranch,
-            findVehicleByCompanyandBranch : findAllVehicleByCompanyandBranch,
+            findVehicleByCompany_Branch_Type : findVehicleByCompany_Branch_Type,
             createVehicle : createVehicle,
             updateVehicleById : updateVehicleById,
             deleteVehicleById : deleteVehicleById
@@ -47,7 +47,7 @@
 
         }
 
-        function findVehicleByCompanyandBranch(company, branchId, type, callback) {
+        function findVehicleByCompany_Branch_Type(company, branchId, type, callback) {
             var vehicle = null;
             for(var i in vehicles){
                 if(vehicles[i].company==company && vehicles[i].branchId==branchId && vehicles[i].type==type){

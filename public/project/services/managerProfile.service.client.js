@@ -10,25 +10,34 @@
 
     function ManagerProfileService($rootScope) {
         var managers = [
-            {	"_id":101, "company":"company-2", "branchId":"B-02",
+            {	"_id":101, "company":"company-1", "branchId":"B-01",
                 "firstName":"Thea","lastName":"Queen",
-                "username":"dan", "password":"dan",
-                "address":"221 Baker Street", "city":"Hell's Kitche ", "state":"NY", "zip":"61200",
+                "username":"bob", "password":"bob",
+                "address":"221 Baker Street", "city":"Boston", "state":"MA", "zip":"61200",
                 "emailid":"thea@qween.com", "contactnum":"920 345 6789",
                 "role": "manager"		},
 
-            {	"_id":102, "company":"company-1","branchId":"B-01",
+            {	"_id":102, "company":"company-1", "branchId":"B-02",
+                "firstName":"Thea","lastName":"Queen",
+                "username":"dan", "password":"dan",
+                "address":"221 Baker Street", "city":"Newton", "state":"MA", "zip":"61200",
+                "emailid":"thea@qween.com", "contactnum":"920 345 6789",
+                "role": "manager"		},
+
+            {	"_id":103, "company":"company-2","branchId":"B-01",
                 "firstName":"Oliver","lastName":"Queen",
                 "username":"ed","password":"ed",
-                "address":"345 Palmer Street", "city":"Starling City", "state":"MA", "zip":"61220",
+                "address":"345 Palmer Street", "city":"Boston", "state":"MA", "zip":"61220",
                 "emailid":"oliver@queen.com", "contactnum":"880 345 6789",
                 "role": "manager"		}
         ]
 
 
         var api = {
-            findManagerByCredentials : findManagerByCredentials,
+
             findAllManagerByCompany : findAllManagerByCompany,
+            findAllManagerByLocation : findAllManagerByLocation,
+            findAllManagerByLocationandComapany : findAllManagerByLocationandComapany,
             createManager : createManager,
             updateManager : updateManager,
             setCurrentManager: setCurrentManager,
@@ -45,26 +54,34 @@
             return $rootScope.currentManager;
         }
 
-        function findManagerByCredentials(username, password, callback) {
-            var manager = null;
+        function findAllManagerByCompany(company, callback) {
+            var myManager = [];
             for(var i in managers){
-                if(managers[i].username==username && managers[i].password==password){
-                    manager=managers[i];
-                    break;
+                if(managers[i].company==company){
+                    myManager.push(managers[i]);
                 }
             }
-            callback(manager);
-
+            callback(myManager);
         }
 
-        function findAllManagerByCompany(company, callback) {
-            var managers = [];
-            for(var i in customers){
-                if(customers[i].company==company){
-                    managers.push(customers[i]);
+        function findAllManagerByLocation(city, state, callback) {
+            var myManager = [];
+            for(var i in managers){
+                if(managers[i].state==state && managers[i].city==city){
+                    myManager.push(managers[i]);
                 }
             }
-            callback(customers);
+            callback(myManager);
+        }
+
+        function findAllManagerByLocationandComapany(city, state, company ,callback){
+            var myManager = [];
+            for(var i in managers){
+                if(managers[i].state==state && managers[i].city==city && managers[i].company==company){
+                    myManager.push(managers[i]);
+                }
+            }
+            callback(myManager);
         }
 
         function createManager(manager, callback) {
