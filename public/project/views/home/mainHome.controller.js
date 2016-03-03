@@ -10,6 +10,7 @@
 
         $scope.autoComplete = autoComplete;
         $scope.search = search;
+        $scope.book = book;
 
         function autoComplete() {
 

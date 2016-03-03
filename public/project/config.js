@@ -97,8 +97,8 @@
                 // controller
             })
             .when("/vehicleBooking",{
-                templateUrl: "views/Bookings/vehicleBooking.view.html"
-                // controller
+                templateUrl: "views/Bookings/vehicleBooking.view.html",
+                controller : "VehicleBookingController"
             })
 
             .otherwise({
