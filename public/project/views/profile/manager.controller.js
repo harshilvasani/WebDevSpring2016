@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("ManagerProfileController", ManagerProfileController);
 
-    function ManagerProfileController($scope,UserService,ManagerProfileService,VehicleService) {
+    function ManagerProfileController($scope,VehicleService) {
 
         //Event Handler's declaration
         $scope.addVehicle = addVehicle;
@@ -16,17 +16,10 @@
 
         $scope.index = -1;
 
-        var curUser = UserService.getCurrentUser();
-
-        ManagerProfileService.findManagerByCredentials(curUser.username,curUser.password ,renderCurManager);
-
-        function renderCurManager(curManager){
-            $scope.curManager = curManager;
-            ManagerProfileService.setCurrentManager(curManager);
-        }
+        var curManager = {"company" : "company-1", "branchId" : "B-01"}
 
         /*-----------vehicles event Handler's implementation-----------*/
-        VehicleService.findAllVehicleByCompanyandBranch($scope.curManager.company,$scope.curManager.branchId,renderBranchVehicles);
+        VehicleService.findAllVehicleByCompanyandBranch(curManager.company,curManager.branchId,renderBranchVehicles);
 
         function renderBranchVehicles(brachAllVehicle) {
             $scope.vehicles = brachAllVehicle;
@@ -34,8 +27,8 @@
 
         function addVehicle(vehicle){
             if(vehicle.type != null) {
-                var vehicle = {	"_id":(new Date).getTime(), "company":$scope.curManager.company,
-                                "branchId":$scope.curManager.branchId,
+                var vehicle = {	"_id":(new Date).getTime(), "company":curManager.company,
+                                "branchId":curManager.branchId,
                                 "type":vehicle.type,"count":vehicle.count, "fare" : vehicle.fare}
                 VehicleService.createVehicle(vehicle, renderAddVehicle);
             }
@@ -59,7 +52,7 @@
         }
 
         function renderDeleteVehicle(allVehicles){
-            VehicleService.findAllVehicleByCompanyandBranch($scope.curManager.company,$scope.curManager.branchId,renderBranchVehicles);
+            VehicleService.findAllVehicleByCompanyandBranch(curManager.company,curManager.branchId,renderBranchVehicles);
         }
 
         function updateVehicle(formName){
@@ -77,7 +70,7 @@
         }
 
         function renderUpdateVehicle (newForm){
-            VehicleService.findAllVehicleByCompanyandBranch($scope.curManager.company,$scope.curManager.branchId,renderBranchVehicles);
+            VehicleService.findAllVehicleByCompanyandBranch(curManager.company,curManager.branchId,renderBranchVehicles);
         }
     }
 })();

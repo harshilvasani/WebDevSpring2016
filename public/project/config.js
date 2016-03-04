@@ -101,6 +101,16 @@
                 controller : "VehicleBookingController"
             })
 
+            .when("/user",{
+                templateUrl: "views/login/userCRUD.view.html",
+                controller : "UserController"
+            })
+
+            .when("/branch",{
+                templateUrl: "views/Branches/branches.view.html",
+                controller : "BranchController"
+            })
+
             .otherwise({
                 redirectTo: "/mainhome"
             });

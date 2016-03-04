@@ -34,7 +34,8 @@
             createUser : createUser,
             updateUser : updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            deleteUser : deleteUser
         }
 
         return api;
@@ -73,6 +74,15 @@
                 if(users[i]._id==userId){
                     users[i]=user;
                     callback(users[i]);
+                    break;
+                }
+            }
+        }
+        function deleteUser(userId, callback) {
+            for(var i in users){
+                if(users[i]._id==userId){
+                    users.splice(i,1);
+                    callback(users);
                     break;
                 }
             }

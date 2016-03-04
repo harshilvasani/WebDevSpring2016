@@ -15,7 +15,6 @@ body {
     background-size: 100%;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 5%;
     padding-bottom: 5%;
 }
 
@@ -127,7 +126,9 @@ form.searchTab{
 #ownerInfoEdit,
 #managerEdit,
 #details,
-#userHome{
+#userHome,
+#users,
+#branch{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 10%;
@@ -177,6 +178,24 @@ table tbody td.branchHead a{
     height: 300px;
     border-size:1px;
     border-style:solid;
+    border-radius: 5px;
+    border-width: thin;
+    border-color: rgba(0, 0, 0, .75);
+    padding: 10px;
+    background: rgba(0, 0, 0, .75);
+    color: #ececec;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#myNav{
+    background-image: url("../images/wood.jpg");
+    height: auto;
+    padding: 10px;
+    padding-left: 10px;
+}
+
+#myNav2{
+    white-space: nowrap;
     border-radius: 5px;
     border-width: thin;
     border-color: rgba(0, 0, 0, .75);
