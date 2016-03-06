@@ -1,0 +1,107 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="ManagerProfileController">
+    <div>
+        <div id="managerProfile">
+            <h1>Profile</h1>
+
+            <div class="container">
+                <div class="row">
+                    <h2>Manager's Info</h2>
+                    <hr>
+                    <div class="col-sm-4 col-md-3">
+                        <img id="ownerImg" src="images/user.png"
+                             alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <blockquote>
+                            <h3>{{curManager.username}}</h3>
+                        </blockquote>
+                        <h4>
+                            <i class="glyphicon glyphicon-user"></i> {{curManager.firstName}} {{curManager.lastName}}
+                            <br/>
+                            <i class="glyphicon glyphicon-home"></i> {{curManager.company}} : {{curManager.branchId}}
+                            <br/>
+                            <i class="glyphicon glyphicon-briefcase"></i> {{curManager.address}}, {{curManager.city}}, {{curManager.state}}
+                            <br/>
+                            <i class="glyphicon glyphicon-envelope"></i> {{curManager.emailid}}
+                            <br/>
+                            <i class="glyphicon glyphicon-earphone"></i> {{curManager.contactnum}}
+                            <br/>
+                        </h4>
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+
+                <a href="#/managerEditProfile" class="btn btn-primary myButton"> Edit</a>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <h2>Vehicle's Info</h2>
+                    <hr>
+                    <table class="table table-responsive" id="myTable">
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Count</th>
+                            <th>Fare ($/hr)</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group ">
+                                    <input ng-model="vehicle.type" class="form-control"
+                                           type="text" placeholder="egs: truck">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="vehicle.count" class="form-control"
+                                           type="number" placeholder="egs: 2">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="vehicle.fare" class="form-control"
+                                           type="text" placeholder="egs: 5.00">
+                                </div>
+                            </td>
+                            <td>
+                                <a ng-click="addVehicle(vehicle)" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-plus"> </span>
+                                </a>
+                                <a ng-click="updateVehicle(vehicle)" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr ng-repeat="vehicle in vehicles">
+                            <td>{{vehicle.type}}</td>
+                            <td>{{vehicle.count}}</td>
+                            <td>{{vehicle.fare}}</td>
+
+                            <td>
+                                <a ng-click="deleteVehicle($index)" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                                <a ng-click="selectVehicle($index)" ng-model="index" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,69 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="VehicleBookingController">
+    <div>
+        <div id="vehicleBooking">
+            <h1>Booking Information</h1>
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <form class="form-horizontal searchTab">
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Start Location</label>
+                            <div class="left-inner-addon col-sm-10">
+                                <i class="glyphicon glyphicon-map-marker left"></i>
+                                <input class="form-control" id="origin"
+                                       type="text" placeholder="75 Saint Alphonsus Street"
+                                        ng-model="origin" ng-change="autoComplete()">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Destination Location</label>
+                            <div class="left-inner-addon col-sm-10">
+                                <i class="glyphicon glyphicon-map-marker left"></i>
+                                <input class="form-control" id="destination"
+                                       type="text" placeholder="45 Brooklyne Street"
+                                       ng-model="destination" ng-change="autoComplete"()>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a type="submit" ng-click="search()" class="btn btn-primary myButton">Search</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive" ng-show="places">
+                <br>
+                <table class="table table-stripped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="place in places">
+                            <td>
+                                {{place.origin}}
+                            </td>
+                            <td>
+                                {{place.destination}}
+                            </td>
+                            <td><a type="submit" class="btn btn-primary myButton">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</section>

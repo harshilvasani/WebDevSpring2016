@@ -1,0 +1,37 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerProfileController">
+    <div>
+        <div id="custProfile">
+            <h1>Profile</h1>
+
+            <div class="container">
+                <hr>
+                <div class="row">
+                    <div class="col-sm-4 col-md-3">
+                        <img id="custImg" src="images/user.png"
+                             alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <blockquote>
+                            <h3>{{curCustomer.username}}</h3>
+                        </blockquote>
+                        <h4>
+                            <i class="glyphicon glyphicon-user"></i> {{curCustomer.firstName}} {{curCustomer.lastName}}
+                            <br/>
+                            <i class="glyphicon glyphicon-home"></i> {{curCustomer.address}}, {{curCustomer.city}}, {{curCustomer.state}} ,{{curCustomer.zip}}
+                            <br/>
+                            <i class="glyphicon glyphicon-envelope"></i> {{curCustomer.emailid}}
+                            <br/>
+                            <i class="glyphicon glyphicon-earphone"></i> {{curCustomer.contactnum}}
+                            <br/>
+                        </h4>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <a href="#/customerEditProfile" class="btn btn-primary myButton"> Edit</a>
+            </div>
+        </div>
+    </div>
+</section>

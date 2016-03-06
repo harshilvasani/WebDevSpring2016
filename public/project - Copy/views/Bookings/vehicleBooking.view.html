@@ -1,0 +1,85 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="VehicleBookingController">
+    <div>
+        <div id="vehicleBooking">
+            <h1>Booking Information</h1>
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <form class="form-horizontal searchTab">
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Contact Name:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="firstName" type="text" class="form-control" placeholder="Contact Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Contact Number:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="lastName" type="text" class="form-control" placeholder="Last Name">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Start Location</label>
+                            <div class="left-inner-addon col-sm-10">
+                                <i class="glyphicon glyphicon-map-marker left"></i>
+                                <input class="form-control" id="origin"
+                                       type="text" placeholder="75 Saint Alphonsus Street"
+                                        ng-model="origin" ng-change="autoComplete()">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Destination Location</label>
+                            <div class="left-inner-addon col-sm-10">
+                                <i class="glyphicon glyphicon-map-marker left"></i>
+                                <input class="form-control" id="destination"
+                                       type="text" placeholder="45 Brooklyne Street"
+                                       ng-model="destination" ng-change="autoComplete"()>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Vehicle Count:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a type="submit"  ng-click="getMap()" id="getMap" class="btn btn-info">See Route</a>
+                                <a type="submit" ng-show="show==1" ng-click="show=0;" class="btn btn-danger">Hide map</a>
+                                <a type="submit" ng-show="show==0" ng-click="show=1;" class="btn btn-success">Show map</a>
+                                <div id="Mymap" ng-show="show==1"></div>
+                                <br>
+                                <br><a type="submit" ng-click="getFare()" class="btn btn-info">
+                                Calculate Fare</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a type="submit"  class="btn btn-primary myButton">Confirm Booking</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>

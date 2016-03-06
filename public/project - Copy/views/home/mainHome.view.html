@@ -1,0 +1,116 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="mainHomeController">
+    <div>
+        <div id="section1">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <form class="searchTab">
+                        <label>Location</label>
+                        <div class="form-group left-inner-addon right-inner-addon">
+                            <i class="glyphicon glyphicon-map-marker left"></i>
+                            <a ng-click="search(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
+                            <input ng-model="Origin" id="origin" class="controls location form-control "
+                                   type="text" placeholder="Enter a city in United States"
+                                   ng-change="autoComplete()">
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Booking Date:</label>
+                                <div class="left-inner-addon">
+                                    <i class="glyphicon glyphicon-calendar left"></i>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Booking Time:</label>
+                                <div class="left-inner-addon">
+                                    <i class="glyphicon glyphicon-time left"></i>
+                                    <input type="time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Company:</label>
+                                <select class="form-control" ng-model="company">
+                                    <option>company-1</option>
+                                    <option>company-2</option>
+                                    <option>None</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Vehice:</label>
+                                <select class="form-control" ng-model="type">
+                                    <option>truck</option>
+                                    <option>bus</option>
+                                    <option>None</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+
+
+                        <div class="form-group">
+                            <a href="#" ng-click="search()" class="btn btn-primary myButton">Search</a>
+                        </div>
+                    </form>
+
+                </div>
+
+                 <div class="col-md-6">
+
+                     <div class="row" ng-show="searches.length >= 0">
+
+                         <h3>Search Results</h3>
+                         <hr>
+                         <h5 ng-show="searches.length == 0"> No Results Found</h5>
+                         <table class="table table-responsive" id="myTable">
+                             <thead>
+                             <tr>
+                                 <th>Company</th>
+                                 <th>Branch</th>
+                                 <th>Vehicle-type</th>
+                                 <th>Count</th>
+                                 <th>Fare ($/hr)</th>
+                                 <th></th>
+                             </tr>
+                             </thead>
+                             <tbody>
+
+                             <tr ng-repeat="search in searches">
+                                 <td>{{search.company}}</td>
+                                 <td>{{search.branchId}}</td>
+                                 <td>{{search.type}}</td>
+                                 <td>{{search.count}}</td>
+                                 <td>{{search.fare}}</td>
+
+                                 <td>
+                                     <a ng-click="book($index)" class="btn btn-info myButton">
+                                         Book Now
+                                     </a>
+                                 </td>
+                             </tr>
+
+                             </tbody>
+                         </table>
+                     </div>
+
+
+                 </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>

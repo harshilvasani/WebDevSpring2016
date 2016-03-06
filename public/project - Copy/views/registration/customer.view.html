@@ -1,0 +1,107 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerRegistrationController">
+    <div>
+        <div id="custReg">
+            <h1>Customer Registration</h1>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <form class="form-horizontal searchTab">
+
+                        <div class="form-group">
+                            <label class="col-sm-2">First Name:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.firstName" type="text" class="form-control" placeholder="First Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Last Name:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.lastName" type="text" class="form-control" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Image:</label>
+                            <div class="col-sm-10">
+                                <img class="img-thumbnail img-rounded img-responsive" height="128px" width="128px" src="images/user.png"/>
+                                <br>
+                                <br>
+                                <a type="submit"  class="btn btn-info">Browse</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Username:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.username" type="text" class="form-control" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Password:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.password" type="password" class="form-control"  placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Address:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.address" type="text" class="form-control" placeholder="Appt.,Street,Area">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">City:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.city" type="text" class="form-control" placeholder="City">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">State:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" ng-model="customer.state">
+                                    <option>CA</option>
+                                    <option>MA</option>
+                                    <option>NY</option>
+                                    <option>NC</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Zip Code:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.zip" type="text" class="form-control" placeholder="24120">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Co. Number:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.contactnum" type="text" class="form-control" placeholder="6177921855">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Email Id:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="customer.emailid" type="text" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a type="submit" href="#/customerProfile"  ng-click="create(customer)" class="btn btn-primary myButton">Register</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

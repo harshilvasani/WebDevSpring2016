@@ -1,0 +1,132 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerBookingController">
+    <div>
+        <div id="customerBooking">
+            <h1>Bookings</h1>
+
+            <div class="container">
+                <div class="row">
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table" id="myTable">
+                        <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Company</th>
+                            <th>Branch Id</th>
+
+                            <th>Contact Person</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+
+                            <th>Day</th>
+                            <th>Vehicle</th>
+                            <th>Count</th>
+
+                            <th>Fare</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>
+                                <div class="form-group ">
+                                    <input ng-model="booking.custUsername" class="form-control"
+                                           type="text" placeholder="alice">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.company" class="form-control"
+                                           type="text" placeholder="company-1">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.branchId" class="form-control"
+                                           type="text" placeholder="egs: B-01">
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group ">
+                                    <input ng-model="booking.ContactName" class="form-control"
+                                           type="text" placeholder="Bansal Shah">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.originAddr" class="form-control"
+                                           type="text" placeholder="Huntington Ave.">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.destAddr" class="form-control"
+                                           type="text" placeholder="Roxbury Street">
+                                </div>
+                            </td>
+
+
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.type" class="form-control"
+                                           type="text" placeholder="truck">
+                                </div>
+                            </td>
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.count" class="form-control"
+                                           type="number" placeholder="3">
+                                </div>
+                            </td>
+
+                            <td>
+                                <div  class="form-group ">
+                                    <input ng-model="booking.charges" class="form-control"
+                                           type="number" placeholder="300">
+                                </div>
+                            </td>
+
+                            <td>
+                                <a ng-click="addBooking(booking)" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-plus"> </span>
+                                </a>
+                                <a ng-click="updateBooking(booking)" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr ng-repeat="booking in bookings">
+                            <td>{{booking.custUsername}}</td>
+                            <td>{{booking.company}}</td>
+                            <td>{{booking.branchId}}</td>
+
+                            <td>{{booking.ContactName}}</td>
+                            <td>{{booking.originAddr}}</td>
+                            <td>{{booking.destAddr}}</td>
+
+                            <td>{{booking.type}}</td>
+                            <td>{{booking.count}}</td>
+                            <td>{{booking.charges}}</td>
+
+                            <td>
+                                <a ng-click="deleteBooking($index)" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                                <a ng-click="selectBooking($index)" ng-model="index" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

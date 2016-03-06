@@ -1,0 +1,116 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="ManagerEditProfileController">
+    <div>
+        <div id="managerEdit">
+            <h1>Edit Profile</h1>
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <form class="form-horizontal searchTab">
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Branch Id</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.branchId" type="text" class="form-control" placeholder="B-01">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Manager's Firstname:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.firstName" type="text" class="form-control" placeholder="First Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Manager's Lastname:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.lastName" type="text" class="form-control" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Image:</label>
+                            <div class="col-sm-10">
+                                <img class="img-thumbnail img-rounded img-responsive" height="128px" width="128px" src="images/user.png"/>
+                                <br>
+                                <br>
+                                <a type="submit"  class="btn btn-info">Change</a>
+                                <a type="submit"  class="btn btn-danger">Remove</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Manager's Username:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.username" type="text" class="form-control" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Manager's Password:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.password" type="password" class="form-control"  placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Company Address</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.address" type="text" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">City:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.city" type="text" class="form-control" placeholder="City">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">State:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" ng-model="manager.state">
+                                    <option>CA</option>
+                                    <option>MA</option>
+                                    <option>NY</option>
+                                    <option>NC</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Zip Code:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.zip" type="text" class="form-control" placeholder="02120">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Email Id:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.emailid" type="text" class="form-control" placeholder="abc@gmail.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Contact Number:</label>
+                            <div class="col-sm-10">
+                                <input ng-model="manager.contactnum" type="text" class="form-control" placeholder="584 754 7888">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a href="#/managerProfile" type="submit" ng-click="update(manager)" class="btn btn-primary myButton">Update</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
