@@ -1,0 +1,91 @@
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CompanyController">
+    <div>
+        <div id="branch">
+            <h1>Company CRUD</h1>
+
+            <div class="container">
+                <div class="row">
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table" id="myTable">
+                            <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zipcode</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="form-group ">
+                                        <input ng-model="company.companyName" class="form-control"
+                                               type="text" placeholder="companyName">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="form-group ">
+                                        <input ng-model="company.companyAddr" class="form-control"
+                                               type="text" placeholder="Address">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group ">
+                                        <input ng-model="company.city" class="form-control"
+                                               type="text" placeholder="city">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="form-group ">
+                                        <input ng-model="company.state" class="form-control"
+                                               type="text" placeholder="state">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div  class="form-group ">
+                                        <input ng-model="company.zipCode" class="form-control"
+                                               type="text" placeholder="zipCode">
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <a ng-click="addCompany(company)" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-plus"> </span>
+                                    </a>
+                                    <a ng-click="updateCompany(company)" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="company in companys">
+                                <td>{{company.companyName}}</td>
+                                <td>{{company.companyAddr}}</td>
+                                <td>{{company.city}}</td>
+                                <td>{{company.state}}</td>
+                                <td>{{company.zipCode}}</td>
+
+
+                                <td>
+                                    <a ng-click="deleteCompany($index)" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                    <a ng-click="selectCompany($index)" ng-model="index" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

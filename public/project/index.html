@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="VehicleBookingApp">
 <head>
+    <meta name="google-site-verification" content="lV4FFVPdZauX547PxwRoqR7_-c5DsPss3li5CQyRGnU" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +34,7 @@
     <script src="services/vehicle.service.client.js"></script>
     <script src="services/booking.service.client.js"></script>
     <script src="services/branch.service.client.js"></script>
+    <script src="services/company.service.client.js"></script>
 
     <script src="views/main/MainController.js"></script>
     <script src="views/home/mainHome.controller.js"></script>
@@ -44,6 +46,7 @@
     <script src="views/registration/customer.controller.js"></script>
     <script src="views/Bookings/vehicleBooking.controller.js"></script>
     <script src="views/Bookings/customerBooking.controller.js"></script>
+    <script src="views/Company/company.controller.js"></script>
 
     <script src="views/login/userCRUD.controller.js"></script>
     <script src="views/Branches/branches.controller.js"></script>
@@ -60,23 +63,25 @@
     <div id="myNav">
     <div class="row" id="myNav2">
         <div class="col-md-3">
-            <h3>GoogleMap API Link</h3>
+            <h3>Links for Search Page</h3>
             <hr>
-            <a href="#/vehicleBooking" class="btn btn-primary">Vehicle Booking</a>
+            <a href="#/mainHome" class="btn btn-primary">Search Page</a>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h3>Links for CRUD</h3>
             <hr>
             <a href="#/user" class="btn btn-primary">User CRUD</a>
             <a href="#/managerProfile" class="btn btn-primary">Vehicle CRUD</a>
             <a href="#/customerBooking" class="btn btn-primary">Booking CRUD</a>
             <a href="#/branch" class="btn btn-primary">Branch CRUD</a>
+            <a href="#/company" class="btn btn-primary">Company CRUD</a>
         </div>
-        <div class="col-md-3">
-            <h3>Links for Search Page</h3>
+        <div class="col-md-2">
+            <h3>GoogleMap API Link</h3>
             <hr>
-            <a href="#/mainHome" class="btn btn-primary">Search Page</a>
+            <a href="#/vehicleBooking" class="btn btn-primary">Vehicle Booking</a>
         </div>
+
     </div>
     </div>
 

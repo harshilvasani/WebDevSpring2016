@@ -57,11 +57,19 @@
                             <td>
                                 {{place.destination}}
                             </td>
-                            <td><a type="submit" class="btn btn-primary myButton">Details</a></td>
+                            <td><a type="submit" ng-click="details($index)" class="btn btn-primary myButton">Details</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+
+            <a type="submit" ng-show="show==1" ng-click="show=0;" class="btn btn-danger">Hide map</a>
+            <a type="submit" ng-show="show==0" ng-click="show=1;" class="btn btn-success">Show map</a>
+            <div id="Mymap" ng-show="show==1"></div>
+            <h1>{{abcd}}</h1>
+            <input class="form-control" id="fare"
+                   type="text">
 
 
         </div>

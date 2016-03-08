@@ -114,6 +114,11 @@
                 controller : "BranchController"
             })
 
+            .when("/company",{
+                templateUrl: "views/Company/company.view.html",
+                controller : "CompanyController"
+            })
+
             .otherwise({
                 redirectTo: "/mainhome"
             });
