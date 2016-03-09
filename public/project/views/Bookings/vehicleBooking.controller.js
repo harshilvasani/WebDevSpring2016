@@ -32,15 +32,9 @@
         }
 
         function render(response){
-            console.log(response);
-            console.log(response.routes[0].legs[0].distance.text);
+           // console.log(response);
+           // console.log(response.routes[0].legs[0].distance.text);
             $scope.legs = response.routes[0].legs[0];
-            /*start_address
-
-            ({{start_location.lat}},{{start_location.lng}})
-            <h3>Distance : {{end_address}} ({{end_location.lat}},{{end_location.lng}})
-            <h3>Distance : {{distance.text}}
-            <h3>Time : {{duration.text}}*/
         }
 
 
