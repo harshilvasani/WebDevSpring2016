@@ -37,7 +37,6 @@
             $scope.legs = response.routes[0].legs[0];
         }
 
-
         function autoComplete() {
 
             var inputOrigin = document.getElementById('origin');
