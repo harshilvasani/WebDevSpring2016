@@ -1,27 +1,37 @@
-#!/bin/env node
-//  OpenShift sample Node application
-var express = require('express'); // require is keyword to include other library.
-var app = express();// app is instance of express library
-
+var express = require('express');
+var http = require('http');
+var https = require('https');
+var bodyParser = require('body-parser');
+var app = express();
+app.use(express.static(__dirname + '/public'));
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var request = require('request');
 
-app.use(express.static(__dirname + '/public'));
-
-app.get('/', function(req, res){// tells what to do when certain Http requests comes in
-    res.send('hello my friend......');
-});
-
-app.get('/api/users'/*are called routs*/, function (req,res) {
-   var users = [
-       {username: 'harshil', first: 'Harshil', last: 'Vasani'},
-       {username: 'harshil2', first: 'Harshil2', last: 'Vasani2'},
-       {username: 'harshil3', first: 'Harshil3', last: 'Vasani3'}
-   ];
-    res.json(users);
-    //res.send(users); also works its just we knew the format so used .json
+app.get('/hello', function(req, res){
+    res.send('hello world');
 });
 
 app.listen(port, ipaddress);
-//app.listen(3000);
 
+var urlencodedParser = bodyParser.urlencoded({extended: false});
+
+app.post('/maps', urlencodedParser, function (req, results) {
+
+    var URL="https://maps.googleapis.com/maps/api/directions/json?&origin=ORIGIN&destination=DESTINATION&key=AIzaSyD_70F4Mj8HaLj4AS8IYt4ZXyJGm2v-KD0";
+    var a=URL.replace("ORIGIN",req.body.origin);
+    var b=a.replace("DESTINATION",req.body.destination);
+
+    console.log(b);
+    request({
+        url: b,
+        json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            console.log(response);
+           // console.log(body) // Print the json response
+            results.json(body);
+        }
+    });
+
+});

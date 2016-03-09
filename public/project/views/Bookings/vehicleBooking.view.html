@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <a type="submit" ng-click="search()" class="btn btn-primary myButton">Search</a>
+                                <a type="submit" ng-click="addPlace()" class="btn btn-primary myButton">Add Place</a>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
 
             </div>
 
-            <div class="table-responsive" ng-show="places">
+            <div class="table-responsive" ng-show="places.length>0">
                 <br>
                 <table class="table table-stripped" id="myTable">
                     <thead>
@@ -64,13 +64,35 @@
             </div>
 
 
-            <a type="submit" ng-show="show==1" ng-click="show=0;" class="btn btn-danger">Hide map</a>
-            <a type="submit" ng-show="show==0" ng-click="show=1;" class="btn btn-success">Show map</a>
-            <div id="Mymap" ng-show="show==1"></div>
-            <h1>{{abcd}}</h1>
-            <input class="form-control" id="fare"
-                   type="text">
+            <a type="submit" ng-show="show==1" ng-click="show=0;" class="btn btn-danger">Hide Details</a>
+            <a type="submit" ng-show="show==0" ng-click="show=1;" class="btn btn-success">Show Details</a>
+            <div class="row" ng-show="show==1">
+                <div class="col-md-4" id="Mymap"></div>
 
+                <div class="col-md-8 table-responsive" id="details"">
+                    <br>
+                    <table class="table table-stripped">
+                        <tbody>
+                        <tr>
+                            <td>Origin :</td>
+                            <td>{{legs.start_address}} ({{legs.start_location.lat}},{{legs.start_location.lng}})</td>
+                        </tr>
+                        <tr>
+                            <td>Destination :</td>
+                            <td>{{legs.end_address}} ({{legs.end_location.lat}},{{legs.end_location.lng}})</td>
+                        </tr>
+                        <tr>
+                            <td>Distance :</td>
+                            <td>{{legs.distance.text}}</td>
+                        </tr>
+                        <tr>
+                            <td>Time :</td>
+                            <td>{{legs.duration.text}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </div>
     </div>
