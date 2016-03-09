@@ -32,8 +32,6 @@
         }
 
         function render(response){
-           // console.log(response);
-           // console.log(response.routes[0].legs[0].distance.text);
             $scope.legs = response.routes[0].legs[0];
         }
 
