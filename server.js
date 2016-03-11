@@ -1,28 +1,31 @@
-#!/bin/env node
-//  OpenShift sample Node application
-var express = require('express'); // require is keyword to include other library.
-var app = express();// app is instance of express library
+var express = require('express');
+var http = require('http');
+var bodyParser = require('body-parser');
+var request = require('request');
+
+var app = express();
+
+app.use(express.static(__dirname + '/public'));
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-app.use(express.static(__dirname + '/public'));
+var urlencodedParser = bodyParser.urlencoded({extended: false});
 
+app.post('/maps', urlencodedParser, function (req, results) {
 
+    var URL="https://maps.googleapis.com/maps/api/directions/json?&origin=ORIGIN&destination=DESTINATION&key=AIzaSyD_70F4Mj8HaLj4AS8IYt4ZXyJGm2v-KD0";
+    var a=URL.replace("ORIGIN",req.body.origin);
+    var b=a.replace("DESTINATION",req.body.destination);
 
-app.get('/', function(req, res){// tells what to do when certain Http requests comes in
-    res.send('hello my friend......');
+    request({
+        url: b,
+        json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            results.json(body);
+        }
+    });
+
 });
-
-app.get('/api/users'/*are called routs*/, function (req,res) {
-   var users = [
-       {username: 'harshil', first: 'Harshil', last: 'Vasani'},
-       {username: 'harshil2', first: 'Harshil2', last: 'Vasani2'},
-       {username: 'harshil3', first: 'Harshil3', last: 'Vasani3'}
-   ];
-    res.json(users);
-    //res.send(users); also works its just we knew the format so used .json
-});
-
 app.listen(port, ipaddress);
-//app.listen(3000);
