@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, UserService) {
+   /* function HeaderController($scope, UserService) {
 
         //Event Handler's declaration
         $scope.checkRootScope=checkRootScope;
@@ -47,5 +47,14 @@
             }
             return false;
         }
+    }*/
+
+    function HeaderController(){
+        var vm = this;
+
+        function init(){
+
+        }
+        init();
     }
 })();
