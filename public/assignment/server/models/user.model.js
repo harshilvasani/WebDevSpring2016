@@ -19,6 +19,7 @@ module.exports = function(app) {
         createUser : createUser,
         deleteUser : deleteUser,
         updateUser : updateUser,
+
         findUserByCredentials : findUserByCredentials,
         findUserByUsername : findUserByUsername
     }
@@ -29,16 +30,16 @@ module.exports = function(app) {
         return users;
     }
 
-    function createUser(user) {
-        users.push(user);
-    }
-
     function findUserById(userId) {
         for(var i in users) {
             if(users[i]._id==userId) {
                 return users[i];
             }
         }
+    }
+
+    function createUser(user) {
+        users.push(user);
     }
 
     function deleteUser(userId) {
