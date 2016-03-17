@@ -1,17 +1,8 @@
+var q = require("q");
+
 module.exports = function(app) {
 
-    var users = [
-        {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-            "username":"alice",  "password":"alice",   "roles": ["student"]		},
-        {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
-            "username":"bob",    "password":"bob",     "roles": ["admin"]		},
-        {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
-            "username":"charlie","password":"charlie", "roles": ["faculty"]		},
-        {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
-            "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
-        {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
-            "username":"ed",     "password":"ed",      "roles": ["student"]		}
-    ]
+    var users = require("./user.mock.json");
 
     var api = {
         findAllUsers : findAllUsers,
@@ -27,19 +18,32 @@ module.exports = function(app) {
     return api;
 
     function findAllUsers() {
-        return users;
+        var deferred = q.defer();
+        deferred.resolve(users);
+
+        return deferred.promise;
     }
 
     function findUserById(userId) {
+        var deferred = q.defer();
+        var user = null
+
         for(var i in users) {
             if(users[i]._id==userId) {
-                return users[i];
+                user = users[i];
+                break;
             }
         }
+        deferred.resolve(user);
+        return deferred.promise;
     }
 
     function createUser(user) {
         users.push(user);
+        var deferred = q.defer();
+        deferred.resolve(users);
+
+        return deferred.promise;
     }
 
     function deleteUser(userId) {
@@ -68,7 +72,11 @@ module.exports = function(app) {
                 break;
             }
         }
-        return user;
+
+        var deferred = q.defer();
+        deferred.resolve(user);
+
+        return deferred.promise;
     }
 
     function findUserByUsername(username) {
@@ -79,6 +87,10 @@ module.exports = function(app) {
                 break;
             }
         }
-        return user;
+
+        var deferred = q.defer();
+        deferred.resolve(user);
+
+        return deferred.promise;
     }
 };

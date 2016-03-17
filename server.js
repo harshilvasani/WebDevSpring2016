@@ -27,4 +27,7 @@ app.post('/maps', urlencodedParser, function (req, results) {
     });
 
 });
+
+require("./public/assignment/server/app.js")(app);
+
 app.listen(port, ipaddress);
