@@ -1,18 +1,27 @@
 module.exports = function(app,userModel) {
 
     app.post("/api/assignment/user",createUser);
-
     app.get("/api/assignment/user",findAllUsers);
     app.get("/api/assignment/user/:id",findUserById);
-    app.get("/api/assignment/user?username=username",findUserByUsername);
- //   app.get("/api/assignment/user?username=alice&password=wonderland",findUserByCredentials);
-
-//    app.put("/api/assignment/user/:id",updateUser);
-
- //   app.delete("/api/assignment/user/:id",deleteUser);
+    app.put("/api/assignment/user/:id",updateUser);
+    app.delete("/api/assignment/user/:id",deleteUser);
 
     function createUser(req,res){
-        console.log(req.body);
+        var newUser = req.body;
+        var users = [];
+
+        userModel
+            .createUser(newUser)
+            .then(
+                function (doc) {
+                    users = doc;
+                    res.json(doc);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findAllUsers(req,res){
@@ -37,7 +46,7 @@ module.exports = function(app,userModel) {
         }
 
         else{
-            findUserByCredentials((req,res));
+            findUserByCredentials(req,res);
         }
     }
 
@@ -45,7 +54,6 @@ module.exports = function(app,userModel) {
         var userId = req.params.id;
         var user = null;
 
-       // console.log(userId);
         userModel.findUserById(userId)
             .then(
                 function (doc) {
@@ -70,6 +78,55 @@ module.exports = function(app,userModel) {
                 function (doc) {
                     user = doc;
                     res.json(doc);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findUserByCredentials(req,res){
+        var username = req.query.username;
+        var password = req.query.password;
+
+        var user = null;
+
+        userModel
+            .findUserByCredentials(username,password)
+            .then(
+                function (doc) {
+                    user = doc;
+                    res.json(doc);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function updateUser(req,res){
+        var userId = req.params.id;
+        var updatedUser = req.body;
+
+        userModel.updateUser(userId,updatedUser)
+            .then(
+                function (doc) {
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function deleteUser(req,res){
+        var userId = req.params.id;
+
+        userModel.deleteUser(userId)
+            .then(
+                function (doc) {
                 },
                 // reject promise if error
                 function (err) {

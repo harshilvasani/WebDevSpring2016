@@ -21,6 +21,7 @@ module.exports = function(app) {
         var deferred = q.defer();
         deferred.resolve(users);
 
+        //deferred.reject(err);//if data is fetched for other server
         return deferred.promise;
     }
 
@@ -69,6 +70,7 @@ module.exports = function(app) {
         for(var i in users){
             if(users[i].username==username && users[i].password==password){
                 user=users[i];
+                console.log(user);
                 break;
             }
         }
