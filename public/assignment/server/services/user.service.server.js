@@ -47,6 +47,7 @@ module.exports = function(app,userModel) {
 
         else{
             findUserByCredentials(req,res);
+
         }
     }
 
@@ -92,12 +93,15 @@ module.exports = function(app,userModel) {
 
         var user = null;
 
+        var credentials = {"username" : username,
+                           "password" : password};
         userModel
-            .findUserByCredentials(username,password)
+            .findUserByCredentials(credentials)
             .then(
                 function (doc) {
                     user = doc;
-                    res.json(doc);
+                    res.json(user);
+
                 },
                 // reject promise if error
                 function (err) {
@@ -110,29 +114,13 @@ module.exports = function(app,userModel) {
         var userId = req.params.id;
         var updatedUser = req.body;
 
-        userModel.updateUser(userId,updatedUser)
-            .then(
-                function (doc) {
-                },
-                // reject promise if error
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+        userModel.updateUser(userId,updatedUser);
     }
 
     function deleteUser(req,res){
         var userId = req.params.id;
 
-        userModel.deleteUser(userId)
-            .then(
-                function (doc) {
-                },
-                // reject promise if error
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+        userModel.deleteUser(userId);
     }
 
 }

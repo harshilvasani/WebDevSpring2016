@@ -33,14 +33,10 @@
                 "lastName":lastName,
                 "username":username,
                 "password":password,
-                "roles": curUser.roles	}
+                "roles": curUser.roles}
 
-            UserService.updateUser(curUser._id,newUser,render);
-
-        }
-
-        function render(user){
-            UserService.setCurrentUser(user);
+            UserService.updateUser(curUser._id,newUser);
+            UserService.setCurrentUser(newUser);
         }
     }
 })();

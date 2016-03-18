@@ -65,17 +65,17 @@ module.exports = function(app) {
         }
     }
 
-    function findUserByCredentials(username, password) {
+    function findUserByCredentials(credentials) {
         var user=null;
         for(var i in users){
-            if(users[i].username==username && users[i].password==password){
+            if(users[i].username==credentials.username && users[i].password==credentials.password){
                 user=users[i];
-                console.log(user);
                 break;
             }
         }
 
         var deferred = q.defer();
+
         deferred.resolve(user);
 
         return deferred.promise;

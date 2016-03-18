@@ -22,7 +22,7 @@
             }
             else
             {
-                $scope.username=curUser.username;
+                $scope.username = curUser.username;
                 return false;
             }
         }
