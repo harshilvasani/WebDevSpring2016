@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-var urlencodedParser = bodyParser.urlencoded({extended: false});
+var urlencodedParser = bodyParser.urlencoded({extended: true});
 
 app.post('/maps', urlencodedParser, function (req, results) {
 

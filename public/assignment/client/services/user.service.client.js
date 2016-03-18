@@ -38,14 +38,6 @@
 
         function createUser(user) {
             return $http.post("/api/assignment/user", user);
-            /*var req = {
-                method: 'POST',
-                url: "/api/assignment/user",
-                data: user,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }
-
-            $http(req);*/
         }
 
         function deleteUserById(userId) {
