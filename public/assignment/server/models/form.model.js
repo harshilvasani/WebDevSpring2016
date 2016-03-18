@@ -11,7 +11,12 @@ module.exports = function(app) {
         deleteFormById : deleteFormById,
         updateFormById : updateFormById,
 
-        findFormByTitle : findFormByTitle
+        findFormByTitle : findFormByTitle,
+
+        //fields functions
+
+        findAllFieldsForForm : findAllFieldsForForm,
+        findFieldByIdForForm : findFieldByIdForForm
     }
 
     return api;
@@ -88,6 +93,44 @@ module.exports = function(app) {
         var deferred = q.defer();
         deferred.resolve(form);
 
+        return deferred.promise;
+    }
+
+    //fields function
+
+    function findAllFieldsForForm(formId){
+        var deferred = q.defer();
+        var form=null;
+
+        for(var i in forms){
+            if(forms[i]._id==formId) {
+                form = forms[i];
+                break;
+            }
+        }
+        deferred.resolve(form.fields);
+        return deferred.promise;
+    }
+
+    function findFieldByIdForForm(formId,fieldId){
+        var deferred = q.defer();
+        var form=null;
+
+        for(var i in forms){
+            if(forms[i]._id==formId) {
+                form = forms[i];
+                break;
+            }
+        }
+
+        var fieldSelect=null;
+        for(var i in form.fields){
+            if(form.fields[i]._id==fieldId){
+                fieldSelect=form.fields[i];
+            }
+        }
+
+        deferred.resolve(fieldSelect);
         return deferred.promise;
     }
 };

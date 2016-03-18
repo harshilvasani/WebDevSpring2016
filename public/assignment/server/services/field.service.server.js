@@ -7,11 +7,34 @@ module.exports = function(app,formModel) {
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByIdForForm);
 
     function findAllFieldsForForm(req,res){
+        var formId = req.params.formId;
+        formModel
+            .findAllFieldsForForm(formId)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
 
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findFieldByIdForForm(req,res){
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        formModel
+            .findFieldByIdForForm(formId,fieldId)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
 
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function deleteFieldByIdForForm(req,res){

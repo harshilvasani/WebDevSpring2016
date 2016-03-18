@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($scope, FormService, $location, UserService) {
+    function FormController( FormService, $location, UserService) {
 
         var vm = this;
         //Event Handler's declaration
