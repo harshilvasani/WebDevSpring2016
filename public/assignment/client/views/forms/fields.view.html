@@ -98,13 +98,13 @@
             <div class="row">
                 <div class="col-md-4  col-sm-4">
                     <label>Add New Field:</label>
-                    <select class="form-control">
-                        <option>Single Line Text</option>
-                        <option>Date</option>
-                        <option>Dropdown</option>
-                        <option>Checkboxes</option>
-                        <option>Radio Buttons</option>
-                        <option>Paragraph Text</option>
+                    <select class="form-control" ng-model="model.fieldType">
+                        <option value="TEXT">Single Line Text Field</option>
+                        <option value="TEXTAREA">Multiple Line Text Field</option>
+                        <option value="DATE">Date Field</option>
+                        <option value="OPTIONS">Dropdown Field</option>
+                        <option value="CHECKBOXES">Checkboxes Field</option>
+                        <option value="RADIOS">Radio Buttons Field</option>
                     </select>
                 </div>
 
@@ -114,7 +114,7 @@
                     </a>
 
 
-                    <a class="btn btn-default">
+                    <a class="btn btn-default" ng-click="model.addField(model.fieldType)">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
 
