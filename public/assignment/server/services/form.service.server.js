@@ -15,6 +15,7 @@ module.exports = function(app,formModel) {
             .then(
                 function (doc) {
                     forms = doc;
+                    console.log(forms);
                     res.json(forms);
                 },
                 // reject promise if error
@@ -48,15 +49,7 @@ module.exports = function(app,formModel) {
         var formId = req.params.formId;
 
         formModel
-            .deleteFormById(formId)
-            .then(
-                function (doc) {
-                },
-                // reject promise if error
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+            .deleteFormById(formId);
     }
 
     function createFormForUser(req,res){
@@ -67,6 +60,7 @@ module.exports = function(app,formModel) {
             .createFormForUser(userId,newForm)
             .then(
                 function (doc) {
+                    res.json(doc);
                 },
                 // reject promise if error
                 function (err) {
@@ -80,15 +74,7 @@ module.exports = function(app,formModel) {
         var updatedForm = req.body;
 
         formModel
-            .updateFormById(formId,updatedForm)
-            .then(
-                function (doc) {
-                },
-                // reject promise if error
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+            .updateFormById(formId,updatedForm);
     }
 
 }
