@@ -16,7 +16,10 @@ module.exports = function(app) {
         //fields functions
 
         findAllFieldsForForm : findAllFieldsForForm,
-        findFieldByIdForForm : findFieldByIdForForm
+        findFieldByIdForForm : findFieldByIdForForm,
+        deleteFieldByIdForForm : deleteFieldByIdForForm,
+        createFieldForForm : createFieldForForm,
+        updateFieldByIdForForm : updateFieldByIdForForm
     }
 
     return api;
@@ -132,5 +135,67 @@ module.exports = function(app) {
 
         deferred.resolve(fieldSelect);
         return deferred.promise;
+    }
+
+    function deleteFieldByIdForForm(formId,fieldId){
+        var deferred = q.defer();
+        var form = null;
+
+        for(var i in forms){
+            if(forms[i]._id == formId) {
+                form = forms[i];
+                break;
+            }
+        }
+
+        for(var i in form.fields){
+            if(form.fields[i]._id == fieldId){
+                form.fields.splice(i,1);
+            }
+        }
+
+        deferred.resolve(form);
+        return deferred.promise;
+    }
+
+    function createFieldForForm(formId,field){
+        var deferred = q.defer();
+        var form = null;
+
+        for(var i in forms){
+            if(forms[i]._id == formId) {
+                form = forms[i];
+                break;
+            }
+        }
+
+        field._id=(new Date).getTime();
+
+        form.fields.push(field);
+
+        deferred.resolve(form);
+        return deferred.promise;
+    }
+
+    function updateFieldForForm(formId,fieldId,field){
+        var deferred = q.defer();
+        var form = null;
+
+        for(var i in forms){
+            if(forms[i]._id == formId) {
+                form = forms[i];
+                break;
+            }
+        }
+
+        for(var i in form.fields){
+            if(form.fields[i]._id == fieldId){
+                form.fields[i] = field;
+                break;
+            }
+        }
+
+        deferred.resolve(form);
+        return deferred.promise
     }
 };

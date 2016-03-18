@@ -38,14 +38,54 @@ module.exports = function(app,formModel) {
     }
 
     function deleteFieldByIdForForm(req,res){
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        formModel
+            .deleteFieldByIdForForm(formId,fieldId)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
 
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function createFieldForForm(req,res){
+        var formId = req.params.formId;
+        var newField = req.body;
 
+        formModel
+            .createFieldForForm(formId,newField)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function updateFieldByIdForForm(req,res){
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        var updatedField = req.body;
 
+        formModel
+            .updateFieldByIdForForm(formId,fieldId,updatedField)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
+
 }
