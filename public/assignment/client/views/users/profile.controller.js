@@ -6,10 +6,11 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, UserService, $location) {
+    function ProfileController(UserService, $location) {
 
+        var vm = this;
         //Event Handler's declaration
-        $scope.update=update;
+        vm.update=update;
 
         var curUser = UserService.getCurrentUser();
 
@@ -18,21 +19,18 @@
         }
 
         else{
-            $scope.username = curUser.username;
-            $scope.password = curUser.password;
-            $scope.firstName = curUser.firstName;
-            $scope.lastName = curUser.lastName;
+            vm.user = curUser;
         }
 
         //Event Handler's implementation
-        function update(username,password,firstName,lastName,email){
+        function update(user){
             var curUser = UserService.getCurrentUser();
 
             var newUser={"_id":curUser._id,
-                "firstName":firstName,
-                "lastName":lastName,
-                "username":username,
-                "password":password,
+                "firstName":user.firstName,
+                "lastName":user.lastName,
+                "username":user.username,
+                "password":user.password,
                 "roles": curUser.roles}
 
             UserService.updateUser(curUser._id,newUser);

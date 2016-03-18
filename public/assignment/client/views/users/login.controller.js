@@ -6,15 +6,17 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, UserService, $location) {
+    function LoginController(UserService, $location) {
+
+        var vm = this;
 
         //Event Handler's declaration
-        $scope.login = login;
+        vm.login = login;
 
         //Event Handler's implementation
-        function login(username,password){
+        function login(user){
              UserService
-                .findUserByCredentials(username,password)
+                .findUserByCredentials({"username":user.username,"password":user.password})
                 .then(
                     function (doc) {
                         if(doc.data != null){
@@ -23,7 +25,7 @@
                         }
 
                         else {
-                            $scope.password = null;
+                            vm.password = null;
                             alert("Check your password OR username");
                         }
                     });

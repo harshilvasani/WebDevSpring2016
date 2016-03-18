@@ -28,8 +28,8 @@
             return $rootScope.currentUser;
         }
 
-        function findUserByCredentials(username, password) {
-            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
+        function findUserByCredentials(credentials) {
+            return $http.get("/api/assignment/user?username=" + credentials.username + "&password=" + credentials.password);
         }
 
         function findAllUsers() {

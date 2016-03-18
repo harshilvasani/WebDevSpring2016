@@ -6,21 +6,22 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, UserService,$location) {
+    function RegisterController(UserService,$location) {
 
+        var vm = this;
         //Event Handler's declaration
-        $scope.register=register;
+        vm.register=register;
 
         //Event Handler's implementation
-        function register(username,password,verifyPassword, email){
+        function register(user){
 
-            if(password==verifyPassword){
+            if(user.password==user.verifyPassword){
 
                 var newUser={"_id":(new Date).getTime(),
                             "firstName":null,
                             "lastName":null,
-                            "username":username,
-                            "password":password,
+                            "username":user.username,
+                            "password":user.password,
                             "roles": []	}
             }
             UserService
