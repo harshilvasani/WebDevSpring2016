@@ -23,12 +23,14 @@
                             "password":password,
                             "roles": []	}
             }
-            UserService.createUser(newUser,render);
-        }
-
-        function render(user){
-            UserService.setCurrentUser(user);
-            $location.path('/profile');
+            UserService
+                .createUser(newUser)
+                .then(
+                  function(doc){
+                      UserService.setCurrentUser(newUser);
+                      $location.path('/profile');
+                  }
+                );
         }
     }
 })();
