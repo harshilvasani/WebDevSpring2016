@@ -33,7 +33,7 @@ module.exports = function(app,userModel) {
                 .then(
                     function (doc) {
                         users = doc;
-                        res.json(doc);
+                        res.json(users);
                     },
                     // reject promise if error
                     function (err) {

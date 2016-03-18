@@ -1,3 +1,5 @@
+var q = require("q");
+
 module.exports = function(app) {
 
     var forms = require("./form.mock.json");
@@ -22,22 +24,38 @@ module.exports = function(app) {
                 allForms.push(forms[i]);
             }
         }
-        return allForms;
+        var deferred = q.defer();
+        deferred.resolve(allForms);
+
+        return deferred.promise;
     }
 
     function findFormById(formId){
+        var form = null;
+
         for(var i in forms){
             if(forms[i]._id == formId){
-                return forms[i];
+                form = forms[i];
+                break;
             }
         }
+
+        var deferred = q.defer();
+        deferred.resolve(form);
+
+        return deferred.promise;
     }
 
     function createFormForUser(userId, form) {
         form._id = (new Date).getTime();
         form.userId = userId;
         forms.push(form);
-        return forms;
+
+        var deferred = q.defer();
+        deferred.resolve(forms);
+
+        return deferred.promise;
+
     }
 
     function deleteFormById(formId) {
@@ -61,10 +79,15 @@ module.exports = function(app) {
     }
 
     function findFormByTitle(formTitle){
+        var form = null;
         for(var i in forms){
             if(forms[i].title == formTitle){
-                return forms[i];
+                form = forms[i];
             }
         }
+        var deferred = q.defer();
+        deferred.resolve(form);
+
+        return deferred.promise;
     }
 };
