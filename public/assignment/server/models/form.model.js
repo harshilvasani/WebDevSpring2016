@@ -67,12 +67,12 @@ module.exports = function(app) {
         }
     }
 
-    function updateFormById(formId, newForm) {
+    function updateFormById(formId, updatedForm) {
         for(var i in forms){
             if(forms[i]._id == formId){
-                forms[i].userId = newForm.userId;
-                forms[i].title = newForm.title;
-                forms[i].fields = newForm.fields;
+                forms[i].userId = updatedForm.userId;
+                forms[i].title = updatedForm.title;
+                forms[i].fields = updatedForm.fields;
                 break;
             }
         }
