@@ -177,7 +177,7 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function updateFieldForForm(formId,fieldId,field){
+    function updateFieldByIdForForm(formId,fieldId,field){
         var deferred = q.defer();
         var form = null;
 
