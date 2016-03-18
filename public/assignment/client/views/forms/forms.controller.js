@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController( FormService, $location, UserService) {
+    function FormController(FormService, $location, UserService) {
 
         var vm = this;
         //Event Handler's declaration
@@ -14,7 +14,7 @@
         vm.selectForm = selectForm;
         vm.deleteForm = deleteForm;
         vm.updateForm = updateForm;
-
+        vm.fields = fields;
 
         vm.index = -1;
 
@@ -34,7 +34,6 @@
             }
         }
         init();
-
 
         //Event Handler's implementation
         function addForm(formName){
@@ -76,8 +75,9 @@
             }
         }
 
-        function renderUpdateForm (newForm){
-            FormService.findAllFormsForUser(UserService.getCurrentUser()._id,renderUserForms);
+        function fields(clickedFormId){
+            FormService.setCurrentFormId(clickedFormId);
+            $location.path("/fields");
         }
     }
 })();

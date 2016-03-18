@@ -35,7 +35,7 @@
             </tr>
 
             <tr ng-repeat="form in model.forms">
-                <td> <a href="#/fields"> {{form.title}} </a></td>
+                <td> <a ng-click="model.fields(form._id)"> {{form.title}} </a></td>
 
                 <td>
                     <a ng-click="model.deleteForm($index)" class="btn btn-default">
