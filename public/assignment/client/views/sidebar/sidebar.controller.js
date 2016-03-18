@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-   /* function SidebarController($scope,UserService) {
+    function SidebarController($scope,UserService) {
 
         //Event Handler's declaration
         $scope.checkRootScope=checkRootScope;
@@ -44,14 +44,7 @@
             }
             return false;
         }
-    }*/
-
-    function SidebarController($location){
-        var vm = this;
-
-        function init(){
-            vm.$location = $location;
-        }
-        init();
     }
+
+
 })();
