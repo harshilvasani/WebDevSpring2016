@@ -15,7 +15,6 @@ module.exports = function(app,formModel) {
             .then(
                 function (doc) {
                     forms = doc;
-                    console.log(forms);
                     res.json(forms);
                 },
                 // reject promise if error
