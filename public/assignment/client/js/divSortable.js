@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp", [])
+        .module("divSortable", [])
         .directive("divSortable", divSortable);
 
     function divSortable() {
@@ -15,10 +15,10 @@
                 },
                 stop: function(event, ui) {
                     end = ui.item.index();
-                    var temp = scope.users[start];
+                    /*var temp = scope.users[start];
                     scope.users[start] = scope.users[end];
                     scope.users[end] = temp;
-                    scope.$apply();
+                    scope.$apply();*/
                 }
             });
         }

@@ -6,12 +6,13 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, UserService) {
+    function HeaderController(UserService) {
 
+        var vm = this;
         //Event Handler's declaration
-        $scope.checkRootScope=checkRootScope;
-        $scope.updateRootScope=updateRootScope;
-        $scope.isAdmin=isAdmin;
+        vm.checkRootScope=checkRootScope;
+        vm.updateRootScope=updateRootScope;
+        vm.isAdmin=isAdmin;
 
         //Event Handler's implementation
         function checkRootScope() {
@@ -22,7 +23,7 @@
             }
             else
             {
-                $scope.username = curUser.username;
+                vm.username = curUser.username;
                 return false;
             }
         }

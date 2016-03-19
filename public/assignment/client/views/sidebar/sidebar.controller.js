@@ -6,11 +6,12 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($scope,UserService) {
+    function SidebarController(UserService) {
 
+        var vm = this;
         //Event Handler's declaration
-        $scope.checkRootScope=checkRootScope;
-        $scope.isAdmin=isAdmin;
+        vm.checkRootScope=checkRootScope;
+        vm.isAdmin=isAdmin;
 
         UserService.setCurrentUser(null);
 
