@@ -10,20 +10,10 @@ module.exports = function(app) {
         findAllUsersByRole : findAllUsersByRole,
         createUser: createUser,
         updateUser: updateUser,
-        setCurrentUser: setCurrentUser,
-        getCurrentUser: getCurrentUser,
         deleteUser: deleteUser
     }
 
     return api;
-
-    function setCurrentUser(user) {
-        $rootScope.currentUser = user;
-    }
-
-    function getCurrentUser() {
-        return $rootScope.currentUser;
-    }
 
     function findUserByCredentials(username, password) {
         var user = null;
