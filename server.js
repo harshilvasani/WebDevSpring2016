@@ -13,6 +13,13 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 var urlencodedParser = bodyParser.urlencoded({extended: true});
 
+
+
+//assiggments
+require("./public/assignment/server/app.js")(app);
+
+//projects
+
 app.post('/maps', urlencodedParser, function (req, results) {
 
     var URL="https://maps.googleapis.com/maps/api/directions/json?&origin=ORIGIN&destination=DESTINATION&key=AIzaSyD_70F4Mj8HaLj4AS8IYt4ZXyJGm2v-KD0";
@@ -30,6 +37,7 @@ app.post('/maps', urlencodedParser, function (req, results) {
 
 });
 
-require("./public/assignment/server/app.js")(app);
+require("./public/project/server/app.js")(app);
+
 
 app.listen(port, ipaddress);
