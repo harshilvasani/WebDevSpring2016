@@ -1,0 +1,17 @@
+[
+  {	"_id":101,
+    "username":"alice",  "password":"alice",
+    "role": "customer"},
+  {	"_id":102,
+    "username":"a","password":"a",
+    "role": "customer"},
+  {	"_id":103,
+    "username":"charlie","password":"charlie",
+    "role": "owner"},
+  {	"_id":104,
+    "username":"dan",    "password":"dan",
+    "role": "manager"},
+  {	"_id":105,
+    "username":"ed",     "password":"ed",
+    "role": "manager"}
+]
