@@ -113,13 +113,12 @@ module.exports = function(app) {
         for (var i in bookings) {
             if (bookings[i]._id == bookingId) {
                 bookings[i] = updatedBooking
-                callback(bookings[i]);
                 break;
             }
         }
 
         var deferred = q.defer();
-        deferred.resolve(newBooking);
+        deferred.resolve(updatedBooking);
 
         return deferred.promise;
     }

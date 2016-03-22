@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerBookingController">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerBookingController as model">
     <div>
         <div id="customerBooking">
             <h1>Bookings</h1>
@@ -31,38 +31,38 @@
                         <tr>
                             <td>
                                 <div class="form-group ">
-                                    <input ng-model="booking.custUsername" class="form-control"
+                                    <input ng-model="model.booking.custUsername" class="form-control"
                                            type="text" placeholder="alice">
                                 </div>
                             </td>
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.company" class="form-control"
+                                    <input ng-model="model.booking.company" class="form-control"
                                            type="text" placeholder="company-1">
                                 </div>
                             </td>
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.branchId" class="form-control"
+                                    <input ng-model="model.booking.branchId" class="form-control"
                                            type="text" placeholder="egs: B-01">
                                 </div>
                             </td>
 
                             <td>
                                 <div class="form-group ">
-                                    <input ng-model="booking.ContactName" class="form-control"
+                                    <input ng-model="model.booking.ContactName" class="form-control"
                                            type="text" placeholder="Bansal Shah">
                                 </div>
                             </td>
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.originAddr" class="form-control"
+                                    <input ng-model="model.booking.originAddr" class="form-control"
                                            type="text" placeholder="Huntington Ave.">
                                 </div>
                             </td>
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.destAddr" class="form-control"
+                                    <input ng-model="model.booking.destAddr" class="form-control"
                                            type="text" placeholder="Roxbury Street">
                                 </div>
                             </td>
@@ -70,35 +70,35 @@
 
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.type" class="form-control"
+                                    <input ng-model="model.booking.type" class="form-control"
                                            type="text" placeholder="truck">
                                 </div>
                             </td>
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.count" class="form-control"
+                                    <input ng-model="model.booking.count" class="form-control"
                                            type="number" placeholder="3">
                                 </div>
                             </td>
 
                             <td>
                                 <div  class="form-group ">
-                                    <input ng-model="booking.charges" class="form-control"
+                                    <input ng-model="model.booking.charges" class="form-control"
                                            type="number" placeholder="300">
                                 </div>
                             </td>
 
                             <td>
-                                <a ng-click="addBooking(booking)" class="btn btn-success">
+                                <a ng-click="model.addBooking(model.booking)" class="btn btn-success">
                                     <span class="glyphicon glyphicon-plus"> </span>
                                 </a>
-                                <a ng-click="updateBooking(booking)" class="btn btn-primary">
+                                <a ng-click="model.updateBooking(model.booking)" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </a>
                             </td>
                         </tr>
 
-                        <tr ng-repeat="booking in bookings">
+                        <tr ng-repeat="booking in model.bookings">
                             <td>{{booking.custUsername}}</td>
                             <td>{{booking.company}}</td>
                             <td>{{booking.branchId}}</td>
@@ -112,10 +112,10 @@
                             <td>{{booking.charges}}</td>
 
                             <td>
-                                <a ng-click="deleteBooking($index)" class="btn btn-danger">
+                                <a ng-click="model.deleteBooking($index)" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
-                                <a ng-click="selectBooking($index)" ng-model="index" class="btn btn-primary">
+                                <a ng-click="model.selectBooking($index)" ng-model="model.index" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                             </td>

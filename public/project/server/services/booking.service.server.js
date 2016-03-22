@@ -3,10 +3,9 @@ module.exports = function(app,bookingModel) {
     app.get("/api/project/Customer/:username/booking",findAllBookingsForCustomer);
     app.get("/api/project/Company/:company/booking",findAllBookingsForCompany);
     app.get("/api/project/Company/:company/Branch/:branchId/booking",findAllBookingsForBranch);
-
-    app.get("/api/project/booking",findAllBookings);
     app.get("/api/project/booking/:bookingId", findBookingById);
 
+    app.get("/api/project/booking",findAllBookings);
     app.delete("/api/project/booking/:bookingId", deleteBookingById);
     app.post("/api/project/booking", createBookingForUser);
     app.put("/api/project/booking/:bookingId",updateBookingById);
@@ -108,7 +107,7 @@ module.exports = function(app,bookingModel) {
         var newBooking = req.body;
 
         bookingModel
-            .createBookingForCustomer(newBooking)
+            .createBooking(newBooking)
             .then(
                 function (doc) {
                     booking = doc;

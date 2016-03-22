@@ -6,38 +6,47 @@
         .module("VehicleBookingApp")
         .controller("CustomerBookingController", CustomerBookingController);
 
-    function CustomerBookingController($scope,BookingService) {
+    function CustomerBookingController(BookingService) {
+
+        var vm = this;
 
         //Event Handler's declaration
-        $scope.addBooking = addBooking;
-        $scope.selectBooking = selectBooking;
-        $scope.deleteBooking = deleteBooking;
-        $scope.updateBooking = updateBooking;
+        vm.addBooking = addBooking;
+        vm.selectBooking = selectBooking;
+        vm.deleteBooking = deleteBooking;
+        vm.updateBooking = updateBooking;
 
-        $scope.index = -1;
+        vm.index = -1;
 
         /*-----------bookings event Handler's implementation-----------*/
-        BookingService.getAllBookings(renderAllBookings);
 
-        function renderAllBookings(allBookings) {
-            $scope.bookings = allBookings;
+        function init(){
+            BookingService
+                .getAllBookings()
+                .then (
+                    function (response){
+                        vm.bookings = response.data;
+                    }
+                );
         }
+
+        init();
 
         function addBooking(booking){
             if(booking != null)
-            BookingService.createBookingForCustomer(booking, renderAddBooking);
-        }
-
-        function renderAddBooking(newBooking){
-          //  console.log($scope.bookings);
-           // $scope.bookings.push(newBooking);
-            $scope.booking = null;
+            BookingService
+                .createBookingForCustomer(booking)
+                .then(
+                    function (response){
+                        init();
+                    }
+                );
         }
 
         function selectBooking(index){
-            $scope.index = index;
-            var selectedBooking = $scope.bookings[index];
-            $scope.booking = {"custUsername" : selectedBooking.custUsername,
+            vm.index = index;
+            var selectedBooking = vm.bookings[index];
+            vm.booking = {"custUsername" : selectedBooking.custUsername,
                             "company": selectedBooking.company,
                             "branchId": selectedBooking.branchId,
                             "ContactName" : selectedBooking.ContactName,
@@ -49,24 +58,28 @@
         }
 
         function deleteBooking(index){
-            BookingService.deleteBookingById($scope.bookings[index]._id,renderDeleteBooking);
-        }
-
-        function renderDeleteBooking(allBooking){
-          //  BookingService.getAllBookings(renderAllBookings);
+            BookingService
+                .deleteBookingById(vm.bookings[index]._id)
+                .then(
+                    function (response){
+                        init();
+                    }
+                );
         }
 
         function updateBooking(booking){
-            if($scope.index != -1)
+            if(vm.index != -1)
             {
-                BookingService.updateBookingById($scope.bookings[$scope.index]._id,booking,renderUpdateBooking);
-                $scope.index = -1;
-                $scope.booking = null;
+                BookingService
+                    .updateBookingById(vm.bookings[vm.index]._id,booking)
+                    .then(
+                        function(response){
+                            init();
+                        }
+                    );
+                vm.index = -1;
+                vm.booking = null;
             }
-        }
-
-        function renderUpdateBooking (updatedBooking){
-            //BookingService.getAllBookings(renderAllBookings);
         }
     }
 })();

@@ -92,7 +92,8 @@
 
             .when("/customerBooking",{
                 templateUrl: "views/Bookings/customerBooking.view.html",
-                 controller : "CustomerBookingController"
+                controller : "CustomerBookingController",
+                controllerAs : "model"
             })
 
             .when("/bookingDtails",{
