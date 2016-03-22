@@ -74,7 +74,7 @@ module.exports = function(app,branchModel) {
     }
 
     function updateBranch(req,res){
-        var branchId = req.params.branchId;
+        var branchId = req.params.id;
         var updatedBranch = req.body;
 
         branchModel
@@ -92,7 +92,7 @@ module.exports = function(app,branchModel) {
     }
 
     function deleteBranch(req,res){
-        var branchId = req.params.branchId;
+        var branchId = req.params.id;
 
         branchModel
             .deleteBranch(branchId)
