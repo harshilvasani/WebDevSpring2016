@@ -8,7 +8,7 @@ module.exports = function(app,bookingModel) {
     app.get("/api/project/booking/:bookingId", findBookingById);
 
     app.delete("/api/project/booking/:bookingId", deleteBookingById);
-    app.post("/api/project/user/:username/booking", createBookingForUser);
+    app.post("/api/project/booking", createBookingForUser);
     app.put("/api/project/booking/:bookingId",updateBookingById);
 
 
@@ -105,10 +105,10 @@ module.exports = function(app,bookingModel) {
     }
 
     function createBookingForUser(req,res){
-        var bookingId = req.params.bookingId;
+        var newBooking = req.body;
 
         bookingModel
-            .createBookingForCustomer(bookingId)
+            .createBookingForCustomer(newBooking)
             .then(
                 function (doc) {
                     booking = doc;
@@ -123,9 +123,10 @@ module.exports = function(app,bookingModel) {
 
     function updateBookingById(req,res){
         var bookingId = req.params.bookingId;
+        var updatedBooking = req.body;
 
         bookingModel
-            .updateBookingById(bookingId)
+            .updateBookingById(bookingId,updatedBooking)
             .then(
                 function (doc) {
                     booking = doc;

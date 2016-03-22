@@ -1,0 +1,26 @@
+[
+  {	"_id":101,
+    "firstName" : "Thea" , "lastName" : "Queen",
+    "username":"thea",  "password":"thea",
+    "branchId": "B-01", "company" : "comapny-1"},
+
+  {	"_id":102,
+    "firstName" : "Oliver" , "lastName" : "Queen",
+    "username":"oliver",  "password":"oliver",
+    "branchId": "B-02", "company" : "company-1"},
+
+  {	"_id":103,
+    "firstName" : "Sara" , "lastName" : "Lance",
+    "username": "sara",  "password":"sara",
+    "branchId": "B-03", "company" : "company-1"},
+
+  {	"_id":104,
+    "firstName" : "John" , "lastName" : "Diggle",
+    "username": "john",  "password":"john",
+    "branchId": "B-01", "company" : "company-2"},
+
+  {	"_id":105,
+    "firstName" : "Felicity" , "lastName" : "Smoak",
+    "username": "felicity",  "password":"felicity",
+    "branchId": "B-02", "company" : "company-2"}
+]

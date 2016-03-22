@@ -12,14 +12,14 @@ module.exports = function(app) {
         getAllBookingForBranchByIdandCompany : getAllBookingForBranchByIdandCompany,
         findBookingById : findBookingById,
 
-        createBookingForCustomer: createBookingForCustomer,
+        createBooking: createBooking,
         deleteBookingById: deleteBookingById,
         updateBookingById: updateBookingById
     }
 
     return api;
 
-    function createBookingForCustomer(booking) {
+    function createBooking(booking) {
         booking._id = (new Date).getTime();
         booking.time = (new Date).getTime();
         booking.day = (new Date).getDate()
@@ -109,10 +109,10 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function updateBookingById(bookingId, newBooking) {
+    function updateBookingById(bookingId, updatedBooking) {
         for (var i in bookings) {
             if (bookings[i]._id == bookingId) {
-                bookings[i] = newBooking
+                bookings[i] = updatedBooking
                 callback(bookings[i]);
                 break;
             }
