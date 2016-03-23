@@ -1,5 +1,9 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
+.row{
+    margin-right: 0;
+}
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -132,6 +136,7 @@ form.searchTab{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 10%;
+    margin: 0px;
 }
 
 
@@ -191,11 +196,11 @@ table tbody td.branchHead a{
     background-image: url("../images/wood.jpg");
     height: auto;
     padding: 10px;
-    padding-left: 10px;
+    margin: 0px;
 }
 
 #myNav2{
-    white-space: nowrap;
+    margin-left: 3px;
     border-radius: 5px;
     border-width: thin;
     border-color: rgba(0, 0, 0, .75);
