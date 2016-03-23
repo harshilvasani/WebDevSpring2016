@@ -38,6 +38,7 @@
                 .createBookingForCustomer(booking)
                 .then(
                     function (response){
+                        vm.booking = null;
                         init();
                     }
                 );
@@ -70,6 +71,7 @@
         function updateBooking(booking){
             if(vm.index != -1)
             {
+                booking._id = vm.bookings[vm.index]._id;
                 BookingService
                     .updateBookingById(vm.bookings[vm.index]._id,booking)
                     .then(

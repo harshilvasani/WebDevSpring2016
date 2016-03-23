@@ -52,6 +52,7 @@ module.exports = function(app) {
     }
 
     function createBranch(branch) {
+        branch._id = (new Date).getTime();
         branches.push(branch);
 
         var deferred = q.defer();

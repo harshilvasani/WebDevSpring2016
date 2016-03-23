@@ -6,38 +6,48 @@
         .module("VehicleBookingApp")
         .controller("BranchController", BranchController);
 
-    function BranchController($scope, BranchService) {
-        //Event Handler's declaration
-        $scope.addBranch = addBranch;
-        $scope.selectBranch = selectBranch;
-        $scope.deleteBranch = deleteBranch;
-        $scope.updateBranch = updateBranch;
+    function BranchController(BranchService) {
 
-        $scope.index = -1;
+        var vm = this;
+        //Event Handler's declaration
+        vm.addBranch = addBranch;
+        vm.selectBranch = selectBranch;
+        vm.deleteBranch = deleteBranch;
+        vm.updateBranch = updateBranch;
+
+        vm.index = -1;
 
         /*-----------users event Handler's implementation-----------*/
-        BranchService.findAllBranches(renderAllBranches);
 
-        function renderAllBranches(allBranches) {
-            $scope.branches = allBranches;
+        function init(){
+            BranchService
+                .findAllBranches()
+                .then(
+                    function(response){
+                        vm.branches = response.data;
+                    }
+                );
         }
+
+        init();
 
         function addBranch(branch){
             if(branch != null)
-                BranchService.createBranch(branch, renderAddBranch);
-        }
-
-        function renderAddBranch(newBranch){
-            //  console.log($scope.bookings);
-            // $scope.bookings.push(newBooking);
-            $scope.branch = null;
+                BranchService
+                    .createBranch(branch)
+                    .then (
+                        function (response){
+                            vm.branch = null;
+                            init();
+                        }
+                    );
         }
 
         function selectBranch(index){
-            $scope.index = index;
-            var selectedBranch = $scope.branches[index];
-            $scope.branch = {"firstNmae" : selectedBranch.firstNmae,
-                "lastNmae": selectedBranch.lastNmae,
+            vm.index = index;
+            var selectedBranch = vm.branches[index];
+            vm.branch = {"firstName" : selectedBranch.firstName,
+                "lastName": selectedBranch.lastName,
                 "username" : selectedBranch.username,
                 "password": selectedBranch.password,
                 "company": selectedBranch.company,
@@ -45,24 +55,30 @@
         }
 
         function deleteBranch(index){
-            BranchService.deleteBranch($scope.branches[index]._id,renderDeleteBranch);
-        }
-
-        function renderDeleteBranch(allBranch){
-            //  BookingService.getAllBookings(renderAllBookings);
+            BranchService
+                .deleteBranch(vm.branches[index]._id)
+                .then(
+                    function (response){
+                        init();
+                    }
+                );
         }
 
         function updateBranch(branch){
-            if($scope.index != -1)
+            if(vm.index != -1)
             {
-                BranchService.updateBranch($scope.branches[$scope.index]._id,branch,renderUpdateBranch);
-                $scope.index = -1;
-                $scope.branch = null;
-            }
-        }
+                branch._id = vm.branches[vm.index]._id;
+                BranchService
+                    .updateBranch(vm.branches[vm.index]._id,branch)
+                    .then(
+                        function (response){
+                            vm.index = -1;
+                            vm.branch = null;
+                            init();
+                        }
+                    );
 
-        function renderUpdateBranch (updatedBranch){
-            //BookingService.getAllBookings(renderAllBookings);
+            }
         }
     }
 })();
