@@ -9,8 +9,8 @@ module.exports = function(app) {
         findAllVehicleByCompanyandBranch: findAllVehicleByCompanyandBranch,
         findVehicleByCompanyandBranchandType: findVehicleByCompanyandBranchandType,
         createVehicle: createVehicle,
-        updateVehicleById: updateVehicleById,
-        deleteVehicleById: deleteVehicleById
+        updateVehicle: updateVehicle,
+        deleteVehicle: deleteVehicle
     }
 
     return api;
@@ -55,27 +55,27 @@ module.exports = function(app) {
         vehicle._id = (new Date).getTime();
         vehicles.push(vehicle);
         var deferred = q.defer();
-        deferred.resolve(myVehicles);
+        deferred.resolve(vehicles);
 
         return deferred.promise;
     }
 
-    function deleteVehicleById(vehicle) {
+    function deleteVehicle(vehicleId) {
         for (var i in vehicles) {
-            if (vehicles[i]._id == vehicle._id) {
+            if (vehicles[i]._id == vehicleId) {
                 vehicles.splice(i, 1);
                 break;
             }
         }
         var deferred = q.defer();
-        deferred.resolve(myVehicles);
+        deferred.resolve(vehicles);
 
         return deferred.promise;
     }
 
-    function updateVehicleById(vehicle) {
+    function updateVehicle(vehicleId,vehicle) {
         for (var i in vehicles) {
-            if (vehicles[i]._id == vehicle._id) {
+            if (vehicles[i]._id == vehicleId) {
                 vehicles[i] = vehicle;
                 break;
             }

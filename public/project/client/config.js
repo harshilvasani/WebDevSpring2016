@@ -108,7 +108,8 @@
 
             .when("/user",{
                 templateUrl: "views/login/userCRUD.view.html",
-                controller : "UserController"
+                controller : "UserController",
+                controllerAs : "model"
             })
 
             .when("/branch",{

@@ -1,5 +1,5 @@
 [
-  {	"_id":102, "company":"company-1", "branchId":"B-01",
+  {	"_id":101, "company":"company-1", "branchId":"B-01",
     "type":"truck","count":2, "fare" : "7.00"},
 
   {	"_id":102, "company":"company-1", "branchId":"B-01",
