@@ -8,24 +8,7 @@
 
     var companys = [];
 
-    function CompanyService($rootScope) {
-        var companys = [
-            {	"_id":101,
-                "companyName" : "comapny-1" , "companyAddr" : "70 saint alphonsus",
-                "city":"Boston",  "state":"MA",
-                "zipCode": "02120"},
-
-            {	"_id":101,
-                "companyName" : "comapny-2" , "companyAddr" : "75 saint alphonsus",
-                "city":"Newton",  "state":"NY",
-                "zipCode": "02121"},
-
-            {	"_id":101,
-                "companyName" : "comapny-3" , "companyAddr" : "80 saint alphonsus",
-                "city":"WaterTown",  "state":"MA",
-                "zipCode": "02122"}
-        ]
-
+    function CompanyService($http) {
 
         var api = {
             findAllCompanys : findAllCompanys,
@@ -36,33 +19,20 @@
 
         return api;
 
-        function findAllCompanys(callback) {
-            callback(companys);
+        function findAllCompanys() {
+            return $http.get("/api/project/company");
         }
 
-        function createCompany(company, callback) {
-            companys.push(company);
-            callback(company);
+        function createCompany(company) {
+            return $http.post("/api/project/company",company);
         }
 
-        function updateCompany(companyId, company, callback) {
-            for(var i in companys){
-                if(companys[i]._id==companyId){
-                    companys[i]=company;
-                    callback(companys[i]);
-                    break;
-                }
-            }
+        function updateCompany(companyId, company) {
+            return $http.put("/api/project/company/" + companyId ,company);
         }
 
         function deleteCompany(companyId, callback) {
-            for(var i in companys){
-                if(companys[i]._id==companyId){
-                    companys.splice(i,1);
-                    callback(companys);
-                    break;
-                }
-            }
+            return $http.delete("/api/project/company/" + companyId);
         }
     }
 })();

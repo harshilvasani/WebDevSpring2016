@@ -6,37 +6,47 @@
         .module("VehicleBookingApp")
         .controller("CompanyController", CompanyController);
 
-    function CompanyController($scope, CompanyService) {
-        //Event Handler's declaration
-        $scope.addCompany = addCompany;
-        $scope.selectCompany = selectCompany;
-        $scope.deleteCompany = deleteCompany;
-        $scope.updateCompany = updateCompany;
+    function CompanyController(CompanyService) {
 
-        $scope.index = -1;
+        var vm = this;
+
+        //Event Handler's declaration
+        vm.addCompany = addCompany;
+        vm.selectCompany = selectCompany;
+        vm.deleteCompany = deleteCompany;
+        vm.updateCompany = updateCompany;
+
+        vm.index = -1;
 
         /*-----------users event Handler's implementation-----------*/
-        CompanyService.findAllCompanys(renderAllCompanys);
-
-        function renderAllCompanys(allCompanys) {
-            $scope.companys = allCompanys;
+        function init(){
+            CompanyService
+                .findAllCompanys()
+                .then(
+                    function (response){
+                        vm.companys = response.data;
+                    }
+                );
         }
+
+        init();
 
         function addCompany(company){
-            if(company != null && $scope.index==-1)
-                CompanyService.createCompany(company, renderAddCompany);
-        }
-
-        function renderAddCompany(newCompany){
-            //  console.log($scope.bookings);
-            // $scope.bookings.push(newBooking);
-            $scope.company = null;
+            if(company != null && vm.index==-1)
+                CompanyService
+                    .createCompany(company)
+                    .then(
+                        function (response){
+                            vm.company = null;
+                            init();
+                        }
+                    );
         }
 
         function selectCompany(index){
-            $scope.index = index;
-            var selectedCompany = $scope.companys[index];
-            $scope.company = {"companyName" : selectedCompany.companyName ,
+            vm.index = index;
+            var selectedCompany = vm.companys[index];
+            vm.company = {"companyName" : selectedCompany.companyName ,
                 "companyAddr" : selectedCompany.companyAddr,
                 "city":selectedCompany.city,
                 "state":selectedCompany.state,
@@ -44,24 +54,28 @@
         }
 
         function deleteCompany(index){
-            CompanyService.deleteCompany($scope.companys[index]._id,renderDeleteCompany);
-        }
-
-        function renderDeleteCompany(allCompany){
-            //  BookingService.getAllBookings(renderAllBookings);
+            CompanyService
+                .deleteCompany(vm.companys[index]._id)
+                .then(
+                    function (response){
+                        init();
+                    }
+                );
         }
 
         function updateCompany(company){
-            if($scope.index != -1)
+            if(vm.index != -1)
             {
-                CompanyService.updateCompany($scope.companys[$scope.index]._id,company,renderUpdateCompany);
-                $scope.index = -1;
-                $scope.company = null;
+                company._id = vm.companys[vm.index]._id;
+                CompanyService.updateCompany(vm.companys[vm.index]._id,company)
+                    .then(
+                        function (response){
+                            vm.index = -1;
+                            vm.company = null;
+                            init();
+                        }
+                    );
             }
-        }
-
-        function renderUpdateCompany (updatedCompany){
-            //BookingService.getAllBookings(renderAllBookings);
         }
     }
 })();

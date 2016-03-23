@@ -22,6 +22,8 @@ module.exports = function(app) {
     }
 
     function createCompany(company) {
+
+        company._id = (new Date).getTime();
         companys.push(company);
         var deferred = q.defer();
         deferred.resolve(companys);

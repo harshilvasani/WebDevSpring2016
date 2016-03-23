@@ -52,6 +52,7 @@ module.exports = function(app) {
     }
 
     function createVehicle(vehicle) {
+        vehicle._id = (new Date).getTime();
         vehicles.push(vehicle);
         var deferred = q.defer();
         deferred.resolve(myVehicles);

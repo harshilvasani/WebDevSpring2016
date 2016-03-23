@@ -53,6 +53,7 @@ module.exports = function(app) {
     }
 
     function createUser(user) {
+        user._id = (new Date).getTime();
         users.push(user);
         var deferred = q.defer();
         deferred.resolve(users);
