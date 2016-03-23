@@ -86,8 +86,9 @@
             })
 
             .when("/companyBooking",{
-                templateUrl: "views/Bookings/companyBooking.view.html"
-                // controller
+                templateUrl: "views/Bookings/companyBooking.view.html",
+                controller : "CompanyController",
+                controllerAs : "model"
             })
 
             .when("/customerBooking",{

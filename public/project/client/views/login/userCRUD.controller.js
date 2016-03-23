@@ -6,60 +6,76 @@
         .module("VehicleBookingApp")
         .controller("UserController", UserController);
 
-    function UserController($scope, UserService) {
-//Event Handler's declaration
-        $scope.addUser = addUser;
-        $scope.selectUser = selectUser;
-        $scope.deleteUser = deleteUser;
-        $scope.updateUser = updateUser;
+    function UserController(UserService) {
 
-        $scope.index = -1;
+        var vm = this;
+
+        //Event Handler's declaration
+        vm.addUser = addUser;
+        vm.selectUser = selectUser;
+        vm.deleteUser = deleteUser;
+        vm.updateUser = updateUser;
+
+        vm.index = -1;
 
         /*-----------users event Handler's implementation-----------*/
-        UserService.findAllUsers(renderAllUsers);
-
-        function renderAllUsers(allUsers) {
-            $scope.users = allUsers;
+        function init(){
+            UserService.findAllUsers()
+                .then(
+                    function (response){
+                        vm.users = response.data;
+                    }
+                );
         }
+
+        init();
 
         function addUser(user){
             if(user != null)
-                UserService.createUser(user, renderAddUser);
-        }
-
-        function renderAddUser(newUser){
-            //  console.log($scope.bookings);
-            // $scope.bookings.push(newBooking);
-            $scope.user = null;
+                UserService
+                    .createUser(user)
+                    .then(
+                        function (response){
+                            vm.user = null;
+                            init();
+                        }
+                    );
         }
 
         function selectUser(index){
-            $scope.index = index;
-            var selectedUser = $scope.users[index];
-            $scope.user = {"username" : selectedUser.username,
+            vm.index = index;
+            var selectedUser = vm.users[index];
+            vm.user = {"username" : selectedUser.username,
                 "password": selectedUser.password,
                 "role": selectedUser.role}
         }
 
         function deleteUser(index){
-            UserService.deleteUser($scope.users[index]._id,renderDeleteUser);
-        }
-
-        function renderDeleteUser(allUser){
-            //  BookingService.getAllBookings(renderAllBookings);
+            UserService
+                .deleteUser(vm.users[index]._id)
+                .then(
+                    function (response){
+                        init();
+                    }
+                );
         }
 
         function updateUser(user){
-            if($scope.index != -1)
+            if(vm.index != -1)
             {
-                UserService.updateUser($scope.users[$scope.index]._id,user,renderUpdateUser);
-                $scope.index = -1;
-                $scope.user = null;
-            }
-        }
+                user._id = vm.users[vm.index]._id;
 
-        function renderUpdateUser (updatedUser){
-            //BookingService.getAllBookings(renderAllBookings);
+                UserService
+                    .updateUser(vm.users[vm.index]._id,user)
+                    .then(
+                        function (response){
+                            vm.index = -1;
+                            vm.user = null;
+                            init();
+                        }
+                    );
+
+            }
         }
     }
 })();
