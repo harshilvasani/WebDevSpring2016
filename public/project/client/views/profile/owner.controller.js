@@ -12,6 +12,7 @@
 
         function init(){
             vm.curOwner = UserService.getCurrentUser();
+            console.log()
             CompanyService
                 .findCompany(vm.curOwner.company)
                 .then(

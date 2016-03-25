@@ -6,9 +6,11 @@
         .module("VehicleBookingApp")
         .factory("BranchService",BranchService);
 
-    function BranchService($http) {
+    function BranchService($http,$rootScope) {
 
         var api = {
+            setCurrentBranch : setCurrentBranch,
+            getCurrentBranch : getCurrentBranch,
             findAllBranches : findAllBranches,
             findAllBranchesByCompany : findAllBranchesByCompany,
             findBranchByByCompanyandId : findBranchByByCompanyandId,
@@ -18,6 +20,14 @@
         }
 
         return api;
+
+        function setCurrentBranch(branch){
+            $rootScope.branch = branch;
+        }
+
+        function getCurrentBranch(){
+            return $rootScope.branch;
+        }
 
         function findAllBranches() {
             return $http.get("/api/project/branch");

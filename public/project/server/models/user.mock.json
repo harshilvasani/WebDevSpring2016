@@ -36,7 +36,6 @@
     "company":"company-1",
     "firstName":"Bhavesh","lastName":"Vasani",
     "username":"b","password":"b",
-    "address":"race course ring road", "city":"Rajkot", "state":"MA", "zip":"61220",
     "emailid":"bhaveshvasani03@gmail.com", "contactnum":"617 792 9999",
     "role": "owner"},
 
@@ -44,7 +43,6 @@
     "company":"company-2",
     "firstName":"Rupa","lastName":"Vasani",
     "username":"r","password":"r",
-    "address":"race course ring road", "city":"Rajkot", "state":"MA", "zip":"61220",
     "emailid":"rupavasani03@gmail.com", "contactnum":"617 792 1855",
     "role": "owner"}
 ]

@@ -8,9 +8,11 @@
 
     var companys = [];
 
-    function CompanyService($http) {
+    function CompanyService($http,$rootScope) {
 
         var api = {
+            setCurrentCompany : setCurrentCompany,
+            getCurrentCompany : getCurrentCompany,
             findAllCompanys : findAllCompanys,
             findCompany : findCompany,
             createCompany : createCompany,
@@ -19,6 +21,14 @@
         }
 
         return api;
+
+        function setCurrentCompany(company){
+            $rootScope.company = company;
+        }
+
+        function getCurrentCompany(){
+            return $rootScope.company;
+        }
 
         function findAllCompanys() {
             return $http.get("/api/project/company");

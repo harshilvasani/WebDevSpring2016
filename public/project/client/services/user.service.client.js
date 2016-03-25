@@ -15,10 +15,21 @@
             updateUser : updateUser,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
+            setCurrentOwner: setCurrentOwner,
+            getCurrentOwner: getCurrentOwner,
             deleteUser : deleteUser
         }
 
         return api;
+
+
+        function setCurrentOwner (owner) {
+            $rootScope.currentOwner = owner;
+        }
+
+        function getCurrentOwner () {
+            return $rootScope.currentOwner;
+        }
 
         function setCurrentUser (user) {
             $rootScope.currentUser = user;
