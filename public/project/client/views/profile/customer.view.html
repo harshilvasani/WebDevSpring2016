@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerProfileController">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="CustomerProfileController as model">
     <div>
         <div id="custProfile">
             <h1>Profile</h1>
@@ -12,16 +12,16 @@
                     </div>
                     <div class="col-sm-8 col-md-9">
                         <blockquote>
-                            <h3>{{curCustomer.username}}</h3>
+                            <h3>{{model.curCustomer.username}}</h3>
                         </blockquote>
                         <h4>
-                            <i class="glyphicon glyphicon-user"></i> {{curCustomer.firstName}} {{curCustomer.lastName}}
+                            <i class="glyphicon glyphicon-user"></i> {{model.curCustomer.firstName}} {{model.curCustomer.lastName}}
                             <br/>
-                            <i class="glyphicon glyphicon-home"></i> {{curCustomer.address}}, {{curCustomer.city}}, {{curCustomer.state}} ,{{curCustomer.zip}}
+                            <i class="glyphicon glyphicon-home"></i> {{model.curCustomer.address}}, {{model.curCustomer.city}}, {{model.curCustomer.state}} ,{{curCustomer.zip}}
                             <br/>
-                            <i class="glyphicon glyphicon-envelope"></i> {{curCustomer.emailid}}
+                            <i class="glyphicon glyphicon-envelope"></i> {{model.curCustomer.emailid}}
                             <br/>
-                            <i class="glyphicon glyphicon-earphone"></i> {{curCustomer.contactnum}}
+                            <i class="glyphicon glyphicon-earphone"></i> {{model.curCustomer.contactnum}}
                             <br/>
                         </h4>
                     </div>

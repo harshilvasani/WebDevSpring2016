@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("ManagerProfileController", ManagerProfileController);
 
-    function ManagerProfileController(VehicleService) {
+    function ManagerProfileController(UserService,VehicleService) {
 
         var vm = this;
 
@@ -24,8 +24,10 @@
     //    VehicleService.findAllVehicleByCompanyandBranch(curManager.company,curManager.branchId,renderBranchVehicles);
 
         function init(){
+            vm.curManager = UserService.getCurrentUser();
+
             VehicleService
-                .findAllVehicles()
+                .findAllVehicleByCompanyandBranch(vm.curManager.company,vm.curManager.branchId)
                 .then(
                     function (response){
                         vm.vehicles = response.data;

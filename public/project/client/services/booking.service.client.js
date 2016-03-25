@@ -14,7 +14,10 @@
             createBookingForCustomer : createBookingForCustomer,
             getAllBookings : getAllBookings,
             deleteBookingById : deleteBookingById,
-            updateBookingById : updateBookingById
+            updateBookingById : updateBookingById,
+            getAllBookingForCustomerByUsername : getAllBookingForCustomerByUsername,
+            getAllBookingForBranch : getAllBookingForBranch,
+            getAllBookingForCompany : getAllBookingForCompany
         }
 
         return api;
@@ -37,6 +40,18 @@
 
         function updateBookingById(bookingId, newBooking) {
             return $http.put("/api/project/booking/" + bookingId,newBooking);
+        }
+
+        function getAllBookingForCustomerByUsername(username){
+            return $http.get("/api/project/Customer/" + username + "/booking");
+        }
+
+        function getAllBookingForBranch(company,branchId){
+            return $http.get("/api/project/Company/" + company + "/Branch/" + branchId + "/booking");
+        }
+
+        function getAllBookingForCompany(company){
+            return $http.get("/api/project/Company/" + company + "/booking");
         }
     }
 })();

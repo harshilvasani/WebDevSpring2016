@@ -6,6 +6,7 @@ module.exports = function(app) {
 
     var api = {
         findAllCompanys : findAllCompanys,
+        findCompany : findCompany,
         createCompany : createCompany,
         updateCompany : updateCompany,
         deleteCompany : deleteCompany
@@ -17,6 +18,22 @@ module.exports = function(app) {
 
         var deferred = q.defer();
         deferred.resolve(companys);
+
+        return deferred.promise;
+    }
+
+    function findCompany(company){
+        var myCompany = null;
+       
+        for(var i in companys){
+            if(companys[i].companyName == company){
+                myCompany = companys[i];
+                break;
+            }
+        }
+
+        var deferred = q.defer();
+        deferred.resolve(myCompany);
 
         return deferred.promise;
     }

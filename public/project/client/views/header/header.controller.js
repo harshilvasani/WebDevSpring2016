@@ -6,13 +6,15 @@
         .module("VehicleBookingApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController(UserService) {
+    function HeaderController(UserService, $location) {
 
         var vm = this;
+
         //Event Handler's declaration
         vm.checkRootScope=checkRootScope;
         vm.updateRootScope=updateRootScope;
         vm.setProfile = setProfile;
+        vm.displayBookings = displayBookings;
 
         //Event Handler's implementation
         function checkRootScope() {
@@ -44,6 +46,21 @@
 
             else{
                 $location.path('/managerProfile');
+            }
+        }
+
+        function displayBookings(){
+            var loggedUser = UserService.getCurrentUser();
+            if(loggedUser.role == "customer"){
+                $location.path('/customerBooking');
+            }
+
+            else if(loggedUser.role == "owner"){
+                $location.path('/companyBooking');
+            }
+
+            else{
+                $location.path('/branchBooking');
             }
         }
     }

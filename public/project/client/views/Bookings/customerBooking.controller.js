@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("CustomerBookingController", CustomerBookingController);
 
-    function CustomerBookingController(BookingService) {
+    function CustomerBookingController(BookingService,UserService) {
 
         var vm = this;
 
@@ -21,8 +21,10 @@
         /*-----------bookings event Handler's implementation-----------*/
 
         function init(){
+            var curUser = UserService.getCurrentUser();
+
             BookingService
-                .getAllBookings()
+                .getAllBookingForCustomerByUsername(curUser.username)
                 .then (
                     function (response){
                         vm.bookings = response.data;

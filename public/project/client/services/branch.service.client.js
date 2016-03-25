@@ -10,6 +10,7 @@
 
         var api = {
             findAllBranches : findAllBranches,
+            findAllBranchesByCompany : findAllBranchesByCompany,
             createBranch : createBranch,
             updateBranch : updateBranch,
             deleteBranch : deleteBranch
@@ -19,6 +20,10 @@
 
         function findAllBranches() {
             return $http.get("/api/project/branch");
+        }
+
+        function findAllBranchesByCompany(company) {
+            return $http.get("/api/project/Company/" + company + "/branch");
         }
 
         function createBranch(branch) {

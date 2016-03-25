@@ -1,17 +1,35 @@
 [
-  {	"_id":101,
-    "username":"alice",  "password":"alice",
-    "role": "customer"},
-  {	"_id":102,
+  {"_id":101, "firstName":"Alice","lastName":"Wonderland",
+    "username":"alice", "password":"alice",
+    "address":"75 Saint alphonsus", "city":"Boston", "state":"MA", "zip":"21200",
+    "emailid":"alice@alice.com", "contactnum":"120 345 6789",
+    "role": "customer"	},
+
+  {	"_id":102, "firstName":"A","lastName":"Kohli",
     "username":"a","password":"a",
-    "role": "customer"},
-  {	"_id":103,
-    "username":"charlie","password":"charlie",
-    "role": "owner"},
-  {	"_id":104,
-    "username":"dan",    "password":"dan",
+    "address":"75 Saint alphonsus", "city":"Munbai", "state":"MA", "zip":"21220",
+    "emailid":"virat@kohli.com", "contactnum":"1203456789",
+    "role": "customer"	},
+
+  {	"_id":103, "company":"company-1", "branchId":"B-01",
+    "firstName":"Dan","lastName":"Queen",
+    "username":"dan", "password":"dan",
+    "address":"221 Baker Street", "city":"Newton", "state":"MA", "zip":"61200",
+    "emailid":"thea@qween.com", "contactnum":"920 345 6789",
     "role": "manager"},
+
+  {	"_id":104, "company":"company-2","branchId":"B-01",
+    "firstName":"Ed","lastName":"Queen",
+    "username":"ed","password":"ed",
+    "address":"345 Palmer Street", "city":"Boston", "state":"MA", "zip":"61220",
+    "emailid":"oliver@queen.com", "contactnum":"880 345 6789",
+    "role": "manager"},
+
   {	"_id":105,
-    "username":"ed",     "password":"ed",
-    "role": "manager"}
+    "company":"company-1",
+    "firstName":"Harshil","lastName":"Vasani",
+    "username":"h","password":"h",
+    "address":"race course ring road", "city":"Rajkot", "state":"MA", "zip":"61220",
+    "emailid":"harshilvasani03@gmail.com", "contactnum":"617 792 1855",
+    "role": "owner"}
 ]

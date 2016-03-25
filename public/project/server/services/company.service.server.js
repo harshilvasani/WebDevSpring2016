@@ -1,6 +1,7 @@
 module.exports = function(app,companyModel) {
 
     app.get("/api/project/company", findAllCompanys);
+    app.get("/api/project/company/:company", findCompany);
     app.post("/api/project/company", createCompany);
     app.put("/api/project/company/:id", updateCompany);
     app.delete("/api/project/company/:id", deleteCompany);
@@ -14,6 +15,25 @@ module.exports = function(app,companyModel) {
                 function (doc) {
                     var companys = doc;
                     res.json(companys);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findCompany(req,res){
+
+        var company = req.params.company;
+
+
+        companyModel
+            .findCompany(company)
+            .then(
+                function (doc) {
+                    var company = doc;
+                    res.json(company);
                 },
                 // reject promise if error
                 function (err) {

@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="OwnerProfileController as model">
     <div>
         <div id="ownerProfile">
             <h1>Profile</h1>
@@ -13,14 +13,17 @@
                     </div>
                     <div class="col-sm-8 col-md-9">
                         <blockquote>
-                            <h3>DareDevil</h3>
+                            <h3>{{model.curOwner.username}}</h3>
                         </blockquote>
                         <h4>
-                            <i class="glyphicon glyphicon-user"></i> Mathew Murdock
+                            <i class="glyphicon glyphicon-user"></i> {{model.curOwner.firstName}} {{model.curOwner.lastName}}
                             <br/>
-                            <i class="glyphicon glyphicon-earphone"></i> 123456789
+                            <i class="glyphicon glyphicon-home"></i> {{model.curOwner.address}}, {{model.curOwner.city}}, {{model.curCustomer.state}} ,{{curCustomer.zip}}
                             <br/>
-                            <i class="glyphicon glyphicon-envelope"></i> mattMurdock@daredevil.com
+                            <i class="glyphicon glyphicon-envelope"></i> {{model.curOwner.emailid}}
+                            <br/>
+                            <i class="glyphicon glyphicon-earphone"></i> {{model.curOwner.contactnum}}
+                            <br/>
                         </h4>
                     </div>
 
@@ -38,12 +41,12 @@
                     </div>
                     <div class="col-sm-8 col-md-9">
                         <blockquote>
-                            <h3>Queen Consolidates</h3> <small id="quote"><cite  title="Source Title">Hell's Kitchen, New York  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                            <h3>{{model.curCompany.companyName}}</h3> <small id="quote"><cite  title="Source Title">{{model.curCompany.city}}, {{model.curCompany.state}}  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         </blockquote>
                         <h4>
-                            <i class="glyphicon glyphicon-briefcase"></i> 221B Baker Street
+                            <i class="glyphicon glyphicon-briefcase"></i> {{model.curCompany.companyAddr}}
                             <br/>
-                            <i class="glyphicon glyphicon-globe"></i> 02120
+                            <i class="glyphicon glyphicon-globe"></i> {{model.curCompany.zipCode}}
                             <br/>
 
                         </h4>
@@ -68,28 +71,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>B-01</td>
-                            <td>Thea</td>
-                            <td>Queen</td>
-                            <td>thea</td>
-                            <td>thea</td>
+                        <tr ng-repeat="branch in model.curBranches">
+                            <td>{{branch.branchId}}</td>
+                            <td>{{branch.firstname}}</td>
+                            <td>{{branch.lastname}}</td>
+                            <td>{{branch.username}}</td>
+                            <td>{{branch.passname}}</td>
                         </tr>
 
-                        <tr>
-                            <td>B-02</td>
-                            <td>Harvy</td>
-                            <td>Spectre</td>
-                            <td>harvy</td>
-                            <td>harvy</td>
-                        </tr>
-                        <tr>
-                            <td>B-03</td>
-                            <td>Barry</td>
-                            <td>Allen</td>
-                            <td>barry</td>
-                            <td>barry</td>
-                        </tr>
                         </tbody>
 
                     </table>

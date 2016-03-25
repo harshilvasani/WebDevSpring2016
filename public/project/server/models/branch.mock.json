@@ -2,7 +2,7 @@
   {	"_id":101,
     "firstName" : "Thea" , "lastName" : "Queen",
     "username":"thea",  "password":"thea",
-    "branchId": "B-01", "company" : "comapny-1"},
+    "branchId": "B-01", "company" : "company-1"},
 
   {	"_id":102,
     "firstName" : "Oliver" , "lastName" : "Queen",

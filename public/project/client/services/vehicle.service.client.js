@@ -24,12 +24,11 @@
         }
 
         function findAllVehicleByCompanyandBranch(company, branchId) {
-           return $http.get("/api/project/company/" + company  +" /branch/" + branchId + "/vehicle");
-
+           return $http.get("/api/project/company/" + company  +"/branch/" + branchId + "/vehicle");
         }
 
         function findVehicleByCompany_Branch_Type(company, branchId, type) {
-            return $http.get("/api/project/company/" + company  +" /branch/" + branchId + "/vehicle/" + type);
+            return $http.get("/api/project/company/" + company  +"/branch/" + branchId + "/vehicle/" + type);
         }
 
         function createVehicle(vehicle) {

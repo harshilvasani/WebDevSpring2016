@@ -81,7 +81,9 @@
             })
 
             .when("/branchBooking",{
-                templateUrl: "views/Bookings/branchBooking.view.html"
+                templateUrl: "views/Bookings/branchBooking.view.html",
+                controller : "BranchController",
+                controllerAs : "model"
                 // controller
             })
 

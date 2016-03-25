@@ -12,6 +12,7 @@
 
         var api = {
             findAllCompanys : findAllCompanys,
+            findCompany : findCompany,
             createCompany : createCompany,
             updateCompany : updateCompany,
             deleteCompany : deleteCompany
@@ -21,6 +22,10 @@
 
         function findAllCompanys() {
             return $http.get("/api/project/company");
+        }
+
+        function findCompany(company){
+            return $http.get("/api/project/company/" + company);
         }
 
         function createCompany(company) {

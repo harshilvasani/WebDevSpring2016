@@ -24,6 +24,7 @@ module.exports = function(app) {
 
     function findAllVehicleByCompanyandBranch(company, branchId) {
         var myVehicles = [];
+
         for (var i in vehicles) {
             if (vehicles[i].company == company && vehicles[i].branchId == branchId) {
                 myVehicles.push(vehicles[i]);

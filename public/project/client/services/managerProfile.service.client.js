@@ -12,24 +12,17 @@
         var managers = [
             {	"_id":101, "company":"company-1", "branchId":"B-01",
                 "firstName":"Thea","lastName":"Queen",
-                "username":"bob", "password":"bob",
-                "address":"221 Baker Street", "city":"Boston", "state":"MA", "zip":"61200",
-                "emailid":"thea@qween.com", "contactnum":"920 345 6789",
-                "role": "manager"		},
-
-            {	"_id":102, "company":"company-1", "branchId":"B-02",
-                "firstName":"Thea","lastName":"Queen",
                 "username":"dan", "password":"dan",
                 "address":"221 Baker Street", "city":"Newton", "state":"MA", "zip":"61200",
                 "emailid":"thea@qween.com", "contactnum":"920 345 6789",
-                "role": "manager"		},
+                "role": "manager"},
 
-            {	"_id":103, "company":"company-2","branchId":"B-01",
+            {	"_id":102, "company":"company-2","branchId":"B-01",
                 "firstName":"Oliver","lastName":"Queen",
                 "username":"ed","password":"ed",
                 "address":"345 Palmer Street", "city":"Boston", "state":"MA", "zip":"61220",
                 "emailid":"oliver@queen.com", "contactnum":"880 345 6789",
-                "role": "manager"		}
+                "role": "manager"}
         ]
 
 

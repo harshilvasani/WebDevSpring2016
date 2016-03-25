@@ -6,16 +6,10 @@
         .module("VehicleBookingApp")
         .controller("CustomerProfileController", CustomerProfileController);
 
-    function CustomerProfileController($scope,UserService,CustomerProfileService) {
+    function CustomerProfileController(UserService,CustomerProfileService) {
 
-        var curUser = UserService.getCurrentUser();
-
-        CustomerProfileService.findCustomerByCredentials(curUser.username,curUser.password ,renderCurCustomer);
-
-        function renderCurCustomer(curCustomer){
-            $scope.curCustomer = curCustomer;
-            CustomerProfileService.setCurrentCustomer(curCustomer);
-        }
+        var vm = this;
+        vm.curCustomer = UserService.getCurrentUser();
     }
 
 })();
