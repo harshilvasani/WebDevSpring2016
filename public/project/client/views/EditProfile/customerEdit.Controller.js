@@ -6,30 +6,29 @@
         .module("VehicleBookingApp")
         .controller("CustomerEditProfileController", CustomerEditProfileController);
 
-    function CustomerEditProfileController($scope,UserService, CustomerProfileService) {
+    function CustomerEditProfileController($location, UserService, CustomerProfileService) {
 
-        $scope.customer  = CustomerProfileService.getCurrentCustomer();
+        var vm = this;
 
-        var curUser = UserService.getCurrentUser();
+        function init(){
+            vm.customer =  UserService.getCurrentUser();
+        }
+        init();
 
-        $scope.update = update;
+        vm.update = update;
 
         function update(updatedCustomer){
-            CustomerProfileService.updateCustomer($scope.customer._id,$scope.customer,renderUpdateCustomer);
-            var updatedUser = {"_id":curUser._id,
-                                "username":$scope.customer.username,
-                                "password":$scope.customer.password,
-                                "role": curUser.role};
+            var updatedUser = updatedCustomer;
+            updatedUser._id = vm.customer._id;
+            updatedUser.role = vm.customer.role;
 
-            UserService.updateUser(curUser._id,updatedUser, renderUpdateUser);
-        }
-
-        function renderUpdateCustomer(updatedCustomer){
-            CustomerProfileService.setCurrentCustomer(updatedCustomer);
-        }
-        function renderUpdateUser(updatedUser){
+            UserService
+                .updateUser(vm.customer._id,updatedUser);
             UserService.setCurrentUser(updatedUser);
+                $location.path("/customerProfile");
+
         }
+
     }
 
 })();

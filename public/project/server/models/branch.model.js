@@ -7,7 +7,7 @@ module.exports = function(app) {
     var api = {
         findAllBranches : findAllBranches,
         findAllBranchesByCompany : findAllBranchesByCompany,
-        findBranchById : findBranchById,
+        findBranchByByCompanyandId : findBranchByByCompanyandId,
 
         createBranch : createBranch,
         updateBranch : updateBranch,
@@ -37,10 +37,10 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function findBranchById(Id) {
+    function findBranchByByCompanyandId(company,branchId) {
         var branch = null;
         for(var i in branches){
-            if(branches[i]._id == Id){
+            if(branches[i].company == company && branches[i].branchId == branchId){
                 branch = branches[i];
                 break;
             }

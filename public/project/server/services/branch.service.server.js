@@ -2,7 +2,7 @@ module.exports = function(app,branchModel) {
 
     app.get("/api/project/branch", findAllBranches);
     app.get("/api/project/Company/:company/branch", findAllBranchesByCompany);
-    app.get("/api/project/branch/:id", findBranchById);
+    app.get("/api/project/Company/:company/branch/:branchId", findBranchByByCompanyandId);
 
     app.post("/api/project/branch", createBranch);
     app.put("/api/project/branch/:id", updateBranch);
@@ -40,10 +40,12 @@ module.exports = function(app,branchModel) {
             );
     }
 
-    function findBranchById(req,res){
-        var id = req.params.id;
+    function findBranchByByCompanyandId(req,res){
+        var company = req.params.company;
+        var branchId = req.params.branchId;
+
         branchModel
-            .findBranchById(id)
+            .findBranchByByCompanyandId(company,branchId)
             .then(
                 function (doc) {
                     branch = doc;

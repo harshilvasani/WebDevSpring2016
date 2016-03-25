@@ -6,29 +6,43 @@
         .module("VehicleBookingApp")
         .controller("ManagerEditProfileController", ManagerEditProfileController);
 
-    function ManagerEditProfileController($scope,UserService, ManagerProfileService) {
+    function ManagerEditProfileController(UserService, BranchService, $location) {
 
-        $scope.manager  = ManagerProfileService.getCurrentManager();
+        var vm = this;
 
-        var curUser = UserService.getCurrentUser();
+        function init(){
+            vm.manager =  UserService.getCurrentUser();
+        }
+        init();
 
-        $scope.update = update;
+        vm.update = update;
 
         function update(updatedManager){
-            ManagerProfileService.updateManager($scope.manager._id,$scope.manager,renderUpdateManager);
-            var updatedUser = {"_id":curUser._id,
-                "username":$scope.manager.username,
-                "password":$scope.manager.password,
-                "role": curUser.role};
 
-            UserService.updateUser(curUser._id,updatedUser, renderUpdateUser);
-        }
+            updatedManager.branchId = vm.manager.branchId
+            updatedManager.company = vm.manager.company;
+            updatedManager._id = vm.manager._id;
+            updatedManager.role = vm.manager.role;
 
-        function renderUpdateManager(manager){
-            ManagerProfileService.setCurrentManager(manager);
-        }
-        function renderUpdateUser(updatedUser){
-            UserService.setCurrentUser(updatedUser);
+            UserService
+                .updateUser(vm.manager._id,updatedManager);
+            UserService.setCurrentUser(updatedManager);
+
+            BranchService
+                .findBranchByByCompanyandId(updatedManager.company,updatedManager.branchId)
+                .then(
+                    function(response){
+                        response.data.firstName = updatedManager.firstName;
+                        response.data.lastName = updatedManager.lastName;
+                        response.data.username = updatedManager.username;
+                        response.data.password = updatedManager.password;
+
+                        console.log(response.data);
+                        BranchService
+                            .updateBranch(response.data._id,response.data);
+                    }
+                );
+            $location.path("/managerProfile");
         }
     }
 
