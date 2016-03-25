@@ -6,34 +6,20 @@
         .module("VehicleBookingApp")
         .controller("CustomerRegistrationController", CustomerRegistrationController);
 
-    function CustomerRegistrationController($scope,UserService, CustomerProfileService) {
+    function CustomerRegistrationController(UserService, CustomerProfileService) {
 
-
-
-        var curUser = UserService.getCurrentUser();
-
-        $scope.create = create;
+        var vm = this;
+        vm.create = create;
 
         function create(newCustomer){
             newCustomer._id = (new Date).getTime();
+            newCustomer.role = "customer";
 
-            var newUser  = {"_id":newCustomer._id,
-                            "username":newCustomer.username,
-                            "password":newCustomer.password,
-                            "role": "customer"};
+            UserService.setCurrentUser(newCustomer);
+            UserService
+                .createUser(newCustomer);
 
-            UserService.createUser(newUser,renderNewUser);
-            CustomerProfileService.createCustomer(newCustomer,renderNewCustomer);
         }
-
-        function renderNewUser(newUser){
-            UserService.setCurrentUser(newUser);
-        }
-
-        function renderNewCustomer(newCustomer){
-        }
-
-
     }
 
 })();

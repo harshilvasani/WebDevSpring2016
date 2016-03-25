@@ -7,10 +7,5 @@
   {	"_id":102,
     "companyName" : "company-2" , "companyAddr" : "75 saint alphonsus",
     "city":"Newton",  "state":"NY",
-    "zipCode": "02121"},
-
-  {	"_id":103,
-    "companyName" : "company-3" , "companyAddr" : "80 saint alphonsus",
-    "city":"WaterTown",  "state":"MA",
-    "zipCode": "02122"}
+    "zipCode": "02121"}
 ]

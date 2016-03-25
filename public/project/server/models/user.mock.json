@@ -18,18 +18,33 @@
     "emailid":"thea@qween.com", "contactnum":"920 345 6789",
     "role": "manager"},
 
-  {	"_id":104, "company":"company-2","branchId":"B-01",
+  {	"_id":104, "company" : "company-2", "branchId": "B-01",
+    "firstName" : "Bob" , "lastName" : "Smoak",
+    "username": "bob",  "password":"bob",
+    "address":"345 Palmer Street", "city":"Boston", "state":"MA", "zip":"61220",
+    "emailid":"Bob@smoak.com", "contactnum":"880 345 6789",
+    "role": "manager"},
+
+  {	"_id":105, "company":"company-1","branchId":"B-01",
     "firstName":"Ed","lastName":"Queen",
     "username":"ed","password":"ed",
     "address":"345 Palmer Street", "city":"Boston", "state":"MA", "zip":"61220",
     "emailid":"oliver@queen.com", "contactnum":"880 345 6789",
     "role": "manager"},
 
-  {	"_id":105,
+  {	"_id":106,
     "company":"company-1",
-    "firstName":"Harshil","lastName":"Vasani",
-    "username":"h","password":"h",
+    "firstName":"Bhavesh","lastName":"Vasani",
+    "username":"b","password":"b",
     "address":"race course ring road", "city":"Rajkot", "state":"MA", "zip":"61220",
-    "emailid":"harshilvasani03@gmail.com", "contactnum":"617 792 1855",
+    "emailid":"bhaveshvasani03@gmail.com", "contactnum":"617 792 9999",
+    "role": "owner"},
+
+  {	"_id":107,
+    "company":"company-2",
+    "firstName":"Rupa","lastName":"Vasani",
+    "username":"r","password":"r",
+    "address":"race course ring road", "city":"Rajkot", "state":"MA", "zip":"61220",
+    "emailid":"rupavasani03@gmail.com", "contactnum":"617 792 1855",
     "role": "owner"}
 ]

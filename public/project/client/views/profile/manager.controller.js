@@ -38,7 +38,12 @@
         init();
 
         function addVehicle(vehicle){
-            if(vehicle.type != null) {
+            if(vehicle.type != null && vehicle.count>0 && vehicle.fare != null) {
+
+                vehicle.company = vm.curManager.company;
+                vehicle.branchId = vm.curManager.branchId;
+                vehicle._id = (new Date).getTime();
+
                 VehicleService
                     .createVehicle(vehicle)
                     .then(

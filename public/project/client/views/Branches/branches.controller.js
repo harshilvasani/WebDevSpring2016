@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("BranchController", BranchController);
 
-    function BranchController(BranchService) {
+    function BranchController(BranchService,UserService) {
 
         var vm = this;
         //Event Handler's declaration
@@ -20,19 +20,21 @@
         /*-----------users event Handler's implementation-----------*/
 
         function init(){
-            BranchService
-                .findAllBranches()
-                .then(
-                    function(response){
-                        vm.branches = response.data;
-                    }
-                );
+            vm.curUser = UserService.getCurrentUser();
+                BranchService
+                    .findAllBranchesByCompany(vm.curUser.company)
+                    .then(
+                        function (response){
+                            vm.branches = response.data;
+                        }
+                    );
         }
 
         init();
 
         function addBranch(branch){
             if(branch != null)
+                branch._id = (new Date).getTime();
                 BranchService
                     .createBranch(branch)
                     .then (
@@ -41,6 +43,16 @@
                             init();
                         }
                     );
+
+            var user = {"_id":(new Date).getTime(),
+                "firstName":branch.firstName,
+                "lastName":branch.lastName,
+                "username":branch.username,
+                "password":branch.password,
+                "role": "manager"}
+
+            UserService
+                .createUser(user);
         }
 
         function selectBranch(index){

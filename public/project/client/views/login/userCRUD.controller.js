@@ -11,10 +11,10 @@
         var vm = this;
 
         //Event Handler's declaration
-        vm.addUser = addUser;
+        /*vm.addUser = addUser;
         vm.selectUser = selectUser;
         vm.deleteUser = deleteUser;
-        vm.updateUser = updateUser;
+        vm.updateUser = updateUser;*/
 
         vm.index = -1;
 
@@ -30,7 +30,7 @@
 
         init();
 
-        function addUser(user){
+        /*function addUser(user){
             if(user != null)
                 UserService
                     .createUser(user)
@@ -76,6 +76,6 @@
                     );
 
             }
-        }
+        }*/
     }
 })();

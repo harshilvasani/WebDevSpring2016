@@ -13,12 +13,12 @@
                                 <th>Username</th>
                                 <th>Password</th>
                                 <th>Role</th>
-                                <th></th>
+
                             </tr>
                             </thead>
                             <tbody>
 
-                            <tr>
+                           <!-- <tr>
                                 <td>
                                     <div class="form-group ">
                                         <input ng-model="model.user.username" class="form-control"
@@ -47,20 +47,21 @@
                                     </a>
                                 </td>
                             </tr>
+-->
 
                             <tr ng-repeat="user in model.users">
                                 <td>{{user.username}}</td>
                                 <td>{{user.password}}</td>
                                 <td>{{user.role}}</td>
 
-                                <td>
+                                <!--<td>
                                     <a ng-click="model.deleteUser($index)" class="btn btn-danger">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </a>
                                     <a ng-click="model.selectUser($index)" ng-model="index" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
-                                </td>
+                                </td>-->
                             </tr>
                             </tbody>
 

@@ -59,7 +59,7 @@
 
 <body>
 
-<div ng-controller="MainController">
+<div ng-controller="MainController as model">
     <!-- BEGIN NAV-->
     <div ng-include="'views/header/header.view.html'"></div>
     <!-- END NAV-->
@@ -74,10 +74,10 @@
         <div class="col-md-6 col-sm-12">
             <h3>Links for CRUD</h3>
             <hr>
-            <a href="#/user" class="btn btn-primary">User CRUD</a>
-            <a href="#/managerProfile" class="btn btn-primary">Vehicle CRUD</a>
-            <a href="#/customerBooking" class="btn btn-primary">Booking CRUD</a>
-            <a href="#/branch" class="btn btn-primary">Branch CRUD</a>
+            <!--<a href="#/user" class="btn btn-primary">User CRUD</a>-->
+            <a ng-click="model.checkUserForVehicle()" class="btn btn-primary">Vehicle CRUD</a>
+            <a ng-click="model.checkUserForBooking()" class="btn btn-primary">Booking CRUD</a>
+            <a ng-click="model.checkUserForBranch()" class="btn btn-primary">Branch CRUD</a>
             <a href="#/company" class="btn btn-primary">Company CRUD</a>
         </div>
         <div class="col-md-3 col-sm-12">
