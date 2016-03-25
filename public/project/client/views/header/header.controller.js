@@ -3,15 +3,16 @@
     "use strict";
 
     angular
-        .module("FormBuilderApp")
+        .module("VehicleBookingApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, UserService) {
+    function HeaderController(UserService) {
 
+        var vm = this;
         //Event Handler's declaration
-        $scope.checkRootScope=checkRootScope;
-        $scope.updateRootScope=updateRootScope;
-        $scope.isAdmin=isAdmin;
+        vm.checkRootScope=checkRootScope;
+        vm.updateRootScope=updateRootScope;
+        vm.setProfile = setProfile;
 
         //Event Handler's implementation
         function checkRootScope() {
@@ -22,7 +23,7 @@
             }
             else
             {
-                $scope.username=curUser.username;
+                vm.username=curUser.username;
                 return false;
             }
         }
@@ -31,21 +32,19 @@
             UserService.setCurrentUser(null);
         }
 
-        function isAdmin(){
-            var curUser = UserService.getCurrentUser();
-
-            if(curUser!=null)
-            {
-                var roles=curUser.roles;
-                if(roles!=null) {
-                    for (var i in roles) {
-                        if (roles[i] == "admin") {
-                            return true;
-                        }
-                    }
-                }
+        function setProfile(){
+            var loggedUser = UserService.getCurrentUser();
+            if(loggedUser.role == "customer"){
+                $location.path('/customerProfile');
             }
-            return false;
+
+            else if(loggedUser.role == "owner"){
+                $location.path('/ownerProfile');
+            }
+
+            else{
+                $location.path('/managerProfile');
+            }
         }
     }
 })();

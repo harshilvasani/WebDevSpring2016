@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -39,5 +40,26 @@ app.post('/maps', urlencodedParser, function (req, results) {
 
 require("./public/project/server/app.js")(app);
 
+/*
+//mongoose experiment
+mongoose.connect('mongodb://localhost/CS5610');//make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
+console.log(mongoose);
 
+var CourseSchema = new mongoose.Schema({
+    title : String,
+    seats : {type : Number, default : 15}
+}, {collection : "course"});
+
+var CourseModel = mongoose.model("CourseModel", CourseSchema)
+
+CourseModel.create({title : "C#", seats : 30},
+    function (err,results){
+        if(!err){
+            console.log(results);
+        }
+    }
+);
+//CourseModel.create({title : "J2EE", seats : 20});
+//CourseModel.create({title : "Python", seats : 50});
+//*/
 app.listen(port, ipaddress);
