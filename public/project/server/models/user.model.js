@@ -7,7 +7,7 @@ module.exports = function(app) {
     var api = {
         findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
-        findAllUsersByRole : findAllUsersByRole,
+        findAllManagersByCompany : findAllManagersByCompany,
         createUser: createUser,
         updateUser: updateUser,
         deleteUser: deleteUser
@@ -30,10 +30,10 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function findAllUsersByRole(role) {
+    function findAllManagersByCompany(company) {
         var myUsers = [];
         for (var i in users) {
-            if (users[i].role == role) {
+            if (users[i].company == company && users[i].role == "manager") {
                 myUsers.push(users[i]);
 
             }

@@ -13,7 +13,7 @@
         vm.saveBranch = saveBranch;
         vm.removeBranch = removeBranch;
         vm.addBranch = addBranch;
-        vm.registerCompany = registerCompany;
+        vm.updateCompany = updateCompany;
 
         function init(){
 
@@ -39,7 +39,7 @@
             vm.branches.splice(index,1);
         }
 
-        function registerCompany(){
+        function updateCompany(){
             var owner = UserService.getCurrentOwner();
             var company = CompanyService.getCurrentCompany();
             var branches = vm.branches;
@@ -74,7 +74,6 @@
             UserService.createUser(owner);
             CompanyService.createCompany(company);
             UserService.setCurrentUser(owner);
-            console.log(owner);
             UserService.setCurrentOwner(null);
             CompanyService.setCurrentCompany(null);
             BranchService.setCurrentBranch([{}]);

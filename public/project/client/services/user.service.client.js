@@ -11,6 +11,7 @@
         var api = {
             findUserByCredentials : findUserByCredentials,
             findAllUsers : findAllUsers,
+            findAllManagersByCompany : findAllManagersByCompany,
             createUser : createUser,
             updateUser : updateUser,
             setCurrentUser: setCurrentUser,
@@ -41,6 +42,10 @@
 
         function findUserByCredentials(username, password) {
             return $http.get("/api/project/user/username/" + username + "/password/" + password);
+        }
+
+        function findAllManagersByCompany(company){
+            return $http.get("/api/project/company/" + company + "/manager");
         }
 
         function findAllUsers() {

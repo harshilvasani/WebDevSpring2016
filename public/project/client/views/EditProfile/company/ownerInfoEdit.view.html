@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="OwnerInfoEditController as model">
     <div>
         <div id="ownerInfo">
             <h1>Edit Profile</h1>
@@ -16,14 +16,14 @@
                         <div class="form-group">
                             <label class="col-sm-2">First Name:</label>
                             <div class="col-sm-10">
-                                <input ng-model="firstName" type="text" class="form-control" placeholder="First Name">
+                                <input ng-model="model.owner.firstName" type="text" class="form-control" placeholder="First Name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Last Name:</label>
                             <div class="col-sm-10">
-                                <input ng-model="lastName" type="text" class="form-control" placeholder="Last Name">
+                                <input ng-model="model.owner.lastName" type="text" class="form-control" placeholder="Last Name">
                             </div>
                         </div>
 
@@ -41,34 +41,34 @@
                         <div class="form-group">
                             <label class="col-sm-2">Username:</label>
                             <div class="col-sm-10">
-                                <input ng-model="username" type="text" class="form-control" placeholder="Username">
+                                <input ng-model="model.owner.username" type="text" class="form-control" placeholder="Username">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Password:</label>
                             <div class="col-sm-10">
-                                <input ng-model="password" type="password" class="form-control"  placeholder="Password">
+                                <input ng-model="model.owner.password" type="password" class="form-control"  placeholder="Password">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Co. Number:</label>
                             <div class="col-sm-10">
-                                <input ng-model="contactNumber" type="number" class="form-control" placeholder="6177921855">
+                                <input ng-model="model.owner.contactnum" type="text" class="form-control" placeholder="6177921855">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Email Id:</label>
                             <div class="col-sm-10">
-                                <input ng-model="email" type="email" class="form-control" placeholder="Email">
+                                <input ng-model="model.owner.emailid" type="email" class="form-control" placeholder="Email">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <a type="submit"  class="btn btn-primary myButton">Update</a>
+                                <a type="submit" ng-click="model.saveOwner(model.owner)" class="btn btn-primary myButton">save</a>
                             </div>
                         </div>
                     </form>

@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="BranchInfoEditController as model">
     <div>
         <div id="companyInfoEdit">
             <h1>Edit Profile</h1>
@@ -12,68 +12,76 @@
                     </ul>
 
                     <table class="table">
-                        <tbody>
+                        <tbody ng-repeat="branch in model.branches">
                         <tr>
                             <td class="branchHead">
-                                <h2 class="col-sm-8">Branch-1</h2>
-                                <a type="submit"  class="btn btn-danger col-sm-3">Remove</a>
+                                <h2 class="col-sm-8">Branch-{{$index + 1}}</h2>
+                                <a type="submit" ng-click="model.removeBranch($index)" class="btn btn-danger col-sm-3">Remove</a>
                             </td>
                         </tr>
 
-                        <tr>
+                        <tr >
                             <td>
                                 <form class="form-horizontal searchTab">
 
                                     <div class="form-group">
                                         <label class="col-sm-2">Branch Id</label>
                                         <div class="col-sm-10">
-                                            <input ng-model="branchId" type="text" class="form-control" placeholder="B-01">
+                                            <input ng-model="branch.branchId" type="text" class="form-control" placeholder="B-01">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2">Manager's Firstname:</label>
                                         <div class="col-sm-10">
-                                            <input ng-model="firstName" type="text" class="form-control" placeholder="First Name">
+                                            <input ng-model="branch.firstName" type="text" class="form-control" placeholder="First Name">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2">Manager's Lastname:</label>
                                         <div class="col-sm-10">
-                                            <input ng-model="lastName" type="text" class="form-control" placeholder="Last Name">
+                                            <input ng-model="branch.lastName" type="text" class="form-control" placeholder="Last Name">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2">Manager's Username:</label>
                                         <div class="col-sm-10">
-                                            <input ng-model="username" type="text" class="form-control" placeholder="Username">
+                                            <input ng-model="branch.username" type="text" class="form-control" placeholder="Username">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2">Manager's Password:</label>
                                         <div class="col-sm-10">
-                                            <input ng-model="password" type="password" class="form-control"  placeholder="Password">
+                                            <input ng-model="branch.password" type="password" class="form-control"  placeholder="Password">
                                         </div>
                                     </div>
                                 </form>
                             </td>
                         </tr>
 
+                        </tbody>
                         <tr>
                             <td>
-                                <a type="submit"  class="btn btn-success col-sm-3">Add New Branch</a>
+                                <a type="submit" ng-click="model.addBranch()" class="btn btn-success col-sm-3">Add New Branch</a>
                             </td>
                         </tr>
-                        </tbody>
+
                     </table>
 
+
                     <div class="col-sm-12">
-                        <a type="submit"  class="btn btn-primary myButton">Update</a>
+                        <a type="submit" ng-click="model.saveBranch(model.branches)" class="btn btn-primary myButton">Save</a>
+
+                        <br>
+                        <br>
+                        <a type="submit"  ng-click="model.updateCompany()" class="btn btn-primary myButton">Update</a>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@ module.exports = function(app,userModel) {
 
     app.get("/api/project/user", findAllUsers);
     app.get("/api/project/user/username/:username/password/:password", findUserByCredentials);
-    app.get("/api/project/user/:role", findAllUsersByRole);
+    app.get("/api/project/company/:company/manager", findAllManagersByCompany);
 
     app.post("/api/project/user", createUser);
     app.put("/api/project/user/:id", updateUser);
@@ -25,16 +25,16 @@ module.exports = function(app,userModel) {
             );
     }
 
-    function findAllUsersByRole(req,res){
+    function findAllManagersByCompany(req,res){
 
-        var role = req.params.role;
+        var company = req.params.company;
 
         userModel
-            .findAllUsersByRole(role)
+            .findAllManagersByCompany(company)
             .then(
                 function (doc) {
-                    var users = doc;
-                    res.json(users);
+                    var managers = doc;
+                    res.json(managers);
                 },
                 // reject promise if error
                 function (err) {

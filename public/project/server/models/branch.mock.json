@@ -5,12 +5,12 @@
     "company":"company-1", "branchId":"B-01"},
 
   {	"_id":102,
-    "firstName":"Ed","lastName":"Queen",
-    "username":"ed","password":"ed",
-    "company":"company-1","branchId":"B-02"},
-
-  {	"_id":103,
     "firstName" : "Bob" , "lastName" : "Smoak",
     "username": "bob",  "password":"bob",
-    "branchId": "B-01", "company" : "company-2"}
+    "branchId": "B-01", "company" : "company-2"},
+
+  {	"_id":103,
+    "firstName":"Ed","lastName":"Queen",
+    "username":"ed","password":"ed",
+    "company":"company-1","branchId":"B-02"}
 ]
