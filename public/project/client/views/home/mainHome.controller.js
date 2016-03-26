@@ -6,11 +6,12 @@
         .module("VehicleBookingApp")
         .controller("mainHomeController", mainHomeController);
 
-    function mainHomeController($scope,ManagerProfileService,VehicleService) {
+    function mainHomeController(UserService,VehicleService,$location) {
 
-        $scope.autoComplete = autoComplete;
-        $scope.search = search;
-        $scope.book = book;
+        var vm = this;
+        vm.autoComplete = autoComplete;
+        vm.search = search;
+        vm.book = book;
 
         function autoComplete() {
 
@@ -23,7 +24,7 @@
 
             var autocompleteOrigin = new google.maps.places.Autocomplete(input_origin,localityOptions);
 
-            $scope.origin=input_origin.value;
+            vm.origin=input_origin.value;
         }
 
         function search(){
@@ -32,44 +33,67 @@
 
 
             if(addr.length==3){
-                $scope.searches = [];
+                vm.searches = [];
                 var city = addr[0];
                 var state = addr [1];
 
-                if($scope.company == null || $scope.company == "None"){
-                    ManagerProfileService.findAllManagerByLocation(city,state,renderAllBrances);
+                if(vm.company == null || vm.company == "None"){
+                    UserService
+                        .findAllManagersByLocation(city,state)//,renderAllBrances);
+                        .then(
+                            function(response){
+                                renderAllBrances(response.data);
+                            }
+                        );
                 }
 
                 else{
-                    ManagerProfileService.findAllManagerByLocationandComapany(city,state,$scope.company,renderAllBrances);
+                    UserService
+                        .findAllManagersByLocationandComapany(city,state,vm.company)
+                        .then(
+                            function(response){
+                                renderAllBrances(response.data);
+                            }
+                        );
                 }
             }
         }
 
         function renderAllBrances(allBranches){
 
-            if($scope.type == null || $scope.type == "None"){
+            if(vm.type == null || vm.type == "None"){
                 for(var i in allBranches){
-                    VehicleService.findAllVehicleByCompanyandBranch(allBranches[i].company,allBranches[i].branchId,renderAllVehicles)
+                    VehicleService
+                        .findAllVehicleByCompanyandBranch(allBranches[i].company,allBranches[i].branchId)
+                        .then(
+                            function(response){
+                                renderAllVehicles(response.data);
+                            }
+                        );
                 }
             }
 
-            else if($scope.type != null){
+            else if(vm.type != null){
                 for(var i in allBranches){
-                    VehicleService.findVehicleByCompany_Branch_Type(allBranches[i].company,allBranches[i].branchId,
-                                                                    $scope.type,renderAllVehicles)
+                    VehicleService.findVehicleByCompany_Branch_Type(allBranches[i].company,allBranches[i].branchId, vm.type)
+                        .then(
+                            function(response){
+                                renderAllVehicles(response.data);
+                            }
+                        );
                 }
             }
         }
 
         function renderAllVehicles(vehicles){
+            console.log(vehicles);
             if(vehicles!=null)
-            $scope.searches = $scope.searches.concat(vehicles);
+                vm.searches = vm.searches.concat(vehicles);
         }
 
 
         function book(index){
-
+            $location("/login");
         }
 
 

@@ -8,6 +8,8 @@ module.exports = function(app) {
         findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
         findAllManagersByCompany : findAllManagersByCompany,
+        findAllManagersByLocation : findAllManagersByLocation,
+        findAllManagersByLocationandComapany : findAllManagersByLocationandComapany,
         createUser: createUser,
         updateUser: updateUser,
         deleteUser: deleteUser
@@ -34,6 +36,36 @@ module.exports = function(app) {
         var myUsers = [];
         for (var i in users) {
             if (users[i].company == company && users[i].role == "manager") {
+                myUsers.push(users[i]);
+
+            }
+        }
+
+        var deferred = q.defer();
+        deferred.resolve(myUsers);
+
+        return deferred.promise;
+    }
+
+    function findAllManagersByLocation(location) {
+        var myUsers = [];
+        for (var i in users) {
+            if (users[i].city == location.city && users[i].state == location.state && users[i].role == "manager") {
+                myUsers.push(users[i]);
+
+            }
+        }
+
+        var deferred = q.defer();
+        deferred.resolve(myUsers);
+
+        return deferred.promise;
+    }
+
+    function findAllManagersByLocationandComapany(location, company){
+        var myUsers = [];
+        for (var i in users) {
+            if (users[i].role == "manager" && users[i].city == location.city && users[i].state == location.state && users[i].company == company) {
                 myUsers.push(users[i]);
 
             }

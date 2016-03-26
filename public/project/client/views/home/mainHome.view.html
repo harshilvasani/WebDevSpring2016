@@ -1,4 +1,4 @@
-<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="mainHomeController">
+<section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="mainHomeController as model">
             <div class="row" id="section1">
                 <div class="col-md-6">
                     <h1>Search</h1>
@@ -9,10 +9,10 @@
                         <label>Location</label>
                         <div class="form-group left-inner-addon right-inner-addon">
                             <i class="glyphicon glyphicon-map-marker left"></i>
-                            <a ng-click="search(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
-                            <input ng-model="Origin" id="origin" class="controls location form-control "
+                            <a ng-click="model.search(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
+                            <input ng-model="model.origin" id="origin" class="controls location form-control "
                                    type="text" placeholder="Enter a city in United States"
-                                   ng-change="autoComplete()">
+                                   ng-change="model.autoComplete()">
                         </div>
 
                         <br>
@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Company:</label>
-                                <select class="form-control" ng-model="company">
+                                <select class="form-control" ng-model="model.company">
                                     <option>company-1</option>
                                     <option>company-2</option>
                                     <option>None</option>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Vehice:</label>
-                                <select class="form-control" ng-model="type">
+                                <select class="form-control" ng-model="model.type">
                                     <option>truck</option>
                                     <option>bus</option>
                                     <option>None</option>
@@ -63,7 +63,7 @@
 
 
                         <div class="form-group">
-                            <a href="#" ng-click="search()" class="btn btn-primary myButton">Search</a>
+                            <a ng-click="model.search(origin)" class="btn btn-primary myButton">Search</a>
                         </div>
                     </form>
 
@@ -71,11 +71,11 @@
 
                 <div class="col-md-6">
 
-                     <div class="row table-responsive" ng-show="searches.length >= 0">
+                     <div class="row table-responsive" ng-show="model.searches.length >= 0">
 
                          <h3>Search Results</h3>
                          <hr>
-                         <h5 ng-show="searches.length == 0"> No Results Found</h5>
+                       <<h5 ng-show="model.searches.length == 0"> No Results Found</h5>
                          <table class="table " id="myTable">
                              <thead>
                              <tr>
@@ -89,7 +89,7 @@
                              </thead>
                              <tbody>
 
-                             <tr ng-repeat="search in searches">
+                             <tr ng-repeat="search in model.searches">
                                  <td>{{search.company}}</td>
                                  <td>{{search.branchId}}</td>
                                  <td>{{search.type}}</td>
@@ -97,7 +97,7 @@
                                  <td>{{search.fare}}</td>
 
                                  <td>
-                                     <a ng-click="book($index)" class="btn btn-info myButton">
+                                     <a ng-click="model.book($index)" class="btn btn-info myButton">
                                          Book Now
                                      </a>
                                  </td>

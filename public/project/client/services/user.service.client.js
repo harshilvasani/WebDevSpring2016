@@ -12,6 +12,8 @@
             findUserByCredentials : findUserByCredentials,
             findAllUsers : findAllUsers,
             findAllManagersByCompany : findAllManagersByCompany,
+            findAllManagersByLocation : findAllManagersByLocation,
+            findAllManagersByLocationandComapany : findAllManagersByLocationandComapany,
             createUser : createUser,
             updateUser : updateUser,
             setCurrentUser: setCurrentUser,
@@ -46,6 +48,14 @@
 
         function findAllManagersByCompany(company){
             return $http.get("/api/project/company/" + company + "/manager");
+        }
+
+        function findAllManagersByLocation(city,state){
+            return $http.get("/api/project/city/" + city + "/state/" + state + "/manager");
+        }
+
+        function findAllManagersByLocationandComapany(city,state,company){
+            return $http.get("/api/project/company/" + company + "/city/" + city + "/state/" + state + "/manager");
         }
 
         function findAllUsers() {

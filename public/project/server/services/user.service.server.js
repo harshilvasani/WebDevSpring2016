@@ -3,7 +3,8 @@ module.exports = function(app,userModel) {
     app.get("/api/project/user", findAllUsers);
     app.get("/api/project/user/username/:username/password/:password", findUserByCredentials);
     app.get("/api/project/company/:company/manager", findAllManagersByCompany);
-
+    app.get("/api/project/city/:city/state/:state/manager", findAllManagersByLocation);
+    app.get("/api/project/company/:company/city/:city/state/:state/manager", findAllManagersByLocationandComapany);
     app.post("/api/project/user", createUser);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
@@ -31,6 +32,45 @@ module.exports = function(app,userModel) {
 
         userModel
             .findAllManagersByCompany(company)
+            .then(
+                function (doc) {
+                    var managers = doc;
+                    res.json(managers);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findAllManagersByLocationandComapany(req,res){
+
+        var city = req.params.city;
+        var state = req.params.state;
+        var company = req.params.company
+
+        userModel
+            .findAllManagersByLocationandComapany({"city" : city, "state" : state},company)
+            .then(
+                function (doc) {
+                    var managers = doc;
+                    res.json(managers);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findAllManagersByLocation(req,res){
+
+        var city = req.params.city;
+        var state = req.params.state;
+
+        userModel
+            .findAllManagersByLocation({"city" : city, "state" : state})
             .then(
                 function (doc) {
                     var managers = doc;
