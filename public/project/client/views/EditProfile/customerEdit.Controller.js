@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("CustomerEditProfileController", CustomerEditProfileController);
 
-    function CustomerEditProfileController($location, UserService, CustomerProfileService) {
+    function CustomerEditProfileController($location, UserService) {
 
         var vm = this;
 
