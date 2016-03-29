@@ -17,11 +17,10 @@
         vm.fields = fields;
 
         vm.index = -1;
-        var curUser
+        var curUser;
+
         function init(){
-
             curUser = null;
-
             UserService
                 .getCurrentUser()
                 .then(
@@ -87,8 +86,7 @@
         }
 
         function fields(clickedFormId){
-            FormService.setCurrentFormId(clickedFormId);
-            $location.path("/fields");
+            $location.path("/form/" + clickedFormId + "/fields");
         }
     }
 })();

@@ -42,13 +42,28 @@
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
                 controller : "FormController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve: {
+                    checkLoggedIn : checkLoggedIn
+                }
             })
 
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
                 controller : "FieldController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve: {
+                    checkLoggedIn : checkLoggedIn
+                }
+            })
+
+            .when("/form/:formId/fields", {
+                templateUrl: "views/forms/fields.view.html",
+                controller : "FieldController",
+                controllerAs : "model",
+                resolve: {
+                    checkLoggedIn : checkLoggedIn
+                }
             })
 
             .otherwise({
@@ -64,8 +79,6 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
-                console.log("in config");
-                console.log(currentUser);
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();

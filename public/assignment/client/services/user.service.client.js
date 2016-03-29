@@ -22,7 +22,7 @@
         return api;
 
         function logout() {
-            return $http.post("/api/project/logout");
+            return $http.post("/api/assignment/logout");
         }
 
 

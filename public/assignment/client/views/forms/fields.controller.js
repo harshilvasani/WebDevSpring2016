@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController(FieldService,FormService) {
+    function FieldController($scope,FieldService,FormService, $routeParams) {
 
         var vm = this;
 
@@ -15,15 +15,42 @@
         vm.cloneField = cloneField;
         vm.selectField = selectField;
         vm.editField = editField;
+        $scope.updateForm = updateForm;
+
+        function updateForm(start,end){
+
+            var newFields = [];
+
+            for(var i in vm.fields){
+                newFields[i] = vm.fields[i];
+            }
+
+            var temp = newFields[start];
+            newFields[start] = newFields[end];
+            newFields[end] = temp;
+
+            FormService
+                .findFormById($routeParams.formId)
+                .then(
+                    function (res){
+                        var form = res.data;
+                        form.fields = newFields;
+                        FormService
+                            .updateFormById(form._id,form);
+
+                    }
+                );
+        }
+
 
         function init(){
             FieldService
-                .getFieldsForForm(FormService.getCurrentFormId())
+                .getFieldsForForm($routeParams.formId)
                 .then(
                   function(doc){
                       vm.fields = doc.data;
+                      $scope.fields=vm.fields;
                   }
-
                 );
         }
         init();
@@ -73,7 +100,7 @@
             }
 
             FieldService
-                .createFieldForForm(FormService.getCurrentFormId(),newField)
+                .createFieldForForm($routeParams.formId,newField)
                 .then(
                     function(doc){
                         init();
@@ -83,7 +110,7 @@
 
         function removeField(fieldId){
             FieldService
-                .deleteFieldFromForm(FormService.getCurrentFormId(),fieldId)
+                .deleteFieldFromForm($routeParams.formId,fieldId)
                 .then(
                     function(doc){
                         init();
@@ -93,7 +120,7 @@
 
         function cloneField(field){
             FieldService
-                .createFieldForForm(FormService.getCurrentFormId(),field)
+                .createFieldForForm($routeParams.formId,field)
                 .then(
                     function(doc){
                         init();
@@ -144,7 +171,7 @@
             vm.updatedField.label = vm.label;
 
             FieldService
-                .updateField(FormService.getCurrentFormId(),vm.updatedField._id,vm.updatedField)
+                .updateField($routeParams.formId,vm.updatedField._id,vm.updatedField)
                 .then(
                     function(doc){
                         init();

@@ -11,23 +11,17 @@
                 findAllFormsForUser : findAllFormsForUser,
                 deleteFormById : deleteFormById,
                 updateFormById : updateFormById,
-
-                setCurrentFormId: setCurrentFormId,
-                getCurrentFormId: getCurrentFormId
+                findFormById : findFormById
             }
 
             return api;
 
-            function setCurrentFormId (formId) {
-                $rootScope.currentFormId = formId;
-            }
-
-            function getCurrentFormId () {
-                return $rootScope.currentFormId;
-            }
-
             function createFormForUser(userId, form) {
                 return $http.post("/api/assignment/user/" + userId + "/form", form);
+            }
+
+            function findFormById(formId){
+                return $http.get("/api/assignment/form/" + formId);
             }
 
             function findAllFormsForUser(userId) {

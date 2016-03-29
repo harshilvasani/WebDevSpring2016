@@ -16,7 +16,7 @@ var app = express();
 
 app.use(bodyParser.json());
 var urlencodedParser = bodyParser.urlencoded({extended: true});
-app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.urlencoded({extended: true}));
 //app.use(multer());
 
 app.use(session({secret: 'harshil'}));

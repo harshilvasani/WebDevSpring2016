@@ -7,8 +7,9 @@
     </ul>
 
     <div class="container">
-        <form div-sortable>
-            <div class="row" ng-repeat="field in model.fields">
+        <form>
+            <div div-sortable>
+            <div  class="row" ng-repeat="field in model.fields" id="harshil">
 
                 <div ng-switch="field.type">
 
@@ -85,13 +86,13 @@
                     <a class="btn btn-default" ng-click="model.removeField(field._id)">
                         <span class="glyphicon glyphicon-remove"> </span>
                     </a>
-                    <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-align-justify"></span>
+                    <a class="btn btn-default" class="sortHarshil" >
+                        <span class="glyphicon glyphicon-align-justify" ></span>
                     </a>
                 </div>
                 <br>
             </div>
-
+            </div>
             <hr>
 
             <div class="row">
