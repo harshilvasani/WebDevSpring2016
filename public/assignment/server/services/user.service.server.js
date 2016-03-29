@@ -1,10 +1,17 @@
 module.exports = function(app,userModel) {
 
     app.post("/api/assignment/user",createUser);
+    app.post("/api/project/logout", logout);
     app.get("/api/assignment/user",findAllUsers);
     app.get("/api/assignment/user/:id",findUserById);
+    app.get("/api/assignment/loggedin", loggedin);
     app.put("/api/assignment/user/:id",updateUser);
     app.delete("/api/assignment/user/:id",deleteUser);
+
+    function logout(req, res) {
+        req.session.destroy();
+        res.send(200);
+    }
 
     function createUser(req,res){
         var newUser = req.body;
@@ -100,6 +107,7 @@ module.exports = function(app,userModel) {
             .then(
                 function (doc) {
                     user = doc;
+                    req.session.currentUser = user;////////
                     res.json(user);
 
                 },
@@ -123,4 +131,14 @@ module.exports = function(app,userModel) {
         userModel.deleteUser(userId);
     }
 
+    function loggedin(req,res){
+
+        if(req.session.currentUser != null){
+            console.log(req.session.currentUser);
+            res.json(req.session.currentUser);
+        }
+        else
+            res.json(null);
+
+    }
 }

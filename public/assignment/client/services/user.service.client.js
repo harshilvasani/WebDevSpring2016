@@ -15,17 +15,25 @@
             deleteUserById : deleteUserById,
             updateUser : updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            logout: logout
         }
 
         return api;
+
+        function logout() {
+            return $http.post("/api/project/logout");
+        }
+
 
         function setCurrentUser (user) {
             $rootScope.currentUser = user;
         }
 
         function getCurrentUser () {
-            return $rootScope.currentUser;
+            // return $rootScope.currentUser;
+            var curUser = $http.get("/api/assignment/loggedin");
+            return curUser;
         }
 
         function findUserByCredentials(credentials) {

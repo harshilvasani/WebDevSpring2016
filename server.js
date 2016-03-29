@@ -3,18 +3,38 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var mongoose = require('mongoose');
 
+//both used for maintaining session
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+var multer = require('multer');
+var passport = require('passport');
+var localStrategy = require('passport-local');
+
+
 var app = express();
 
+app.use(bodyParser.json());
+var urlencodedParser = bodyParser.urlencoded({extended: true});
+app.use(bodyParser.urlencoded({extended: true}));
+//app.use(multer());
+
+app.use(session({secret: 'harshil'}));
+
+/*app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))*/
+
+app.use(cookieParser())
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json());
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-
-var urlencodedParser = bodyParser.urlencoded({extended: true});
-
-
 
 //assiggments
 require("./public/assignment/server/app.js")(app);

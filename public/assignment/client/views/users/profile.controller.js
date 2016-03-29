@@ -12,7 +12,7 @@
         //Event Handler's declaration
         vm.update=update;
 
-        var curUser = UserService.getCurrentUser();
+       /* var curUser = UserService.getCurrentUser();
 
         if(curUser == null){
             $location.path("/home");
@@ -20,18 +20,28 @@
 
         else{
             vm.user = curUser;
+        }*/
+
+        function init(){
+            UserService
+                .getCurrentUser()
+                .then(
+                    function (res){
+                        vm.user = res.data;
+                    }
+                );
         }
+        init();
 
         //Event Handler's implementation
         function update(user){
-            var curUser = UserService.getCurrentUser();
 
-            var newUser={"_id":curUser._id,
+            var newUser={"_id":vm.user._id,
                 "firstName":user.firstName,
                 "lastName":user.lastName,
                 "username":user.username,
                 "password":user.password,
-                "roles": curUser.roles}
+                "roles": vm.user.roles}
 
             UserService.updateUser(curUser._id,newUser);
             UserService.setCurrentUser(newUser);

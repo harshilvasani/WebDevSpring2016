@@ -17,21 +17,32 @@
         vm.fields = fields;
 
         vm.index = -1;
-
+        var curUser
         function init(){
-            if(UserService.getCurrentUser() == null){
-                $location.path("/home");
-            }
 
-            else{
-                FormService
-                    .findAllFormsForUser(UserService.getCurrentUser()._id)
-                    .then(
-                        function (doc) {
-                            console.log(doc);
-                            vm.forms= doc.data;
-                        });
-            }
+            curUser = null;
+
+            UserService
+                .getCurrentUser()
+                .then(
+                    function (res){
+                        curUser = res.data;
+
+                        if(curUser == null){
+                            $location.path("/home");
+                        }
+
+                        else{
+                            FormService
+                                .findAllFormsForUser(curUser._id)
+                                .then(
+                                    function (doc) {
+                                        console.log(doc);
+                                        vm.forms= doc.data;
+                                    });
+                        }
+                    }
+                );
         }
         init();
 
@@ -40,7 +51,7 @@
             if(formName != null) {
                 var newForm = {"_id": null, "title": formName, "userId": null};
                 FormService
-                    .createFormForUser(UserService.getCurrentUser()._id, newForm)
+                    .createFormForUser(curUser._id, newForm)
                     .then(
                         function (doc) {
                             vm.form.formName = null;

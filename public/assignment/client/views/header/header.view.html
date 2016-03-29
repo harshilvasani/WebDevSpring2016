@@ -12,11 +12,11 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="model.checkRootScope()"><a href="#/register">Register</a></li>
-                <li ng-show="model.checkRootScope()"><a href="#/login">Login</a></li>
-                <li ng-show="!model.checkRootScope()"><a href="#/profile">{{model.username}}</a></li>
-                <li ng-show="model.isAdmin()"><a href="#/admin">Admin</a></li>
-                <li ng-show="!model.checkRootScope()" ng-click="model.updateRootScope()"><a href="#/home">Logout</a></li>
+                <li ng-hide="currentUser"><a href="#/register">Register</a></li>
+                <li ng-hide="currentUser"><a href="#/login">Login</a></li>
+                <li ng-show="currentUser"><a href="#/profile">{{model.username}}</a></li>
+                <li ng-show="currentUser.roles.indexOf('admin') >= 0"><a href="#/admin">Admin</a></li>
+                <li ng-show="currentUser"><a ng-click="model.logout()">Logout</a></li>
             </ul>
         </div>
     </div>
