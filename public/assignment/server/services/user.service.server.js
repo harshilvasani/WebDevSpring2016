@@ -1,6 +1,6 @@
 module.exports = function(app,userModel) {
 
-    app.post("/api/ass/logout", logout);
+    app.post("/api/assignment/logout", logout);
     app.post("/api/assignment/user",createUser);
     app.get("/api/assignment/user",findAllUsers);
     app.get("/api/assignment/user/:id",findUserById);
@@ -15,14 +15,15 @@ module.exports = function(app,userModel) {
 
     function createUser(req,res){
         var newUser = req.body;
-        var users = [];
+        var user = null;
 
         userModel
             .createUser(newUser)
             .then(
                 function (doc) {
-                    users = doc;
-                    res.json(doc);
+                    user = doc;
+                    req.session.currentUser = user;
+                    res.json(user);
                 },
                 // reject promise if error
                 function (err) {

@@ -44,7 +44,7 @@
                 "password":user.password,
                 "roles": vm.user.roles}
 
-            UserService.updateUser(curUser._id,newUser);
+            UserService.updateUser(vm.user._id,newUser);
             UserService.setCurrentUser(newUser);
         }
     }

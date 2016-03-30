@@ -5,9 +5,10 @@ module.exports = function(mongoose) {
         label: {type: String,
             description: "First Name"},
 
-        title: {type: String/text,
+        title: {type: String,
             enum: ['TEXT', 'EMAIL', 'PASSWORD', 'OPTIONS', 'DATE', 'RADIOS', 'CHECKBOXES'],
-            description: "TEXT"},
+            description: "TEXT",
+            default : "TEXT"},
 
         placeholder: {type: String,
             description: "Alice"},

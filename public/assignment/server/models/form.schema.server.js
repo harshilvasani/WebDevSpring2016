@@ -1,6 +1,6 @@
 module.exports = function(mongoose) {
 
-    var FieldSchema  = require("./fields.schema.server.js")(mongoose);
+    var FieldSchema  = require("./field.schema.server.js")(mongoose);
 
     // use mongoose to declare a user schema
     var FormSchema = mongoose.Schema({
@@ -17,10 +17,10 @@ module.exports = function(mongoose) {
             description: "Array of embedded field instance objects " +
             "that adhere to the field schema described earlier"},
 
-        created : {type : data,
+        created : {type : Date,
             defaut: new Date()},
 
-        updated : {type : data, defaut: new Date()}
+        updated : {type : Date, defaut: new Date()}
 
     }, {collection: 'form'});
 

@@ -17,12 +17,13 @@
 
             if(user.password==user.verifyPassword){
 
-                var newUser={"_id":(new Date).getTime(),
-                            "firstName":null,
-                            "lastName":null,
+                var newUser={
+                            "firstName":"",
+                            "lastName":"",
                             "username":user.username,
                             "password":user.password,
-                            "roles": []	}
+                            "email" : [user.email],
+                            "roles": ["student"]	}
             }
             UserService
                 .createUser(newUser)

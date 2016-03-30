@@ -1,8 +1,10 @@
 var q = require("q");
 
-module.exports = function(app) {
+module.exports = function(app, db, mongoose) {
 
-    var forms = require("./form.mock.json");
+    var FormSchema  = require("./form.schema.server.js")(mongoose);
+
+    var forms = mongoose.model("form", FormSchema);
 
     var api = {
         findAllFormsForUser : findAllFormsForUser,
@@ -10,7 +12,6 @@ module.exports = function(app) {
         createFormForUser : createFormForUser,
         deleteFormById : deleteFormById,
         updateFormById : updateFormById,
-
         findFormByTitle : findFormByTitle,
 
         //fields functions
@@ -25,16 +26,20 @@ module.exports = function(app) {
     return api;
 
     function findAllFormsForUser(userId) {
-        var allForms = [];
 
-        for(var i in forms){
-            if(forms[i].userId == userId){
-                allForms.push(forms[i]);
-            }
-        }
         var deferred = q.defer();
-        deferred.resolve(allForms);
 
+        forms.find({userId : userId}, function (err,results){
+            if(!err) {
+                // console.log(results);
+                deferred.resolve(results);
+            }
+            else{
+                deferred.resolve([]);
+            }
+        });
+
+        //deferred.reject(err);//if data is fetched for other server
         return deferred.promise;
     }
 
@@ -103,15 +108,18 @@ module.exports = function(app) {
 
     function findAllFieldsForForm(formId){
         var deferred = q.defer();
-        var form=null;
 
-        for(var i in forms){
-            if(forms[i]._id==formId) {
-                form = forms[i];
-                break;
+        forms.find({_id : formId}, function (err,results){
+            if(!err) {
+               // console.log(results[0].fields);
+                deferred.resolve(results[0].fields);
             }
-        }
-        deferred.resolve(form.fields);
+            else{
+                deferred.resolve([]);
+            }
+        });
+
+        //deferred.reject(err);//if data is fetched for other server
         return deferred.promise;
     }
 

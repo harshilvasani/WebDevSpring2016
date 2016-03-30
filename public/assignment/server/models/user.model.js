@@ -114,8 +114,6 @@ module.exports = function(app, db, mongoose) {
                     "password": user.password,
                     "email": user.email }},
 
-            {upsert : true},
-
             function (err,results){
             if(!err) {
                 deferred.resolve("true");
