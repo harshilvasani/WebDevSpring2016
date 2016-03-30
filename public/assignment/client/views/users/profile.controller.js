@@ -27,6 +27,7 @@
                 .getCurrentUser()
                 .then(
                     function (res){
+                       // console.log(res.data);
                         vm.user = res.data;
                     }
                 );

@@ -14,7 +14,7 @@ module.exports = function(mongoose) {
         lastName: {type: String,
             description : "Wonderland"},
 
-        emails: {type: [String],
+        email: {type: [String],
             description : "['alice@wonderland.com', " +
             "'alice@gmail.com']"},
 

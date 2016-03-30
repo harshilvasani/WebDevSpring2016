@@ -27,6 +27,7 @@
                     function (res){
                         curUser = res.data;
 
+                        console.log(curUser);
                         if(curUser == null){
                             $location.path("/home");
                         }
@@ -36,7 +37,7 @@
                                 .findAllFormsForUser(curUser._id)
                                 .then(
                                     function (doc) {
-                                        console.log(doc);
+                                      //  console.log(doc);
                                         vm.forms= doc.data;
                                     });
                         }

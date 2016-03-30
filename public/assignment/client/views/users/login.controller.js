@@ -20,6 +20,7 @@
                 .then(
                     function (doc) {
                         if(doc.data != null){
+
                             UserService.setCurrentUser(doc.data);
                             $location.path('/profile');
                         }

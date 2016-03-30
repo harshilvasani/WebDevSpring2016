@@ -22,25 +22,34 @@ var urlencodedParser = bodyParser.urlencoded({extended: true});
 app.use(session({secret: 'harshil'}));
 
 /*app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-}))*/
+ app.use(session({
+ secret: 'keyboard cat',
+ resave: false,
+ saveUninitialized: true,
+ cookie: { secure: true }
+ }))*/
 
 app.use(cookieParser())
 app.use(express.static(__dirname + '/public'));
 
-
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+    connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+}
+
+//make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
+db = mongoose.connect('mongodb://localhost/CS5610');
+
 //assiggments
-require("./public/assignment/server/app.js")(app);
+require("./public/assignment/server/app.js")(app, db, mongoose);
 
 //projects
-
 app.post('/maps', urlencodedParser, function (req, results) {
 
     var URL="https://maps.googleapis.com/maps/api/directions/json?&origin=ORIGIN&destination=DESTINATION&key=AIzaSyD_70F4Mj8HaLj4AS8IYt4ZXyJGm2v-KD0";
@@ -57,19 +66,22 @@ app.post('/maps', urlencodedParser, function (req, results) {
     });
 
 });
+require("./public/project/server/app.js")(app, db, mongoose);
 
-require("./public/project/server/app.js")(app);
 
-/*
-//mongoose experiment
-mongoose.connect('mongodb://localhost/CS5610');//make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
-console.log(mongoose);
+/*-------------------------------------MONGODB-------------------------------------------*/
 
-var CourseSchema = new mongoose.Schema({
+// use remote connection string
+// if running in remote server
+
+
+/*var CourseSchema = new mongoose.Schema({
     title : String,
     seats : {type : Number, default : 15}
 }, {collection : "course"});
+*/
 
+/*
 var CourseModel = mongoose.model("CourseModel", CourseSchema)
 
 CourseModel.create({title : "C#", seats : 30},
@@ -78,8 +90,9 @@ CourseModel.create({title : "C#", seats : 30},
             console.log(results);
         }
     }
-);
+);*/
+
 //CourseModel.create({title : "J2EE", seats : 20});
 //CourseModel.create({title : "Python", seats : 50});
-//*/
+//
 app.listen(port, ipaddress);
