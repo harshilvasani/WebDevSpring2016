@@ -14,6 +14,8 @@ var app = express();
 
 var urlencodedParser = bodyParser.urlencoded({extended: true});
 
+var connectionString = 'mongodb://localhost/CS5610';
+
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
@@ -23,7 +25,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 //make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
-db = mongoose.connect('mongodb://localhost/CS5610');
+db = mongoose.connect(connectionString);
 
 app.set('view engine', 'ejs');
 
