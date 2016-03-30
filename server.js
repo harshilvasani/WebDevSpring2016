@@ -6,36 +6,13 @@ var mongoose = require('mongoose');
 //both used for maintaining session
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-
 var multer = require('multer');
 var passport = require('passport');
 var localStrategy = require('passport-local');
 
-
 var app = express();
 
-app.use(bodyParser.json());
 var urlencodedParser = bodyParser.urlencoded({extended: true});
-//app.use(bodyParser.urlencoded({extended: true}));
-//app.use(multer());
-
-app.use(session({secret: 'harshil',
-    resave: false,
-    saveUninitialized: true}));
-
-/*app.set('trust proxy', 1) // trust first proxy
- app.use(session({
- secret: 'keyboard cat',
- resave: false,
- saveUninitialized: true,
- cookie: { secure: true }
- }))*/
-
-app.use(cookieParser())
-app.use(express.static(__dirname + '/public'));
-
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -47,6 +24,33 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 
 //make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
 db = mongoose.connect('mongodb://localhost/CS5610');
+
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(express.bodyParser({ uploadDir: './public/uploads', keepExtensions: true }));
+//app.use(multer({ dest: './public/uploads' }));
+multer();
+app.use(session({secret: 'harshil',
+    resave: true,
+    saveUninitialized: true}));
+app.use(cookieParser())
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(__dirname + '/public'));
+/*app.set('trust proxy', 1) // trust first proxy
+ app.use(session({
+ secret: 'keyboard cat',
+ resave: false,
+ saveUninitialized: true,
+ cookie: { secure: true }
+ }))*/
+
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+
 
 //assiggments
 require("./public/assignment/server/app.js")(app, db, mongoose);
