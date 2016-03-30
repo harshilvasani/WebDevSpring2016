@@ -5,14 +5,24 @@ module.exports = function(mongoose) {
     // use mongoose to declare a user schema
     var FormSchema = mongoose.Schema({
 
-        userId: {type : String},
+        userId: {type : String,
+            description: "ID of user who created the form." +
+            "Can be used to retrieve the user " +
+            "instance given a form, or retrieve " +
+            "all forms for a given user"},
 
         title: {type :String, default : "New Form"},
 
-        fields: {type : [FieldSchema]},
-        created : {type : data, defaut: new Date()},
+        fields: {type : [FieldSchema],
+            description: "Array of embedded field instance objects " +
+            "that adhere to the field schema described earlier"},
+
+        created : {type : data,
+            defaut: new Date()},
+
         updated : {type : data, defaut: new Date()}
 
     }, {collection: 'form'});
+
     return FormSchema;
 };
