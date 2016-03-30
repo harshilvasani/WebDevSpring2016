@@ -49,7 +49,7 @@
         //Event Handler's implementation
         function addForm(formName){
             if(formName != null) {
-                var newForm = {"_id": null, "title": formName, "userId": null};
+                var newForm = {"title": formName, "userId": null};
                 FormService
                     .createFormForUser(curUser._id, newForm)
                     .then(

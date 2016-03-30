@@ -15,12 +15,13 @@ module.exports = function(mongoose) {
 
         fields: {type : [FieldSchema],
             description: "Array of embedded field instance objects " +
-            "that adhere to the field schema described earlier"},
+            "that adhere to the field schema described earlier",
+        default: []},
 
         created : {type : Date,
-            defaut: new Date()},
+            default: new Date()},
 
-        updated : {type : Date, defaut: new Date()}
+        updated : {type : Date, default: new Date()}
 
     }, {collection: 'form'});
 

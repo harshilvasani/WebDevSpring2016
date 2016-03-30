@@ -60,12 +60,13 @@ module.exports = function(app, db, mongoose) {
     }
 
     function createFormForUser(userId, form) {
-        form._id = (new Date).getTime();
+      //  form._id = (new Date).getTime();
+
         form.userId = userId;
-        forms.push(form);
+        forms.create(form);
 
         var deferred = q.defer();
-        deferred.resolve(forms);
+        deferred.resolve(form);
 
         return deferred.promise;
 
