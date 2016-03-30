@@ -23,11 +23,11 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
-
+else {console.log("error by Harshil")}
 //make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
 db = mongoose.connect(connectionString);
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
