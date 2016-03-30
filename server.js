@@ -19,7 +19,9 @@ var urlencodedParser = bodyParser.urlencoded({extended: true});
 //app.use(bodyParser.urlencoded({extended: true}));
 //app.use(multer());
 
-app.use(session({secret: 'harshil'}));
+app.use(session({secret: 'harshil',
+    resave: false,
+    saveUninitialized: true}));
 
 /*app.set('trust proxy', 1) // trust first proxy
  app.use(session({
