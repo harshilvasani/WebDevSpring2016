@@ -49,7 +49,7 @@
                 .then(
                   function(doc){
                       vm.fields = doc.data;
-                      $scope.fields=vm.fields;
+                      $scope.fields = vm.fields;
                   }
                 );
         }
