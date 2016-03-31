@@ -27,7 +27,7 @@
                     function (res){
                         curUser = res.data;
 
-                        //console.log(curUser);
+                       // console.log(curUser);
                         if(curUser == null){
                             $location.path("/home");
                         }
@@ -48,8 +48,11 @@
 
         //Event Handler's implementation
         function addForm(formName){
+            //console.log(curUser);
+           // console.log(curUser._id);
             if(formName != null) {
-                var newForm = {"title": formName, "userId": null};
+               // console.log("formName "+ curUser._id);
+                var newForm = {"title": formName, "userId": curUser._id};
                 FormService
                     .createFormForUser(curUser._id, newForm)
                     .then(

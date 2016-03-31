@@ -61,7 +61,8 @@ module.exports = function(app, db, mongoose) {
     }
 
     function createFormForUser(userId, form) {
-        form.userId = userId;
+       // form.userId = userId;
+
         forms.create(form);
 
         var deferred = q.defer();
@@ -210,8 +211,6 @@ module.exports = function(app, db, mongoose) {
     function createFieldForForm(formId,field){
         var deferred = q.defer();
         var form = null;
-
-        field._id = new Date();
 
        // console.log(formId);
         forms.find({_id : formId}, function (err,results){

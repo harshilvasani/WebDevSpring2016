@@ -79,10 +79,16 @@ module.exports = function(app, db, mongoose) {
     }
 
     function createUser(user) {
-
-        users.create(user);
         var deferred = q.defer();
-        deferred.resolve(user);
+        users.create(user,function (err,results){
+
+            //console.log(results);
+            if(!err) {
+                deferred.resolve(results);
+            }
+            else {
+                deferred.resolve(null);
+            }});
 
         return deferred.promise;
     }

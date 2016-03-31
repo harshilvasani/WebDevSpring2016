@@ -27,9 +27,9 @@
                 .getCurrentUser()
                 .then(
                     function (res){
-                        console.log(res.data);
+                      //  console.log(res.data);
                         vm.user = res.data;
-                        vm.user.email = res.data.email.join(",");
+                        vm.user.emails = res.data.emails.join(",");
                     }
                 );
         }
@@ -37,31 +37,21 @@
 
         //Event Handler's implementation
         function update(user){
-            var emails = user.email.toString().split(",");
+            var emails = user.emails.toString().split(",");
 
             var newUser={"_id":vm.user._id,
                 "firstName":user.firstName,
                 "lastName":user.lastName,
                 "username":user.username,
                 "password":user.password,
-                "email" : emails,
+                "emails" : emails,
                 "roles": vm.user.roles}
 
-            console.log(newUser);
+           // console.log(newUser);
             UserService
                 .updateUser(vm.user._id,newUser)
                 .then(function (res){
                     init();
-                    /*UserService.setCurrentUser(newUser);
-                    UserService
-                        .getCurrentUser()
-                        .then(
-                            function (res){
-                                console.log("in update user " + res.data);
-                                vm.user = res.data;
-                                vm.user.email = res.data.email.join(",");
-                            }
-                        );*/
                 });
 
         }
