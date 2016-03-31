@@ -92,10 +92,10 @@ module.exports = function(app, db, mongoose) {
 
         users.remove({_id : userId},function (err,results){
             if(!err) {
-                deferred.resolve("true");
+                deferred.resolve(results);
             }
             else{
-                deferred.resolve("false");
+                deferred.resolve(null);
             }
         });
 
@@ -105,21 +105,19 @@ module.exports = function(app, db, mongoose) {
     function updateUser(userId, user) {
         var deferred = q.defer();
 
+       // console.log("in updateUser " + user.firstName);
+
         users.update(
             {_id : userId},
 
-            {$set: {"firstName": user.firstName,
-                    "lastName": user.lastName,
-                    "username": user.username,
-                    "password": user.password,
-                    "email": user.email }},
+            {$set: user},
 
             function (err,results){
             if(!err) {
-                deferred.resolve("true");
+                deferred.resolve(results[0]);
             }
-            else{
-                deferred.resolve("false");
+            else {
+                deferred.resolve(null);
             }
         });
 

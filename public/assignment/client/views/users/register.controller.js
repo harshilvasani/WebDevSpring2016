@@ -17,12 +17,14 @@
 
             if(user.password==user.verifyPassword){
 
+                var emails = user.email.toString().split(",");
+
                 var newUser={
                             "firstName":"",
                             "lastName":"",
                             "username":user.username,
                             "password":user.password,
-                            "email" : [user.email],
+                            "email" : emails,
                             "roles": ["student"]	}
             }
             UserService

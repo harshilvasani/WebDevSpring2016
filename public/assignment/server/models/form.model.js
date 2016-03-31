@@ -44,28 +44,28 @@ module.exports = function(app, db, mongoose) {
     }
 
     function findFormById(formId){
-        var form = null;
-
-        for(var i in forms){
-            if(forms[i]._id == formId){
-                form = forms[i];
-                break;
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(form);
 
+        forms.find({_id : formId}, function (err,results){
+            if(!err) {
+                 //console.log(results[0]);
+                deferred.resolve(results[0]);
+            }
+            else{
+                deferred.resolve([]);
+            }
+        });
+
+        //deferred.reject(err);//if data is fetched for other server
         return deferred.promise;
     }
 
     function createFormForUser(userId, form) {
-      //  form._id = (new Date).getTime();
-
         form.userId = userId;
         forms.create(form);
 
         var deferred = q.defer();
+
         deferred.resolve(form);
 
         return deferred.promise;
@@ -73,35 +73,57 @@ module.exports = function(app, db, mongoose) {
     }
 
     function deleteFormById(formId) {
-        for(var i in forms){
-            if(forms[i]._id == formId){
-                forms.splice(i,1);
-                break;
+        var deferred = q.defer();
+
+        forms.remove({_id : formId}, function (err,results){
+            if(!err) {
+                //console.log(results[0]);
+                deferred.resolve(true);
             }
-        }
+            else{
+                deferred.resolve(false);
+            }
+        });
+
+        //deferred.reject(err);//if data is fetched for other server
+        return deferred.promise;
+
     }
 
     function updateFormById(formId, updatedForm) {
-        for(var i in forms){
-            if(forms[i]._id == formId){
-                forms[i].userId = updatedForm.userId;
-                forms[i].title = updatedForm.title;
-                forms[i].fields = updatedForm.fields;
-                break;
-            }
-        }
+        var deferred = q.defer();
+
+        forms.update(
+            {_id : formId},
+
+            {$set: updatedForm},
+
+            function (err,results){
+                if(!err) {
+                    deferred.resolve(updatedForm);
+                }
+                else {
+                    deferred.resolve(null);
+                }
+            });
+
+        return deferred.promise;
     }
 
     function findFormByTitle(formTitle){
-        var form = null;
-        for(var i in forms){
-            if(forms[i].title == formTitle){
-                form = forms[i];
-            }
-        }
         var deferred = q.defer();
-        deferred.resolve(form);
 
+        forms.find({title : formTitle}, function (err,results){
+            if(!err) {
+                //console.log(results[0]);
+                deferred.resolve(results[0]);
+            }
+            else{
+                deferred.resolve([]);
+            }
+        });
+
+        //deferred.reject(err);//if data is fetched for other server
         return deferred.promise;
     }
 
@@ -126,23 +148,25 @@ module.exports = function(app, db, mongoose) {
 
     function findFieldByIdForForm(formId,fieldId){
         var deferred = q.defer();
-        var form=null;
+        var form = null;
 
-        for(var i in forms){
-            if(forms[i]._id==formId) {
-                form = forms[i];
-                break;
+        forms.find({_id : formId}, function (err,results){
+            if(!err) {
+                form = results[0];
+                for(var i in form.fields){
+                    if(form.fields[i]._id==fieldId){
+                        fieldSelect=form.fields[i];
+                    }
+                }
+
+                deferred.resolve(fieldSelect);
             }
-        }
-
-        var fieldSelect=null;
-        for(var i in form.fields){
-            if(form.fields[i]._id==fieldId){
-                fieldSelect=form.fields[i];
+            else{
+                deferred.resolve([]);
             }
-        }
+        });
 
-        deferred.resolve(fieldSelect);
+        var fieldSelect = null;
         return deferred.promise;
     }
 
@@ -150,20 +174,36 @@ module.exports = function(app, db, mongoose) {
         var deferred = q.defer();
         var form = null;
 
-        for(var i in forms){
-            if(forms[i]._id == formId) {
-                form = forms[i];
-                break;
-            }
-        }
+        forms.find({_id : formId}, function (err,results){
+            if(!err) {
+                form = results[0];
 
-        for(var i in form.fields){
-            if(form.fields[i]._id == fieldId){
-                form.fields.splice(i,1);
-            }
-        }
+                for(var i in form.fields){
+                    if(form.fields[i]._id == fieldId){
+                        form.fields.splice(i,1);
+                        break;
+                    }
+                }
 
-        deferred.resolve(form);
+                forms.update(
+                    {_id : formId},
+
+                    {$set: form},
+
+                    function (err,results){
+                        if(!err) {
+                            deferred.resolve(form);
+                        }
+                        else {
+                            deferred.resolve(null);
+                        }
+                    });
+            }
+            else{
+                deferred.resolve(null);
+            }
+        });
+
         return deferred.promise;
     }
 
@@ -171,18 +211,34 @@ module.exports = function(app, db, mongoose) {
         var deferred = q.defer();
         var form = null;
 
-        for(var i in forms){
-            if(forms[i]._id == formId) {
-                form = forms[i];
-                break;
+        field._id = new Date();
+
+       // console.log(formId);
+        forms.find({_id : formId}, function (err,results){
+            if(!err) {
+                form = results[0];
+
+                form.fields.push(field);
+
+                forms.update(
+                    {_id : formId},
+
+                    {$set: form},
+
+                    function (err,results){
+                        if(!err) {
+                            deferred.resolve(form);
+                        }
+                        else {
+                            deferred.resolve(null);
+                        }
+                    });
             }
-        }
+            else{
+                deferred.resolve(null);
+            }
+        });
 
-        field._id=(new Date).getTime();
-
-        form.fields.push(field);
-
-        deferred.resolve(form);
         return deferred.promise;
     }
 
@@ -190,21 +246,35 @@ module.exports = function(app, db, mongoose) {
         var deferred = q.defer();
         var form = null;
 
-        for(var i in forms){
-            if(forms[i]._id == formId) {
-                form = forms[i];
-                break;
-            }
-        }
+        forms.find({_id : formId}, function (err,results){
+            if(!err) {
+                form = results[0];
+                for(var i in form.fields){
+                    if(form.fields[i]._id == fieldId){
+                        form.fields[i] = field;
+                        break;
+                    }
+                }
 
-        for(var i in form.fields){
-            if(form.fields[i]._id == fieldId){
-                form.fields[i] = field;
-                break;
-            }
-        }
+                forms.update(
+                    {_id : formId},
 
-        deferred.resolve(form);
-        return deferred.promise
+                    {$set: form},
+
+                    function (err,results){
+                        if(!err) {
+                            deferred.resolve(form);
+                        }
+                        else {
+                            deferred.resolve(null);
+                        }
+                    });
+            }
+            else{
+                deferred.resolve(null);
+            }
+        });
+
+        return deferred.promise;
     }
 };

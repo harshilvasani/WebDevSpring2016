@@ -27,7 +27,7 @@
                     function (res){
                         curUser = res.data;
 
-                        console.log(curUser);
+                        //console.log(curUser);
                         if(curUser == null){
                             $location.path("/home");
                         }

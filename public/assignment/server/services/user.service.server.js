@@ -134,12 +134,20 @@ module.exports = function(app,userModel) {
         var userId = req.params.id;
         var updatedUser = req.body;
 
-        userModel.updateUser(userId,updatedUser);
+        req.session.currentUser = updatedUser;
+
+        userModel.updateUser(userId,updatedUser)
+            .then(function (doc){
+               // req.session.currentUser = doc;
+                res.json(doc);
+            });
     }
 
     function deleteUser(req,res){
         var userId = req.params.id;
 
-        userModel.deleteUser(userId);
+        userModel.deleteUser(userId).then(function (res){
+            res.json(res);
+        });
     }
 }
