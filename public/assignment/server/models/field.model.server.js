@@ -75,7 +75,7 @@ module.exports = function(app, db, forms) {
                 forms.update(
                     {_id : formId},
 
-                    {$set: form},
+                    {$set: {"fields": form.fields}},
 
                     function (err,results){
                         if(!err) {
@@ -113,7 +113,7 @@ module.exports = function(app, db, forms) {
                 forms.update(
                     {_id : formId},
 
-                    {$set: form},
+                    {$set: {"fields": form.fields}},
 
                     function (err,results){
                         if(!err) {
@@ -149,7 +149,7 @@ module.exports = function(app, db, forms) {
                 forms.update(
                     {_id : formId},
 
-                    {$set: form},
+                    {$set: {"fields": form.fields}},
 
                     function (err,results){
                         if(!err) {

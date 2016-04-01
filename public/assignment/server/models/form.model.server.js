@@ -93,7 +93,9 @@ module.exports = function(app, db, mongoose) {
         forms.update(
             {_id : formId},
 
-            {$set: updatedForm},
+            {$set: {"title" : updatedForm.title,
+                 "userId": updatedForm.userId,
+                "fields": updatedForm.fields}},
 
             function (err,results){
                 if(!err) {

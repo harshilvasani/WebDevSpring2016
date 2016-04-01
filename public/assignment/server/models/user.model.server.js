@@ -116,7 +116,11 @@ module.exports = function(app, db, mongoose) {
         users.update(
             {_id : userId},
 
-            {$set: user},
+            {$set: {"password" : user.password,
+                "firstName" : user.firstName,
+                "lastName" : user.lastName,
+                "email" : user.email
+            }},
 
             function (err,results){
             if(!err) {
