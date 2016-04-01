@@ -219,6 +219,11 @@ module.exports = function(app, db, mongoose) {
 
                 form.fields.push(field);
 
+              /*  form.save();
+
+                console.log(form);
+                deferred.resolve(form);*/
+
                 forms.update(
                     {_id : formId},
 

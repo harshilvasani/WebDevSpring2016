@@ -58,6 +58,7 @@
         function addField(fieldType){
             var newField = null;
 
+            console.log(fieldType);
             switch(fieldType){
 
                 case "TEXT":
