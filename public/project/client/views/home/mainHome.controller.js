@@ -93,7 +93,7 @@
 
 
         function book(index){
-            $location("/login");
+            $location.path("/login");
         }
 
 

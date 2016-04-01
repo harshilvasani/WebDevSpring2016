@@ -1,5 +1,6 @@
 module.exports = function(app,userModel) {
 
+    app.post("/api/project/logout", logout);
     app.get("/api/project/user", findAllUsers);
     app.get("/api/project/user/username/:username/password/:password", findUserByCredentials);
     app.get("/api/project/company/:company/manager", findAllManagersByCompany);
@@ -8,7 +9,24 @@ module.exports = function(app,userModel) {
     app.post("/api/project/user", createUser);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
+    app.get("/api/project/loggedin", loggedin);
 
+
+    function logout(req, res) {
+        req.session.destroy();
+        res.send(200);
+    }
+
+    function loggedin(req,res){
+
+        if(req.session.currentUser != null){
+            //console.log(req.session.currentUser);
+            res.json(req.session.currentUser);
+        }
+        else
+            res.json(null);
+
+    }
 
     function findAllUsers(req,res){
 
@@ -92,6 +110,7 @@ module.exports = function(app,userModel) {
             .then(
                 function (doc) {
                     var user = doc;
+                    req.session.currentUser = user;
                     res.json(user);
                 },
                 // reject promise if error
@@ -109,6 +128,7 @@ module.exports = function(app,userModel) {
             .then(
                 function (doc) {
                     newUser = doc;
+                    req.session.currentUser = newUser;
                     res.json(newUser);
                 },
                 // reject promise if error
@@ -127,6 +147,7 @@ module.exports = function(app,userModel) {
             .then(
                 function (doc) {
                     updateUser = doc;
+                    req.session.currentUser = updateUser;
                     res.json(updateUser);
                 },
                 // reject promise if error

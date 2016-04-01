@@ -20,11 +20,15 @@
             getCurrentUser: getCurrentUser,
             setCurrentOwner: setCurrentOwner,
             getCurrentOwner: getCurrentOwner,
-            deleteUser : deleteUser
+            deleteUser : deleteUser,
+            logout: logout
         }
 
         return api;
 
+        function logout() {
+            return $http.post("/api/project/logout");
+        }
 
         function setCurrentOwner (owner) {
             $rootScope.currentOwner = owner;
@@ -39,7 +43,8 @@
         }
 
         function getCurrentUser () {
-            return $rootScope.currentUser;
+            var curUser = $http.get("/api/project/loggedin");
+            return curUser;
         }
 
         function findUserByCredentials(username, password) {

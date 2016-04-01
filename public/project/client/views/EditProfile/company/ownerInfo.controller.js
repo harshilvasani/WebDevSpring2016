@@ -14,8 +14,14 @@
 
         function init(){
             var owner = UserService.getCurrentOwner();
+
             if(owner == null){
-                var OWNER = UserService.getCurrentUser();
+                var OWNER = null;
+                UserService
+                    .getCurrentUser()
+                    .then(function(res){
+                        OWNER = res.data;
+                    });
 
                 vm.owner = {"_id":OWNER._id,
                     "company":OWNER.company,

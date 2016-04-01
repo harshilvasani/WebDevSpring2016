@@ -11,7 +11,11 @@
         var vm = this;
 
         function init(){
-            vm.manager =  UserService.getCurrentUser();
+            UserService
+                .getCurrentUser()
+                .then(function (res){
+                    vm.manager = res.data;
+                });
         }
         init();
 

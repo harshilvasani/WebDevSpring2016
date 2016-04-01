@@ -11,23 +11,32 @@
         var vm = this;
 
         function init(){
-            vm.curOwner = UserService.getCurrentUser();
-            console.log()
-            CompanyService
-                .findCompany(vm.curOwner.company)
-                .then(
-                    function (response){
-                        vm.curCompany = response.data;
-                    }
-                );
+            UserService
+                .getCurrentUser()
+                .then(function (res){
+                    vm.curOwner = res.data;
 
-            BranchService
-                .findAllBranchesByCompany(vm.curOwner.company)
-                .then(
-                    function (response){
-                        vm.curBranches = response.data;
-                    }
-                );
+                    console.log(vm.curOwner);
+                    UserService.setCurrentOwner(vm.curOwner);
+
+                    CompanyService
+                        .findCompany(vm.curOwner.company)
+                        .then(
+                            function (response){
+                                vm.curCompany = response.data;
+                            }
+                        );
+
+                    BranchService
+                        .findAllBranchesByCompany(vm.curOwner.company)
+                        .then(
+                            function (response){
+                                vm.curBranches = response.data;
+                            }
+                        );
+
+                });
+
           /*  VehicleService
                 .findAllVehicleByCompanyandBranch(vm.curManager.company,vm.curManager.branchId)
                 .then(

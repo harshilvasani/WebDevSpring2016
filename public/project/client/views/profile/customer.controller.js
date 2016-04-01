@@ -9,7 +9,11 @@
     function CustomerProfileController(UserService,CustomerProfileService) {
 
         var vm = this;
-        vm.curCustomer = UserService.getCurrentUser();
+        UserService
+            .getCurrentUser()
+            .then(function (res){
+                vm.curCustomer = res.data;
+            });
     }
 
 })();

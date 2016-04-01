@@ -20,7 +20,10 @@
                     function(response){
                         var loggedUser = response.data;
                         if(loggedUser != null){
+
                             UserService.setCurrentUser(loggedUser);
+
+                            console.log(loggedUser);
                             if(loggedUser.role == "customer"){
                                 $location.path('/customerProfile');
                             }

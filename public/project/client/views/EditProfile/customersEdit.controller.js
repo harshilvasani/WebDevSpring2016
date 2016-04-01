@@ -11,7 +11,11 @@
         var vm = this;
 
         function init(){
-            vm.customer =  UserService.getCurrentUser();
+            UserService
+                .getCurrentUser()
+                .then(function (res){
+                    vm.customer = res.data;
+                });
         }
         init();
 

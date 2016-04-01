@@ -20,6 +20,7 @@
         function init(){
 
             var owner = UserService.getCurrentOwner();
+
             BranchService
                 .findAllBranchesByCompany(owner.company)
                 .then(

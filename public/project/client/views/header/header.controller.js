@@ -11,27 +11,19 @@
         var vm = this;
 
         //Event Handler's declaration
-        vm.checkRootScope=checkRootScope;
-        vm.updateRootScope=updateRootScope;
+        vm.logout=logout;
         vm.setProfile = setProfile;
         vm.displayBookings = displayBookings;
 
         //Event Handler's implementation
-        function checkRootScope() {
-            var curUser = UserService.getCurrentUser();
+        function logout() {
+            UserService
+                .logout()
+                .then(function(){
+                    UserService.setCurrentUser(null);
+                    $location.url("/mainhome");
+                });
 
-            if(curUser==null){
-                return true;
-            }
-            else
-            {
-                vm.username=curUser.username;
-                return false;
-            }
-        }
-
-        function updateRootScope() {
-            UserService.setCurrentUser(null);
         }
 
         function setProfile(){

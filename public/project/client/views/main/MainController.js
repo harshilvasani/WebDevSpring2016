@@ -19,13 +19,13 @@
 
             if(loggedUser == null) {
                 $location.path('/login');
-                alert("login in as owner username = 'h', password = 'h'");
+                alert("login in as owner username = 'b', password = 'b'");
             }
             else if(loggedUser.role == "owner"){
                 $location.path('/branch');
             }
             else{
-                alert("login in as owner username = 'h', password = 'h'");
+                alert("login in as owner username = 'b', password = 'b'");
             }
         }
 

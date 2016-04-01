@@ -24,15 +24,19 @@
     //    VehicleService.findAllVehicleByCompanyandBranch(curManager.company,curManager.branchId,renderBranchVehicles);
 
         function init(){
-            vm.curManager = UserService.getCurrentUser();
+            UserService
+                .getCurrentUser()
+                .then(function (res){
+                    vm.curManager = res.data;
 
-            VehicleService
-                .findAllVehicleByCompanyandBranch(vm.curManager.company,vm.curManager.branchId)
-                .then(
-                    function (response){
-                        vm.vehicles = response.data;
-                    }
-                );
+                    VehicleService
+                        .findAllVehicleByCompanyandBranch(vm.curManager.company,vm.curManager.branchId)
+                        .then(
+                            function (response){
+                                vm.vehicles = response.data;
+                            }
+                        );
+                });
         }
 
         init();
