@@ -1,59 +1,53 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
-var mongoose = require('mongoose');
-
-//both used for maintaining session
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-
+var http = require('https');
 var multer = require('multer');
 var passport = require('passport');
-var localStrategy = require('passport-local');
+var LocalStrategy = require('passport-local').Strategy;
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var mongoose = require('mongoose');
 
+var connectionString = 'mongodb://127.0.0.1:27017/CS5610';
 
-var app = express();
-
-app.use(bodyParser.json());
-var urlencodedParser = bodyParser.urlencoded({extended: true});
-//app.use(bodyParser.urlencoded({extended: true}));
-//app.use(multer());
-
-app.use(session({secret: 'harshil',
-    resave: true,
-    saveUninitialized: true}));
-
-/*app.set('trust proxy', 1) // trust first proxy
- app.use(session({
- secret: 'keyboard cat',
- resave: false,
- saveUninitialized: true,
- cookie: { secure: true }
- }))*/
-
-app.use(cookieParser())
-app.use(express.static(__dirname + '/public'));
-
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-
-var connectionString = 'mongodb://localhost/CS5610';
-
-if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
-    connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+// use remote connection string
+// if running in remote server
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+    connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
         process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
 
-//make sure C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe is running
-db = mongoose.connect(connectionString);
+// connect to the database
+var db = mongoose.connect(connectionString);
 
-//assiggments
-require("./public/assignment/server/app.js")(app, db, mongoose);
+var app = express();
 
-//projects
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
+var urlencodedParser = bodyParser.urlencoded({extended: true});
+//app.use(multer());
+app.use(session({ secret: "Bansal" ,
+    resave : true,
+    saveUninitialized : true}));
+app.use(cookieParser());
+app.use(express.static(__dirname + '/public'));
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+//console.log(process.env.PASSPORT_SECRET);
+
+require("./public/assignment/server/app.js")(app,db,mongoose);
+require("./public/project/server/app.js")(app);
+
+var urlencodedParser = bodyParser.urlencoded({extended: true});
+
+
 app.post('/maps', urlencodedParser, function (req, results) {
 
     var URL="https://maps.googleapis.com/maps/api/directions/json?&origin=ORIGIN&destination=DESTINATION&key=AIzaSyD_70F4Mj8HaLj4AS8IYt4ZXyJGm2v-KD0";
@@ -72,31 +66,4 @@ app.post('/maps', urlencodedParser, function (req, results) {
 });
 require("./public/project/server/app.js")(app, db, mongoose);
 
-
-/*-------------------------------------MONGODB-------------------------------------------*/
-
-// use remote connection string
-// if running in remote server
-
-
-/*var CourseSchema = new mongoose.Schema({
-    title : String,
-    seats : {type : Number, default : 15}
-}, {collection : "course"});
-*/
-
-/*
-var CourseModel = mongoose.model("CourseModel", CourseSchema)
-
-CourseModel.create({title : "C#", seats : 30},
-    function (err,results){
-        if(!err){
-            console.log(results);
-        }
-    }
-);*/
-
-//CourseModel.create({title : "J2EE", seats : 20});
-//CourseModel.create({title : "Python", seats : 50});
-//
 app.listen(port, ipaddress);
