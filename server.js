@@ -39,7 +39,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 var connectionString = 'mongodb://localhost/CS5610';
 
-if(process.env.OPENSHIFT_NODEJS_IP){
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
     connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
         process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +

@@ -1,4 +1,4 @@
-module.exports = function(app,formModel) {
+module.exports = function(app,fieldModel) {
 
     app.get("/api/assignment/form/:formId/field", findAllFieldsForForm);
     app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByIdForForm);
@@ -8,7 +8,7 @@ module.exports = function(app,formModel) {
 
     function findAllFieldsForForm(req,res){
         var formId = req.params.formId;
-        formModel
+        fieldModel
             .findAllFieldsForForm(formId)
             .then(
                 function(doc){
@@ -24,7 +24,7 @@ module.exports = function(app,formModel) {
     function findFieldByIdForForm(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        formModel
+        fieldModel
             .findFieldByIdForForm(formId,fieldId)
             .then(
                 function(doc){
@@ -40,7 +40,7 @@ module.exports = function(app,formModel) {
     function deleteFieldByIdForForm(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        formModel
+        fieldModel
             .deleteFieldByIdForForm(formId,fieldId)
             .then(
                 function(doc){
@@ -57,7 +57,7 @@ module.exports = function(app,formModel) {
         var formId = req.params.formId;
         var newField = req.body;
 
-        formModel
+        fieldModel
             .createFieldForForm(formId,newField)
             .then(
                 function(doc){
@@ -75,7 +75,7 @@ module.exports = function(app,formModel) {
         var fieldId = req.params.fieldId;
         var updatedField = req.body;
 
-        formModel
+        fieldModel
             .updateFieldByIdForForm(formId,fieldId,updatedField)
             .then(
                 function(doc){
