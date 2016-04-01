@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 var urlencodedParser = bodyParser.urlencoded({extended: true});
 //app.use(multer());
-app.use(session({ secret: "Bansal" ,
+app.use(session({ secret: "Harshil" ,
     resave : true,
     saveUninitialized : true}));
 app.use(cookieParser());
