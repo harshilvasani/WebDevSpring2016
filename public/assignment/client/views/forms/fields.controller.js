@@ -162,6 +162,7 @@
                 for (var i in opts){
                     var pair = opts[i].split(":");
                     var obj = {"label" :pair[0] ,"value" :pair[1]};
+                    if(obj.label !="")
                     opt.push(obj);
                 }
 
