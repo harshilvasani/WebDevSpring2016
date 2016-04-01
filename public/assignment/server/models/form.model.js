@@ -150,6 +150,7 @@ module.exports = function(app, db, mongoose) {
     function findFieldByIdForForm(formId,fieldId){
         var deferred = q.defer();
         var form = null;
+        var fieldSelect = null;
 
         forms.find({_id : formId}, function (err,results){
             if(!err) {
@@ -167,7 +168,6 @@ module.exports = function(app, db, mongoose) {
             }
         });
 
-        var fieldSelect = null;
         return deferred.promise;
     }
 
