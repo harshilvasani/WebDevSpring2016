@@ -24,6 +24,7 @@
     //    VehicleService.findAllVehicleByCompanyandBranch(curManager.company,curManager.branchId,renderBranchVehicles);
 
         function init(){
+        //    alert("in manager's profile");
             UserService
                 .getCurrentUser()
                 .then(function (res){

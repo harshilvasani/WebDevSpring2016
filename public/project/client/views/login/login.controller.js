@@ -14,16 +14,18 @@
 
         //Event Handler's implementation
         function login(username,password){
+           // alert(username + " " +password);
             UserService
                 .findUserByCredentials(username,password)
                 .then(
                     function(response){
                         var loggedUser = response.data;
+                     //   console.log(loggedUser);
                         if(loggedUser != null){
 
                             UserService.setCurrentUser(loggedUser);
 
-                            console.log(loggedUser);
+                           // console.log(loggedUser);
                             if(loggedUser.role == "customer"){
                                 $location.path('/customerProfile');
                             }

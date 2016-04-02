@@ -17,18 +17,29 @@
 
         function init(){
 
-            var branches = BranchService.getCurrentBranch();
-            if(branches != null){
-                vm.branches = branches;
-            }
-            else{
-                vm.branches = [{}];
-            }
+            var branches = null;
+
+            BranchService.getCurrentBranch()
+                .then(function(res){
+                    branches = res.data;
+
+                    if(branches != null && branches != ""){
+                        vm.branches = branches;
+                    }
+                    else{
+                        vm.branches = [{}];
+                    }
+
+                });
+
         }
         init();
 
         function saveBranch(allBranches){
-            BranchService.setCurrentBranch(allBranches);
+            BranchService.setCurrentBranch(allBranches)
+                .then(function(res){
+
+                });
         }
 
         function addBranch(){

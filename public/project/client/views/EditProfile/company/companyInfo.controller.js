@@ -20,7 +20,7 @@
             CompanyService.getCurrentCompany()
                 .then(function(res){
                     console.log(res);
-                    if(res.data == ""){
+                    if(res.data == "" || res.data == null){
                         //console.log(" shbhb "+ res);
                         CompanyService
                             .findCompany(owner.company)

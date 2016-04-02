@@ -27,33 +27,44 @@
         }
 
         function setProfile(){
-            var loggedUser = UserService.getCurrentUser();
-            if(loggedUser.role == "customer"){
-                $location.path('/customerProfile');
-            }
+            var loggedUser = null;
 
-            else if(loggedUser.role == "owner"){
-                $location.path('/ownerProfile');
-            }
+                UserService.getCurrentUser()
+                .then(function (res){
+                    var loggedUser = res.data;
+                    if(loggedUser.role == "customer"){
+                        $location.path('/customerProfile');
+                    }
 
-            else{
-                $location.path('/managerProfile');
-            }
+                    else if(loggedUser.role == "owner"){
+                        $location.path('/ownerProfile');
+                    }
+
+                    else if(loggedUser.role == "manager"){
+                        $location.path('/managerProfile');
+                    }
+                });
         }
 
         function displayBookings(){
-            var loggedUser = UserService.getCurrentUser();
-            if(loggedUser.role == "customer"){
-                $location.path('/customerBooking');
-            }
+            var loggedUser = null;
 
-            else if(loggedUser.role == "owner"){
-                $location.path('/companyBooking');
-            }
+            UserService.getCurrentUser()
+                .then(function (res){
+                    var loggedUser = res.data;
 
-            else{
-                $location.path('/branchBooking');
-            }
+                    if(loggedUser.role == "customer"){
+                        $location.path('/customerBooking');
+                    }
+
+                    else if(loggedUser.role == "owner"){
+                        $location.path('/companyBooking');
+                    }
+
+                    else if(loggedUser.role == "manager"){
+                        $location.path('/branchBooking');
+                    }
+                });
         }
     }
 })();

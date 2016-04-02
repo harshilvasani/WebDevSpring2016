@@ -13,24 +13,38 @@
         vm.saveOwner = saveOwner;
 
         function init(){
-            var owner = UserService.getCurrentOwner();
-            if(owner != null){
-                vm.owner = owner;
-            }
-            else{
-               owner = {"_id":"",
-                   "company":"",
-                   "firstName":"","lastName":"",
-                   "username":"","password":"",
-                   "emailid":"", "contactnum":"",
-                   "role": "owner"};
-                UserService.setCurrentOwner(owner);
-            }
+            var owner = null;
+            UserService.getCurrentOwner()
+                .then(function(res){
+                    owner = res.data;
+
+                    if(owner != null && owner != ""){
+                        vm.owner = owner;
+                    }
+                    else{
+                        owner = {"_id":"",
+                            "company":"",
+                            "firstName":"","lastName":"",
+                            "username":"","password":"",
+                            "emailid":"", "contactnum":"",
+                            "role": "owner"};
+
+                        UserService.setCurrentOwner(owner)
+                            .then(function(res){
+
+                            });
+                    }
+
+                });
+
         }
         init();
 
         function saveOwner(newOwner){
-            UserService.setCurrentOwner(newOwner);
+            UserService.setCurrentOwner(newOwner)
+                .then(function(res){
+
+                });
         }
     }
 

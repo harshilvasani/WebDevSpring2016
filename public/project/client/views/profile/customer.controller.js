@@ -8,6 +8,7 @@
 
     function CustomerProfileController(UserService,CustomerProfileService) {
 
+      //  alert("in Customer's profile");
         var vm = this;
         UserService
             .getCurrentUser()

@@ -20,6 +20,7 @@
 
         /*-----------users event Handler's implementation-----------*/
         function init(){
+            alert("in CompanyController");
             CompanyService
                 .findAllCompanys()
                 .then(

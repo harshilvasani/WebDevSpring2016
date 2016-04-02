@@ -8,6 +8,19 @@ module.exports = function(app,branchModel) {
     app.put("/api/project/branch/:id", updateBranch);
     app.delete("/api/project/branch/:id", deleteBranch);
 
+    app.get("/api/project/getCurBranches", getCurrentBranches);
+    app.post("/api/project/setCurBranches", setCurrentBranches);
+
+    function setCurrentBranches(req, res){
+        var curBranches = req.body;
+        req.session.curBranches = curBranches;
+        res.json(req.session.curBranches);
+    }
+
+    function getCurrentBranches(req, res){
+        res.json(req.session.curBranches);
+    }
+
     function findAllBranches(req,res){
         branchModel
             .findAllBranches()

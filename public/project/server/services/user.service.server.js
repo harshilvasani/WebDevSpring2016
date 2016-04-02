@@ -11,6 +11,8 @@ module.exports = function(app,userModel) {
     app.delete("/api/project/user/:id", deleteUser);
     app.get("/api/project/loggedin", loggedin);
 
+    app.get("/api/project/getCurOwner", getCurOwner);
+    app.post("/api/project/setCurOwner", setCurOwner);
 
     function logout(req, res) {
         req.session.destroy();
@@ -26,6 +28,23 @@ module.exports = function(app,userModel) {
         else
             res.json(null);
 
+    }
+
+    function getCurOwner(req,res){
+
+        if(req.session.currentOwner != null){
+            //console.log(req.session.currentUser);
+            res.json(req.session.currentOwner);
+        }
+        else
+            res.json(null);
+
+    }
+
+    function setCurOwner(req,res){
+        var curOwner = req.body;
+        req.session.currentOwner = curOwner;
+        res.json(req.session.currentOwner);
     }
 
     function findAllUsers(req,res){
@@ -110,7 +129,13 @@ module.exports = function(app,userModel) {
             .then(
                 function (doc) {
                     var user = doc;
+
                     req.session.currentUser = user;
+
+                    if (user.role == 'owner'){
+                        req.session.currentOwner = user;
+                    }
+                   // console.log(user);
                     res.json(user);
                 },
                 // reject promise if error
@@ -129,6 +154,9 @@ module.exports = function(app,userModel) {
                 function (doc) {
                     newUser = doc;
                     req.session.currentUser = newUser;
+                    if (currentUser.role == 'owner'){
+                        req.session.currentOwner = user;
+                    }
                     res.json(newUser);
                 },
                 // reject promise if error
@@ -148,6 +176,9 @@ module.exports = function(app,userModel) {
                 function (doc) {
                     updateUser = doc;
                     req.session.currentUser = updateUser;
+                    if (currentUser.role == 'owner'){
+                        req.session.currentOwner = user;
+                    }
                     res.json(updateUser);
                 },
                 // reject promise if error

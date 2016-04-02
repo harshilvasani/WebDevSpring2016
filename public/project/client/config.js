@@ -175,10 +175,7 @@
 
             .when("/company",{
                 templateUrl: "views/Company/company.view.html",
-                controller : "CompanyController",
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
+                controller : "CompanyController"
             })
 
             .otherwise({
@@ -197,9 +194,9 @@
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
 
-                    if (currentUser.role == 'owner'){
+                  /*  if (currentUser.role == 'owner'){
                         UserService.setCurrentOwner(currentUser);
-                    }
+                    }*/
                     deferred.resolve();
                 } else {
                     deferred.reject();

@@ -16,10 +16,22 @@
             findBranchByByCompanyandId : findBranchByByCompanyandId,
             createBranch : createBranch,
             updateBranch : updateBranch,
-            deleteBranch : deleteBranch
+            deleteBranch : deleteBranch,
+            setCurrentBranches : setCurrentBranches,
+            getCurrentBranches : getCurrentBranches
         }
 
         return api;
+
+        function setCurrentBranches (branches) {
+            var curBranches = $http.post("/api/project/setCurBranches",branches);
+            //  console.log(curOwner);
+            return curBranches;
+        }
+
+        function getCurrentBranches () {
+            return $http.get("/api/project/getCurBranches");
+        }
 
         function setCurrentBranch(branch){
             $rootScope.branch = branch;

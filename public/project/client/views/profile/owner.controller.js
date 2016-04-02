@@ -11,39 +11,82 @@
         var vm = this;
 
         function init(){
-            UserService
-                .getCurrentUser()
-                .then(function (res){
-                    vm.curOwner = res.data;
+       //     alert("in owner's profile");
 
-                    console.log(vm.curOwner);
-                    UserService.setCurrentOwner(vm.curOwner);
+            UserService.getCurrentOwner()
+                .then(function(res){
+                    if (res.data != "" && res.data != null){
+                        vm.curOwner = res.data;
 
-                    CompanyService
-                        .findCompany(vm.curOwner.company)
-                        .then(
-                            function (response){
-                                vm.curCompany = response.data;
-                            }
-                        );
+                        console.log(vm.curOwner);
+                        getCompany();
 
-                    BranchService
-                        .findAllBranchesByCompany(vm.curOwner.company)
-                        .then(
-                            function (response){
-                                vm.curBranches = response.data;
-                            }
-                        );
+                        getBranches();
 
-                });
-
-          /*  VehicleService
-                .findAllVehicleByCompanyandBranch(vm.curManager.company,vm.curManager.branchId)
-                .then(
-                    function (response){
-                        vm.vehicles = response.data;
                     }
-                );*/
+
+                    else{
+                        UserService
+                            .getCurrentUser()
+                            .then(function (res){
+                                vm.curOwner = res.data;
+
+                                console.log(vm.curOwner);
+
+                                getCompany();
+
+                                getBranches();
+
+                                UserService.setCurrentOwner(vm.curOwner)
+                                    .then(function(res){
+                                        alert("in Owner Controller setCurrentOwner");
+                                    });
+
+                            });
+                    }
+
+                })
+
+
+            function getCompany(){
+                CompanyService
+                    .findCompany(vm.curOwner.company)
+                    .then(
+                        function (response){
+                            vm.curCompany = response.data;
+                            console.log(vm.curCompany);
+                            CompanyService.setCurrentCompany(vm.curCompany)
+                                .then(function(res){
+
+                                });
+
+                        }
+                    );
+            }
+
+
+            function getBranches(){
+                BranchService
+                    .findAllBranchesByCompany(vm.curOwner.company)
+                    .then(
+                        function (response){
+                            vm.curBranches = response.data;
+                            console.log(vm.curBranches);
+                            BranchService.setCurrentBranches(vm.curBranches)
+                                .then(function(res){
+
+                                });
+                        }
+                    );
+            }
+
+            /*  VehicleService
+             .findAllVehicleByCompanyandBranch(vm.curManager.company,vm.curManager.branchId)
+             .then(
+             function (response){
+             vm.vehicles = response.data;
+             }
+             );*/
         }
 
         init();

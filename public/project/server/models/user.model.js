@@ -25,6 +25,8 @@ module.exports = function(app) {
                 break;
             }
         }
+      //  console.log("in user model");
+      //  console.log(user);
 
         var deferred = q.defer();
         deferred.resolve(user);

@@ -31,11 +31,13 @@
         }
 
         function setCurrentOwner (owner) {
-            $rootScope.currentOwner = owner;
+            var curOwner = $http.post("/api/project/setCurOwner",owner);
+          //  console.log(curOwner);
+            return curOwner;
         }
 
         function getCurrentOwner () {
-            return $rootScope.currentOwner;
+            return $http.get("/api/project/getCurOwner");
         }
 
         function setCurrentUser (user) {
@@ -44,6 +46,7 @@
 
         function getCurrentUser () {
             var curUser = $http.get("/api/project/loggedin");
+           // alert(curUser);
             return curUser;
         }
 

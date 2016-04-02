@@ -19,7 +19,7 @@ module.exports = function(app,companyModel) {
     }
 
     function getCurCompany(req,res){
-        console.log(req.session.curCompany);
+      //  console.log(req.session.curCompany);
         res.json(req.session.curCompany);
     }
 
