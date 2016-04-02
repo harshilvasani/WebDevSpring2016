@@ -61,6 +61,16 @@
 
 
         function init(){
+
+            FormService
+                .findFormById($routeParams.formId)
+                .then(
+                    function (res) {
+                        var form = res.data;
+                        vm.title = form.title;
+                    }
+                );
+
             FieldService
                 .getFieldsForForm($routeParams.formId)
                 .then(
