@@ -17,17 +17,20 @@
             findCompany : findCompany,
             createCompany : createCompany,
             updateCompany : updateCompany,
-            deleteCompany : deleteCompany
+            deleteCompany : deleteCompany,
         }
 
         return api;
 
         function setCurrentCompany(company){
-            $rootScope.company = company;
+           // $rootScope.company = company;
+            //console.log(company);
+            return $http.post("/api/project/setCurCompany",company);
         }
 
         function getCurrentCompany(){
-            return $rootScope.company;
+           // return $rootScope.company;
+            return $http.get("/api/project/getCurCompany");
         }
 
         function findAllCompanys() {

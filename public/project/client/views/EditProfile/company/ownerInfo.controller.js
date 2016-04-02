@@ -36,14 +36,29 @@
                 vm.owner = owner;
             }
 
-            CompanyService
-                .findCompany(vm.owner.company)
-                .then(
-                    function (response){
-                        vm.company = response.data;
-                        CompanyService.setCurrentCompany(vm.company);
+            CompanyService.getCurrentCompany()
+                .then(function(res){
+                    console.log(res);
+                    if(res.data == ""){
+                        //console.log(" shbhb "+ res);
+                        CompanyService
+                            .findCompany(vm.owner.company)
+                            .then(
+                                function (response){
+                                    vm.company = response.data;
+                                    CompanyService.setCurrentCompany(vm.company)
+                                        .then(function(res){
+
+                                        });
+                                }
+                            );
                     }
-                );
+                    else{
+                        vm.company = res.data;
+                    }
+                });
+
+
         }
         init();
 

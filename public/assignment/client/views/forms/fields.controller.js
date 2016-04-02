@@ -24,11 +24,28 @@
             for(var i in vm.fields){
                 newFields[i] = vm.fields[i];
             }
+/*
+            if(start<end)
+            {
+                var startTemp = newFields[start];
 
-            var temp = newFields[start];
-            newFields[start] = newFields[end];
-            newFields[end] = temp;
+                for(var i=start ;i<end; i++ ){
+                   // console.log(newFields);
+                    newFields[i] = newFields[1+i];
+                }
+                newFields[end] = startTemp;
+            }
 
+            else{
+                var startTemp = newFields[start];
+
+                for(var i=start ;i>end; i-- ){
+                    newFields[i] = newFields[i-1];
+                }
+                newFields[end] = startTemp;
+            }
+*/
+            newFields.splice(end, 0 ,newFields.splice(start, 1)[0]);
             FormService
                 .findFormById($routeParams.formId)
                 .then(
@@ -122,6 +139,10 @@
         }
 
         function cloneField(field){
+            console.log(field);
+            delete field._id;
+            console.log(field);
+
             FieldService
                 .createFieldForForm($routeParams.formId,field)
                 .then(

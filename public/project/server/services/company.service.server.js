@@ -6,6 +6,22 @@ module.exports = function(app,companyModel) {
     app.put("/api/project/company/:id", updateCompany);
     app.delete("/api/project/company/:id", deleteCompany);
 
+    app.post("/api/project/setCurCompany", setCurCompany);
+    app.get("/api/project/getCurCompany", getCurCompany);
+
+    function setCurCompany(req,res){
+        var curCompany = req.body;
+       // console.log(req.session.curCompany);
+      //  console.log(req.session.currentUser);
+        req.session.curCompany = curCompany;
+        res.json(req.session.curCompany);
+
+    }
+
+    function getCurCompany(req,res){
+        console.log(req.session.curCompany);
+        res.json(req.session.curCompany);
+    }
 
     function findAllCompanys(req,res){
 
