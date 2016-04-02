@@ -14,7 +14,9 @@
             UserService
                 .getCurrentUser()
                 .then(function (res){
+                    console.log(res.data);
                     vm.customer = res.data;
+                    console.log(vm.customer.state);
                 });
         }
         init();
@@ -26,8 +28,14 @@
             updatedUser._id = vm.customer._id;
             updatedUser.role = vm.customer.role;
 
+            console.log(updatedUser);
+
             UserService
-                .updateUser(vm.customer._id,updatedUser);
+                .updateUser(vm.customer._id,updatedUser)
+                .then(function(res){
+
+                });
+
             UserService.setCurrentUser(updatedUser);
                 $location.path("/customerProfile");
 

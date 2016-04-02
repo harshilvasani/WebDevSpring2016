@@ -91,7 +91,7 @@ module.exports = function(app) {
         users.push(user);
 
         var deferred = q.defer();
-        deferred.resolve(users);
+        deferred.resolve(user);
 
         return deferred.promise;
     }

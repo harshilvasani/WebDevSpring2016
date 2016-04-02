@@ -29,7 +29,12 @@
             updatedManager.role = vm.manager.role;
 
             UserService
-                .updateUser(vm.manager._id,updatedManager);
+                .updateUser(vm.manager._id,updatedManager)
+                .then(function(res){
+
+                });
+
+
             UserService.setCurrentUser(updatedManager);
 
             BranchService

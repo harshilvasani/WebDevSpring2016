@@ -23,25 +23,16 @@
             .when("/ownerInfo",{
                 templateUrl: "views/registration/company/ownerInfo.view.html",
                 // controller
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
             })
 
             .when("/companyInfo",{
                 templateUrl: "views/registration/company/companyInfo.view.html",
                 // controller
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
             })
 
             .when("/branchInfo",{
                 templateUrl: "views/registration/company/branchInfo.view.html",
                 // controller
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
             })
 
             .when("/customerRegistration",{
@@ -191,6 +182,7 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
+                console.log(currentUser);
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
 
@@ -200,6 +192,7 @@
                     deferred.resolve();
                 } else {
                     deferred.reject();
+                    console.log("session not found");
                     $location.url("/home");
                 }
             });

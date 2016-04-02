@@ -13,13 +13,13 @@
         vm.saveBranch = saveBranch;
         vm.removeBranch = removeBranch;
         vm.addBranch = addBranch;
-        vm.updateCompany = updateCompany;
+        vm.registerCompany = registerCompany;
 
         function init(){
 
             var branches = null;
 
-            BranchService.getCurrentBranch()
+            BranchService.getCurrentBranches()
                 .then(function(res){
                     branches = res.data;
 
@@ -36,7 +36,7 @@
         init();
 
         function saveBranch(allBranches){
-            BranchService.setCurrentBranch(allBranches)
+            BranchService.setCurrentBranches(allBranches)
                 .then(function(res){
 
                 });
@@ -50,46 +50,70 @@
             vm.branches.splice(index,1);
         }
 
-        function updateCompany(){
-            var owner = UserService.getCurrentOwner();
-            var company = CompanyService.getCurrentCompany();
+        function registerCompany(){
+
+            var owner = null;
+            var company = null;
             var branches = vm.branches;
 
-            if(owner == null){
-                owner = {};
-            }
+            UserService.getCurrentOwner()
+                .then(function(res){
+                    owner = res.data;
 
-            owner._id = (new Date).getTime();
-            owner.role = "owner";
-            owner.company = company.companyName;
+                    CompanyService.getCurrentCompany()
+                        .then(function(res){
+                            company = res.data;
 
-            if(company == null){
-                company = {};
-            }
+                            if(owner == null){
+                                owner = {};
+                            }
 
-            company._id = (new Date).getTime();
+                            owner._id = (new Date).getTime();
+                            owner.role = "owner";
+                            owner.company = company.companyName;
 
-            for(var i in branches){
-                branches[i]._id = (new Date).getTime();
+                            if(company == null){
+                                company = {};
+                            }
 
-                var newManager = branches[i];//new user
-                newManager.role = "manager";
+                            company._id = (new Date).getTime();//-------------------------------------------------------
 
-                var newBranch = branches[i];//new Branch
-                newBranch.company = company.companyName;
+                            for(var i in branches){
+                                branches[i]._id = (new Date).getTime();
 
-                UserService.createUser(newManager);
-                BranchService.createBranch(newBranch);
-            }
+                                var newManager = branches[i];//new user
+                                newManager.role = "manager";
 
-            UserService.createUser(owner);
-            CompanyService.createCompany(company);
-            UserService.setCurrentUser(owner);
-            UserService.setCurrentOwner(null);
-            CompanyService.setCurrentCompany(null);
-            BranchService.setCurrentBranch([{}]);
+                                var newBranch = branches[i];//new Branch
+                                newBranch.company = company.companyName;
 
-            $location.path("/ownerProfile");
+                                UserService.createUser(newManager);
+                                BranchService.createBranch(newBranch);
+                            }
+
+                            UserService.createUser(owner);
+                            CompanyService.createCompany(company);
+
+                            UserService.setCurrentUser(owner);
+
+                            UserService.setCurrentOwner(null)
+                                .then(function(res){
+
+                                });
+
+                            CompanyService.setCurrentCompany(null)
+                                .then(function(res){
+
+                                });
+
+                            BranchService.setCurrentBranches([{}])
+                                .then(function(res){
+
+                                });
+
+                            $location.path("/ownerProfile");
+                        });
+                });
         }
     }
 

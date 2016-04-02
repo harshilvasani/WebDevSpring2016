@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">State:</label>
                             <div class="col-sm-10">
-                                <select class="form-control" ng-model="customer.state" ng-change="checkbox(customer.state)">
+                                <select class="form-control" ng-model="model.customer.state">
                                     <option>CA</option>
                                     <option>MA</option>
                                     <option>NY</option>
@@ -96,7 +96,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <a href="#/customerProfile" type="submit"  ng-click="model.update(model.customer)" class="btn btn-primary myButton">Update</a>
+                                <a type="submit"  ng-click="model.update(model.customer)" class="btn btn-primary myButton">Update</a>
                             </div>
                         </div>
                     </form>

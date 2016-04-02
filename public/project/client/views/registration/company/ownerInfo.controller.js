@@ -18,6 +18,8 @@
                 .then(function(res){
                     owner = res.data;
 
+                   // console.log(owner);
+
                     if(owner != null && owner != ""){
                         vm.owner = owner;
                     }
@@ -41,6 +43,7 @@
         init();
 
         function saveOwner(newOwner){
+            console.log(newOwner);
             UserService.setCurrentOwner(newOwner)
                 .then(function(res){
 
