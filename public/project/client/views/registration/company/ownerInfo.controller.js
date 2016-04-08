@@ -24,7 +24,7 @@
                         vm.owner = owner;
                     }
                     else{
-                        owner = {"_id":"",
+                        owner = {
                             "company":"",
                             "firstName":"","lastName":"",
                             "username":"","password":"",

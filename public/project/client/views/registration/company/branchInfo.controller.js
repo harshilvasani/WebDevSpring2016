@@ -68,7 +68,6 @@
                                 owner = {};
                             }
 
-                            owner._id = (new Date).getTime();
                             owner.role = "owner";
                             owner.company = company.companyName;
 
@@ -76,10 +75,7 @@
                                 company = {};
                             }
 
-                            company._id = (new Date).getTime();//-------------------------------------------------------
-
                             for(var i in branches){
-                                branches[i]._id = (new Date).getTime();
 
                                 var newManager = branches[i];//new user
                                 newManager.role = "manager";

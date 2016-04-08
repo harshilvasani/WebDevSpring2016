@@ -148,6 +148,7 @@ module.exports = function(app,userModel) {
     function createUser(req,res){
         var newUser = req.body;
 
+        console.log(newUser);
         userModel
             .createUser(newUser)
             .then(

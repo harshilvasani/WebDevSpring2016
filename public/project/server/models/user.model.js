@@ -6,6 +6,19 @@ module.exports = function(app, db, mongoose) {
 
     var actors = mongoose.model("actors", ActorSchema);
 
+    /*users.create({"firstName": "Alice",
+     "lastName": "Wonderland",
+     "username": "alice",
+     "password": "alice",
+     "email": ["alice@wonderland"],
+     "roles": ["student"]},
+     function (err,results){
+     if(!err){
+     console.log(results);
+     }
+     }
+     );*/
+
     var api = {
         findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
@@ -105,9 +118,11 @@ module.exports = function(app, db, mongoose) {
 
             //console.log(results);
             if(!err) {
+                console.log(results);
                 deferred.resolve(results);
             }
             else {
+                console.log(err);
                 deferred.resolve(null);
             }});
 

@@ -1,8 +1,10 @@
 var q = require("q");
 
-module.exports = function(app) {
+module.exports = function(app, db, mongoose) {
 
-    var vehicles = require("./vehicle.mock.json");
+    var VehicleSchema  = require("./vehicle.schema.server.js")(mongoose);
+
+    var vehicles = mongoose.model("vehicles", VehicleSchema);
 
     var api = {
         findAllVehicles : findAllVehicles,
@@ -16,8 +18,17 @@ module.exports = function(app) {
     return api;
 
     function findAllVehicles(){
+
+        var vehcles = [];
         var deferred = q.defer();
-        deferred.resolve(vehicles);
+
+        vehcles.find(function (err,results){
+                if(!err){
+                    // console.log(results);
+                    vehcles = results;
+                    deferred.resolve(vehcles);
+                }
+            });
 
         return deferred.promise;
     }
@@ -25,65 +36,95 @@ module.exports = function(app) {
     function findAllVehicleByCompanyandBranch(company, branchId) {
         var myVehicles = [];
 
-        for (var i in vehicles) {
-            if (vehicles[i].company == company && vehicles[i].branchId == branchId) {
-                myVehicles.push(vehicles[i]);
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(myVehicles);
+
+        vehicles.find({$and: [{company : company},{branchId : branchId}]},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    myVehicles = results;
+                    deferred.resolve(myVehicles);
+                }
+            });
 
         return deferred.promise;
     }
 
     function findVehicleByCompanyandBranchandType(company, branchId, type) {
-        var vehicle = null;
-        for (var i in vehicles) {
-            if (vehicles[i].company == company && vehicles[i].branchId == branchId && vehicles[i].type == type) {
-                vehicle = vehicles[i];
-                break;
-            }
-        }
+        var myVehicles = [];
+
         var deferred = q.defer();
-        deferred.resolve(vehicle);
+
+        vehicles.find({$and: [{company : company},{branchId : branchId}, {type : type}]},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    myVehicles = results;
+                    deferred.resolve(myVehicles);
+                }
+            });
 
         return deferred.promise;
 
     }
 
     function createVehicle(vehicle) {
-        vehicle._id = (new Date).getTime();
-        vehicles.push(vehicle);
         var deferred = q.defer();
-        deferred.resolve(vehicles);
+
+        vehicles.create(vehicle,function (err,results){
+
+           // console.log(results);
+            if(!err) {
+                console.log(results);
+                deferred.resolve(results);
+            }
+            else {
+                console.log(err);
+                deferred.resolve(null);
+            }});
 
         return deferred.promise;
     }
 
     function deleteVehicle(vehicleId) {
-        for (var i in vehicles) {
-            if (vehicles[i]._id == vehicleId) {
-                vehicles.splice(i, 1);
-                break;
-            }
-        }
         var deferred = q.defer();
-        deferred.resolve(vehicles);
+
+        actors.remove({_id : vehicleId},function (err,results){
+            if(!err) {
+                deferred.resolve(results);
+            }
+            else{
+                deferred.resolve(null);
+            }
+        });
 
         return deferred.promise;
     }
 
     function updateVehicle(vehicleId,vehicle) {
-        for (var i in vehicles) {
-            if (vehicles[i]._id == vehicleId) {
-                vehicles[i] = vehicle;
-                break;
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(vehicle);
+
+        // console.log("in updateUser " + user.firstName);
+
+        users.update(
+            {_id : vehicleId},
+
+            {$set: {"company": vehicle.company,
+                "branchId": vehicle.branchId,
+                "type": vehicle.type,
+                "count": vehicle.count,
+                "fare" : vehicle.fare
+            }},
+
+            function (err,results){
+                if(!err) {
+                    deferred.resolve(results[0]);
+                }
+                else {
+                    deferred.resolve(null);
+                }
+            });
+
         return deferred.promise;
     }
 }

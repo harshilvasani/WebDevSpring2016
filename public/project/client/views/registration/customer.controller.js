@@ -12,7 +12,7 @@
         vm.create = create;
 
         function create(newCustomer){
-            newCustomer._id = (new Date).getTime();
+          //  newCustomer._id = (new Date).getTime();
             newCustomer.role = "customer";
 //            console.log(newCustomer);
 

@@ -21,7 +21,7 @@
                         vm.company = company;
                     }
                     else {
-                        var company = {	"_id":"",
+                        var company = {
                             "companyName" : "" , "companyAddr" : "",
                             "city":"",  "state":"",
                             "zipCode": ""};
