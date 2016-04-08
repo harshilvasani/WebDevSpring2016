@@ -19,14 +19,14 @@ module.exports = function(app, db, mongoose) {
 
     function findAllVehicles(){
 
-        var vehcles = [];
+        var vehicles = [];
         var deferred = q.defer();
 
-        vehcles.find(function (err,results){
+        vehicles.find(function (err,results){
                 if(!err){
                     // console.log(results);
-                    vehcles = results;
-                    deferred.resolve(vehcles);
+                    vehicles = results;
+                    deferred.resolve(vehicles);
                 }
             });
 
@@ -89,7 +89,7 @@ module.exports = function(app, db, mongoose) {
     function deleteVehicle(vehicleId) {
         var deferred = q.defer();
 
-        actors.remove({_id : vehicleId},function (err,results){
+        vehicles.remove({_id : vehicleId},function (err,results){
             if(!err) {
                 deferred.resolve(results);
             }
@@ -106,7 +106,7 @@ module.exports = function(app, db, mongoose) {
 
         // console.log("in updateUser " + user.firstName);
 
-        users.update(
+        vehicles.update(
             {_id : vehicleId},
 
             {$set: {"company": vehicle.company,

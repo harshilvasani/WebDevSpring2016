@@ -1,8 +1,10 @@
 var q = require("q");
 
-module.exports = function(app) {
+module.exports = function(app , db, mongoose) {
 
-    var companys = require("./company.mock.json");
+    var CompanySchema  = require("./company.schema.server.js")(mongoose);
+
+    var companys = mongoose.model("companys", CompanySchema);
 
     var api = {
         findAllCompanys : findAllCompanys,
@@ -16,62 +18,91 @@ module.exports = function(app) {
 
     function findAllCompanys() {
 
+        var companys = [];
         var deferred = q.defer();
-        deferred.resolve(companys);
+
+        companys.find(function (err,results){
+            if(!err){
+                // console.log(results);
+                companys = results;
+                deferred.resolve(companys);
+            }
+        });
 
         return deferred.promise;
     }
 
     function findCompany(company){
-        var myCompany = null;
-       
-        for(var i in companys){
-            if(companys[i].companyName == company){
-                myCompany = companys[i];
-                break;
-            }
-        }
-
+        var company = null;
         var deferred = q.defer();
-        deferred.resolve(myCompany);
+
+        companys.find({company : company},
+            function (err,results){
+            if(!err){
+                // console.log(results);
+                company = results;
+                deferred.resolve(company[0]);
+            }
+        });
 
         return deferred.promise;
     }
 
     function createCompany(company) {
 
-        company._id = (new Date).getTime();
-        companys.push(company);
         var deferred = q.defer();
-        deferred.resolve(companys);
+
+        companys.create(company,function (err,results){
+
+            // console.log(results);
+            if(!err) {
+                console.log(results);
+                deferred.resolve(results);
+            }
+            else {
+                console.log(err);
+                deferred.resolve(null);
+            }});
 
         return deferred.promise;
     }
 
     function updateCompany(companyId, company) {
-        for(var i in companys){
-            if(companys[i]._id==companyId){
-                companys[i]=company;
-                break;
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(company);
+
+          companys.update(
+            {_id : companyId},
+
+            {$set: {"companyName": company.companyName,
+                "companyAddr": company.companyAddr,
+                "city": company.city,
+                "state": company.state,
+                "zipCode" : company.zipCode
+            }},
+
+            function (err,results){
+                if(!err) {
+                    deferred.resolve(results[0]);
+                }
+                else {
+                    deferred.resolve(null);
+                }
+            });
 
         return deferred.promise;
     }
 
-    function deleteCompany(companyId, callback) {
-        for(var i in companys){
-            if(companys[i]._id==companyId){
-                companys.splice(i,1);
-                break;
-            }
-        }
-
+    function deleteCompany(companyId) {
         var deferred = q.defer();
-        deferred.resolve(companys);
+
+        companys.remove({_id : companyId},function (err,results){
+            if(!err) {
+                deferred.resolve(results);
+            }
+            else{
+                deferred.resolve(null);
+            }
+        });
 
         return deferred.promise;
     }
