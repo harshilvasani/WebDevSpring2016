@@ -43,7 +43,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 //console.log(process.env.PASSPORT_SECRET);
 
 require("./public/assignment/server/app.js")(app,db,mongoose);
-require("./public/project/server/app.js")(app);
+require("./public/project/server/app.js")(app,db,mongoose);
 
 var urlencodedParser = bodyParser.urlencoded({extended: true});
 
@@ -64,6 +64,4 @@ app.post('/maps', urlencodedParser, function (req, results) {
     });
 
 });
-require("./public/project/server/app.js")(app, db, mongoose);
-
 app.listen(port, ipaddress);
