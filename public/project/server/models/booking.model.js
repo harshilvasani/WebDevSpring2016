@@ -1,8 +1,10 @@
 var q = require("q");
 
-module.exports = function(app) {
+module.exports = function(app, db, mongoose) {
 
-    var bookings = require("./booking.mock.json");
+    var BookingSchema  = require("./booking.schema.server.js")(mongoose);
+
+    var bookings = mongoose.model("bookings", BookingSchema);
 
     var api = {
 

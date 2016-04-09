@@ -139,7 +139,7 @@
                 }
                 // controller
             })
-            .when("/vehicleBooking",{
+            .when("/vehicleBooking/:vehicleId",{
                 templateUrl: "views/Bookings/vehicleBooking.view.html",
                 controller : "VehicleBookingController",
                 resolve: {
@@ -182,7 +182,7 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
-                console.log(currentUser);
+               // console.log(currentUser);
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
 

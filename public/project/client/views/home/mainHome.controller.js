@@ -93,7 +93,19 @@
 
 
         function book(index){
-            $location.path("/login");
+            UserService
+                .getCurrentUser()
+                .then(function(res){
+                    if(res.data) {
+                        console.log(vm.searches[index]);
+                        $location.path("/vehicleBooking/" + vm.searches[index]._id);
+                    }
+
+                    else{
+                        $location.path("/login");
+                    }
+                });
+
         }
 
 

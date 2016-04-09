@@ -14,6 +14,7 @@
                 <li ng-hide="currentUser"><a href="#/login">Log In</a></li>
                 <li ng-hide="currentUser"><a href="#/ownerInfo">Company Registration</a></li>
                 <li ng-show="currentUser"><a ng-click="model.setProfile()">Welcome, {{currentUser.username}}!!</a></li>
+                <li ng-show="currentUser.role == 'customer'"><a href="#/mainhome">Find a Vehicle</a></li>
                 <li ng-show="currentUser"><a ng-click="model.displayBookings()">Bookings</a></li>
                 <li ng-show="currentUser" ng-click="model.logout()"><a>Log out</a></li>
             </ul>

@@ -31,7 +31,7 @@
             UserService
                 .updateUser(vm.manager._id,updatedManager)
                 .then(function(res){
-
+                    console.log(res.data);
                 });
 
 

@@ -1,6 +1,7 @@
 module.exports = function(app,vehicleModel) {
 
     app.get("/api/project/vehicle", findAllVehicles);
+    app.get("/api/project/vehicle/:vehicleId", findVehicleById);
     app.get("/api/project/company/:company/branch/:branchId/vehicle", findAllVehicleByCompanyandBranch);
     app.get("/api/project/company/:company/branch/:branchId/vehicle/:type", findVehicleByCompanyandBranchandType);
 
@@ -17,6 +18,23 @@ module.exports = function(app,vehicleModel) {
                 function (doc) {
                     var vehicles = doc;
                     res.json(vehicles);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function findVehicleById(req,res){
+        var vehicleId = req.params.vehicleId;
+        console.log(vehicleId);
+        vehicleModel
+            .findVehicleById(vehicleId)
+            .then(
+                function (doc) {
+                    var vehicle = doc;
+                    res.json(vehicle);
                 },
                 // reject promise if error
                 function (err) {

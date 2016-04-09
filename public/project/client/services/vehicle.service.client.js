@@ -9,6 +9,7 @@
     function VehicleService($http) {
 
         var api = {
+            findVehicleById : findVehicleById,
             findAllVehicleByCompanyandBranch : findAllVehicleByCompanyandBranch,
             findVehicleByCompany_Branch_Type : findVehicleByCompany_Branch_Type,
             findAllVehicles : findAllVehicles,
@@ -21,6 +22,11 @@
 
         function findAllVehicles(){
            return $http.get("/api/project/vehicle");
+        }
+
+        function findVehicleById(Id){
+            console.log(Id);
+            return $http.get("/api/project/vehicle/" + Id);
         }
 
         function findAllVehicleByCompanyandBranch(company, branchId) {

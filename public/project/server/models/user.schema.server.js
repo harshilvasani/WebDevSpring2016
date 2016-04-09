@@ -23,6 +23,9 @@ module.exports = function(mongoose) {
         state: {type: String,
             description : "MA"},
 
+        zip: {type: String,
+            description : "02120"},
+
         emailid: {type: String,
             description : "alice@wonderland.com"},
 

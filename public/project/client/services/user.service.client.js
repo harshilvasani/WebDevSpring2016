@@ -75,7 +75,9 @@
         }
 
         function updateUser(userId, user) {
-            return $http.put("/api/project/user/" + userId, user);
+            var updatedUser = $http.put("/api/project/user/" + userId, user);
+            console.log(updatedUser);
+            return updatedUser;
         }
 
         function deleteUser(userId) {

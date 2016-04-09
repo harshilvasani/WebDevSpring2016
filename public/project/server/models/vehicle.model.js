@@ -8,6 +8,7 @@ module.exports = function(app, db, mongoose) {
 
     var api = {
         findAllVehicles : findAllVehicles,
+        findVehicleById : findVehicleById,
         findAllVehicleByCompanyandBranch: findAllVehicleByCompanyandBranch,
         findVehicleByCompanyandBranchandType: findVehicleByCompanyandBranchandType,
         createVehicle: createVehicle,
@@ -27,6 +28,24 @@ module.exports = function(app, db, mongoose) {
                     // console.log(results);
                     vehicles = results;
                     deferred.resolve(vehicles);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function findVehicleById(Id) {
+        var myVehicle = null;
+
+        var deferred = q.defer();
+
+        //console.log(Id);
+        vehicles.find({_id : Id},
+            function (err,results){
+                if(!err){
+                    console.log(results[0]);
+                    myVehicle = results[0];
+                    deferred.resolve(myVehicle);
                 }
             });
 
@@ -54,6 +73,7 @@ module.exports = function(app, db, mongoose) {
         var myVehicles = [];
 
         var deferred = q.defer();
+
 
         vehicles.find({$and: [{company : company},{branchId : branchId}, {type : type}]},
             function (err,results){

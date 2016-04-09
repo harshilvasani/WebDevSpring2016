@@ -28,6 +28,7 @@
             UserService
                 .getCurrentUser()
                 .then(function (res){
+                    console.log(res.data);
                     vm.curManager = res.data;
 
                     VehicleService
@@ -47,7 +48,6 @@
 
                 vehicle.company = vm.curManager.company;
                 vehicle.branchId = vm.curManager.branchId;
-                vehicle._id = (new Date).getTime();
 
                 VehicleService
                     .createVehicle(vehicle)

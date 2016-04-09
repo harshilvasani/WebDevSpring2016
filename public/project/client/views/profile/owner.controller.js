@@ -35,7 +35,7 @@
 
                                 getCompany();
 
-                                getBranches();
+
 
                                 UserService.setCurrentOwner(vm.curOwner)
                                     .then(function(res){
@@ -55,6 +55,7 @@
                         function (response){
                             vm.curCompany = response.data;
                             console.log(vm.curCompany);
+                            getBranches();
                             CompanyService.setCurrentCompany(vm.curCompany)
                                 .then(function(res){
 
@@ -66,10 +67,12 @@
 
 
             function getBranches(){
+                //alert();
                 BranchService
                     .findAllBranchesByCompany(vm.curOwner.company)
                     .then(
                         function (response){
+                            alert();
                             vm.curBranches = response.data;
                             console.log(vm.curBranches);
                             BranchService.setCurrentBranches(vm.curBranches)

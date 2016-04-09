@@ -161,7 +161,7 @@ module.exports = function(app,userModel) {
                         req.session.currentOwner = newUser;
                     }
                     // console.log(newUser);
-                    res.json(newUser);
+                    res.json(doc);
                 },
                 // reject promise if error
                 function (err) {
@@ -178,15 +178,13 @@ module.exports = function(app,userModel) {
             .updateUser(userId,updatedUser)
             .then(
                 function (doc) {
-                    UpdateUser = doc;
+                    req.session.currentUser = updatedUser;
 
-                    req.session.currentUser = UpdateUser;
-
-                    if (UpdateUser.role == 'owner'){
-                        req.session.currentOwner = UpdateUser;
+                    if (updatedUser.role == 'owner'){
+                        req.session.currentOwner = updatedUser;
                     }
 
-                    res.json(UpdateUser);
+                    res.json(doc);
 
                 },
                 // reject promise if error

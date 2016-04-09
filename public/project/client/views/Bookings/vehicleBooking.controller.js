@@ -6,17 +6,32 @@
         .module("VehicleBookingApp")
         .controller("VehicleBookingController", VehicleBookingController);
 
-    function VehicleBookingController($scope,$http) {
+    function VehicleBookingController($scope,$http, $routeParams, VehicleService) {
 
-        $scope.autoComplete = autoComplete;
-        $scope.getMap = getMap;
-        $scope.addPlace = addPlace;
-        $scope.details = details;
+        var vm = this;
+
+        vm.autoComplete = autoComplete;
+        vm.getMap = getMap;
+        vm.addPlace = addPlace;
+        vm.details = details;
 
         var originArray;
         var destinationArray;
-        $scope.places = [];
+        var maxCount = 0;
+        vm.places = [];
 
+        function init(){
+            var vehicleId = $routeParams.vehicleId;
+            VehicleService
+                .findVehicleById(vehicleId)
+                .then(function(res){
+                    vm.booking = res.data;
+                    maxCount = res.data.count;
+                    vm.booking.count = 0;
+                })
+        }
+
+        init();
         function addPlace(){
             var inputOrigin = document.getElementById('origin').value;
             var inputDesitination = document.getElementById('destination').value;

@@ -13,7 +13,7 @@
         UserService
             .getCurrentUser()
             .then(function (res){
-                console.log(res.data);
+               // console.log(res.data);
                 vm.curCustomer = res.data;
             });
     }
