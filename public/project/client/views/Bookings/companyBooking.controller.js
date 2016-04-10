@@ -6,22 +6,77 @@
         .module("VehicleBookingApp")
         .controller("CompanyBookingController", CompanyBookingController);
 
-    function CompanyBookingController(BookingService,UserService) {
+    function CompanyBookingController(BookingService,UserService, $location, VehicleService) {
 
         var vm = this;
 
         //Event Handler's declaration
-        vm.addBooking = addBooking;
-        vm.selectBooking = selectBooking;
-        vm.deleteBooking = deleteBooking;
-        vm.updateBooking = updateBooking;
-
+        vm.details = details
         vm.index = -1;
-
+        var curUser = null;
         /*-----------bookings event Handler's implementation-----------*/
 
         function init(){
-            var curUser = UserService.getCurrentUser();
+
+            var bookings = [];
+            UserService
+                .getCurrentUser()
+                .then(function(res){
+                    curUser = res.data;
+
+                    BookingService
+                        .getAllBookingForCompany(curUser.company)
+                        .then (
+                            function (response){
+                                bookings = response.data;
+                                deleteOldBookings(bookings);
+                            }
+                        );
+                });
+        }
+
+        init();
+
+        function details(index){
+            $location.path("/bookingDetails/" + vm.bookings[index]._id);
+        }
+
+        function deleteOldBookings(bookings){
+            for(var i in bookings){
+                var date = new Date(bookings[i].day);
+
+                var curDate = (new Date).getTime();
+                if(curDate > date){
+
+                    var vehicle = null;
+
+                    VehicleService
+                        .findVehicleByCompany_Branch_Type(bookings[i].company, bookings[i].branchId, bookings[i].type )
+                        .then(function (res){
+                            vehicle = res.data;
+                            console.log(vehicle);
+                            console.log(vehicle.count);
+
+                            vehicle.count += bookings[i].count;
+
+                            console.log(vehicle.count);
+                            VehicleService
+                                .updateVehicle(vehicle._id, vehicle)
+                                .then(function (res){
+
+                                    BookingService
+                                        .deleteBookingById(bookings[i]._id)
+                                        .then(
+                                            function (response){
+
+                                            }
+                                        );
+                                })
+                        })
+
+
+                }
+            }
 
             BookingService
                 .getAllBookingForCompany(curUser.company)
@@ -30,60 +85,6 @@
                         vm.bookings = response.data;
                     }
                 );
-        }
-
-        init();
-
-        function addBooking(booking){
-            if(booking != null)
-                BookingService
-                    .createBookingForCustomer(booking)
-                    .then(
-                        function (response){
-                            vm.booking = null;
-                            init();
-                        }
-                    );
-        }
-
-        function selectBooking(index){
-            vm.index = index;
-            var selectedBooking = vm.bookings[index];
-            vm.booking = {"custUsername" : selectedBooking.custUsername,
-                "company": selectedBooking.company,
-                "branchId": selectedBooking.branchId,
-                "ContactName" : selectedBooking.ContactName,
-                "originAddr" : selectedBooking.originAddr,
-                "destAddr" : selectedBooking.destAddr,
-                "type" : selectedBooking.type,
-                "count" : selectedBooking.count,
-                "charges" : selectedBooking.charges}
-        }
-
-        function deleteBooking(index){
-            BookingService
-                .deleteBookingById(vm.bookings[index]._id)
-                .then(
-                    function (response){
-                        init();
-                    }
-                );
-        }
-
-        function updateBooking(booking){
-            if(vm.index != -1)
-            {
-                booking._id = vm.bookings[vm.index]._id;
-                BookingService
-                    .updateBookingById(vm.bookings[vm.index]._id,booking)
-                    .then(
-                        function(response){
-                            init();
-                        }
-                    );
-                vm.index = -1;
-                vm.booking = null;
-            }
         }
     }
 })();

@@ -163,7 +163,8 @@ table tbody td.branchHead a{
 }
 
 #myTable{
-    white-space: nowrap;
+
+    color: #ececec;
     width: 100%;
     height: auto;
     border-size:1px;
@@ -171,10 +172,8 @@ table tbody td.branchHead a{
     border-radius: 5px;
     border-width: thin;
     border-color: rgba(0, 0, 0, .75);
-    padding: 10px;
+
     background: rgba(0, 0, 0, .75);
-    color: #ececec;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 #Mymap {

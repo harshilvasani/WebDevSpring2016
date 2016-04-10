@@ -6,12 +6,11 @@
         .module("VehicleBookingApp")
         .controller("VehicleBookingController", VehicleBookingController);
 
-    function VehicleBookingController($scope, $http, $routeParams, VehicleService, BookingService) {
+    function VehicleBookingController($scope, $http, $routeParams, VehicleService, BookingService, $location) {
 
         var vm = this;
 
         vm.autoComplete = autoComplete;
-        vm.getMap = getMap;
         vm.details = details;
         vm.confirmBooking = confirmBooking;
         vm.open1 = open1;
@@ -99,7 +98,9 @@
 
             if(inputOrigin!="" && inputDesitination!=""){
                 $http(req).success(render);
-                getMap(inputOrigin, inputDesitination);
+            }
+            else{
+                alert("Enter origin and/or destination");
             }
         }
 
@@ -109,11 +110,12 @@
             vm.fare = parseFloat(vm.legs.distance.text) * vm.booking.count * fare;
             vm.booking.charges = (vm.fare).toString();
             vm.booking.day = document.getElementById('day').value;
-            console.log(vm.booking);
+
 
             BookingService
                 .createBookingForCustomer(vm.booking)
                 .then(function (res){
+                    var bookingId = res.data._id;
                     console.log(res.data);
 
                     vehicle.count -= res.data.count;
@@ -122,38 +124,13 @@
                         .updateVehicle(vehicle._id,vehicle)
                         .then(function (res) {
                             console.log(res.data);
+
+                            $location.path("/bookingDetails/" + bookingId);
                         });
                 });
 
+
            // console.log(document.getElementById('day').value);
-        }
-
-        function getMap(inputOrigin, inputDesitination){
-
-            var directionsService = new google.maps.DirectionsService;
-            var directionsDisplay = new google.maps.DirectionsRenderer;
-
-            vm.show = 1;
-
-            var map = new google.maps.Map(document.getElementById('Mymap'), {
-                zoom: 7,
-            });
-
-            directionsDisplay.setMap(map);
-
-            directionsService.route({origin: inputOrigin,
-                    destination: inputDesitination,
-                    travelMode: google.maps.TravelMode.DRIVING},
-                renderRouteMap);
-
-            function renderRouteMap(response, status) {
-                if (status === google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(response);
-                } else {
-                    window.alert('Directions request failed due to ' + status);
-                }
-            }
-
         }
 
         /*-------------------------Date Picker-----------------------------------*/

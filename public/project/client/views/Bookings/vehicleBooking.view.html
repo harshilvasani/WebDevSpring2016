@@ -93,12 +93,6 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <a type="submit" ng-click="model.details()" class="btn btn-primary myButton">Details</a>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
                                 <a type="submit" ng-click="model.confirmBooking(model.booking)" class="btn btn-primary myButton">Confirm Booking</a>
                             </div>
                         </div>
@@ -107,40 +101,6 @@
 
                 </div>
 
-            </div>
-            <br>
-            <a type="submit" ng-show="model.show==1" ng-click="model.show=0;" class="btn btn-danger">Hide Details</a>
-            <a type="submit" ng-show="model.show==0" ng-click="model.show=1;" class="btn btn-success">Show Details</a>
-            <div class="row" ng-show="model.show==1">
-                <div class="col-md-4" id="Mymap"></div>
-
-                <div class="col-md-8 table-responsive" id="details">
-                    <br>
-                    <table class="table table-stripped">
-                        <tbody>
-                        <tr>
-                            <td>Origin :</td>
-                            <td>{{model.legs.start_address}} ({{model.legs.start_location.lat}},{{legs.start_location.lng}})</td>
-                        </tr>
-                        <tr>
-                            <td>Destination :</td>
-                            <td>{{model.legs.end_address}} ({{model.legs.end_location.lat}},{{model.legs.end_location.lng}})</td>
-                        </tr>
-                        <tr>
-                            <td>Distance :</td>
-                            <td>{{model.legs.distance.text}}</td>
-                        </tr>
-                        <tr>
-                            <td>Time :</td>
-                            <td>{{model.legs.duration.text}}</td>
-                        </tr>
-                        <tr>
-                            <td>Fare :</td>
-                            <td>{{model.fare}} $</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
         </div>

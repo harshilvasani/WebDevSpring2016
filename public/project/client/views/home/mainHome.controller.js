@@ -87,8 +87,15 @@
 
         function renderAllVehicles(vehicles){
             console.log(vehicles);
+
             if(vehicles!=null)
                 vm.searches = vm.searches.concat(vehicles);
+
+            for(var i in vm.searches){
+                if(vm.searches[i].count == 0){
+                    vm.searches.splice(i,1);
+                }
+            }
         }
 
 

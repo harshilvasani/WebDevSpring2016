@@ -13,6 +13,7 @@
         var api = {
             createBookingForCustomer : createBookingForCustomer,
             getAllBookings : getAllBookings,
+            findBookingById : findBookingById,
             deleteBookingById : deleteBookingById,
             updateBookingById : updateBookingById,
             getAllBookingForCustomerByUsername : getAllBookingForCustomerByUsername,
@@ -24,6 +25,10 @@
 
         function createBookingForCustomer(booking) {
             return $http.post("/api/project/booking",booking);
+        }
+
+        function findBookingById(Id){
+            return $http.get("/api/project/booking/" + Id);
         }
 
         function getAllBookings() {

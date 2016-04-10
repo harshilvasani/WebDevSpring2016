@@ -106,7 +106,7 @@
 
             .when("/branchBooking",{
                 templateUrl: "views/Bookings/branchBooking.view.html",
-                controller : "BranchController",
+                controller : "BranchBookingController",
                 controllerAs : "model",
                 resolve: {
                     checkLoggedIn : checkLoggedIn
@@ -116,7 +116,7 @@
 
             .when("/companyBooking",{
                 templateUrl: "views/Bookings/companyBooking.view.html",
-                controller : "CompanyController",
+                controller : "CompanyBookingController",
                 controllerAs : "model",
                 resolve: {
                     checkLoggedIn : checkLoggedIn

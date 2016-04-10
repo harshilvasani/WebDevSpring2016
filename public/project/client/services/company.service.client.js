@@ -49,7 +49,7 @@
             return $http.put("/api/project/company/" + companyId ,company);
         }
 
-        function deleteCompany(companyId, callback) {
+        function deleteCompany(companyId) {
             return $http.delete("/api/project/company/" + companyId);
         }
     }

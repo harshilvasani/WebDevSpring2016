@@ -25,7 +25,7 @@ module.exports = function(app, db, mongoose) {
 
         vehicles.find(function (err,results){
                 if(!err){
-                    // console.log(results);
+                    console.log(results);
                     vehicles = results;
                     deferred.resolve(vehicles);
                 }
@@ -80,7 +80,7 @@ module.exports = function(app, db, mongoose) {
                 if(!err){
                     // console.log(results);
                     myVehicles = results;
-                    deferred.resolve(myVehicles);
+                    deferred.resolve(myVehicles[0]);
                 }
             });
 

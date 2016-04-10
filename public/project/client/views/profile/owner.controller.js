@@ -72,7 +72,7 @@
                     .findAllBranchesByCompany(vm.curOwner.company)
                     .then(
                         function (response){
-                            alert();
+                            //alert();
                             vm.curBranches = response.data;
                             console.log(vm.curBranches);
                             BranchService.setCurrentBranches(vm.curBranches)
