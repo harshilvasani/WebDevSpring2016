@@ -23,10 +23,6 @@
         return api;
 
         function createBookingForCustomer(booking) {
-            booking._id = (new Date).getTime();
-            booking.time = (new Date).getTime();
-            booking.day = (new Date).getDate();
-
             return $http.post("/api/project/booking",booking);
         }
 

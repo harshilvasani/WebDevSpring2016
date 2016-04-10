@@ -16,102 +16,125 @@ module.exports = function(app, db, mongoose) {
 
         createBooking: createBooking,
         deleteBookingById: deleteBookingById,
-        updateBookingById: updateBookingById
+        //updateBookingById: updateBookingById
     }
 
     return api;
 
     function createBooking(booking) {
-        booking._id = (new Date).getTime();
-        booking.time = (new Date).getTime();
-        booking.day = (new Date).getDate()
-        bookings.push(booking);
-
         var deferred = q.defer();
-        deferred.resolve(booking);
+
+        bookings.create(booking,function (err,results){
+
+            // console.log(results);
+            if(!err) {
+                console.log(results);
+                deferred.resolve(results);
+            }
+            else {
+                console.log(err);
+                deferred.resolve(null);
+            }});
 
         return deferred.promise;
     }
 
     function getAllBookings() {
+        var allBookings = [];
         var deferred = q.defer();
-        deferred.resolve(bookings);
+
+        bookings.find(function (err,results){
+            if(!err){
+                // console.log(results);
+                allBookings = results;
+                deferred.resolve(allBookings);
+            }
+        });
 
         return deferred.promise;
     }
 
     function getAllBookingForCustomerByUsername(username) {
         var myBookings = [];
-        for (var i in bookings) {
-            if (bookings[i].custUsername == username) {
-                myBookings.push(bookings[i]);
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(myBookings);
+
+        bookings.find({custUsername : username},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    myBookings = results;
+                    deferred.resolve(myBookings);
+                }
+            });
 
         return deferred.promise;
     }
 
     function getAllBookingForCompanyByName(company){
         var myBookings = [];
-        for (var i in bookings) {
-            if (bookings[i].company == company) {
-                myBookings.push(bookings[i]);
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(myBookings);
+
+        bookings.find({company : company},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    myBookings = results;
+                    deferred.resolve(myBookings);
+                }
+            });
 
         return deferred.promise;
     }
 
     function getAllBookingForBranchByIdandCompany(branchId,company){
         var myBookings = [];
-        for (var i in bookings) {
-            if (bookings[i].branchId == branchId && bookings[i].company == company) {
-                myBookings.push(bookings[i]);
-            }
-        }
-
         var deferred = q.defer();
-        deferred.resolve(myBookings);
+
+        bookings.find({$and: [{company : company},{branchId : branchId}]},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    myBookings = results;
+                    deferred.resolve(myBookings);
+                }
+            });
 
         return deferred.promise;
     }
 
     function findBookingById(bookingId){
 
-        var booking = null;
-
-        for (var i in bookings) {
-            if (bookings[i]._id == bookingId) {
-                booking = bookings[i];
-            }
-        }
-
+        var myBooking = null;
         var deferred = q.defer();
-        deferred.resolve(booking);
+
+        bookings.find({_id : bookingId},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    myBooking = results;
+                    deferred.resolve(myBooking[0]);
+                }
+            });
 
         return deferred.promise;
     }
 
     function deleteBookingById(bookingId) {
-        for (var i in bookings) {
-            if (bookings[i]._id == bookingId) {
-                bookings.splice(i, 1);
-                break;
-            }
-        }
         var deferred = q.defer();
-        deferred.resolve(bookings);
+
+        bookings.remove({_id : bookingId},function (err,results){
+            if(!err) {
+                deferred.resolve(results);
+            }
+            else{
+                deferred.resolve(null);
+            }
+        });
 
         return deferred.promise;
     }
 
-    function updateBookingById(bookingId, updatedBooking) {
+    /*function updateBookingById(bookingId, updatedBooking) {
         for (var i in bookings) {
             if (bookings[i]._id == bookingId) {
                 bookings[i] = updatedBooking
@@ -123,5 +146,5 @@ module.exports = function(app, db, mongoose) {
         deferred.resolve(updatedBooking);
 
         return deferred.promise;
-    }
+    }*/
 }

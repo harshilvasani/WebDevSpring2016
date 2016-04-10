@@ -110,7 +110,7 @@ module.exports = function(app,bookingModel) {
             .createBooking(newBooking)
             .then(
                 function (doc) {
-                    booking = doc;
+                    var booking = doc;
                     res.json(booking);
                 },
                 // reject promise if error

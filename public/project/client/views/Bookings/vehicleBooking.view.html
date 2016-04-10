@@ -11,21 +11,28 @@
                         <div class="form-group">
                             <label class="col-sm-2">Customer UserName:</label>
                             <div class="col-sm-10">
-                                {{currentUser.username}}
+                                <input readonly value="{{currentUser.username}}" type="text" class="form-control" placeholder="Contact Name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Company:</label>
                             <div class="col-sm-10">
-                                {{model.booking.company}}
+                                <input readonly value="{{model.booking.company}}" type="text" class="form-control" placeholder="Contact Name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Branch Id:</label>
                             <div class="col-sm-10">
-                                {{model.booking.branchId}}
+                                <input readonly value="{{model.booking.branchId}}" type="text" class="form-control" placeholder="Contact Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Vehicle:</label>
+                            <div class="col-sm-10">
+                                <input readonly value="{{model.booking.type}}" type="text" class="form-control" placeholder="Contact Name">
                             </div>
                         </div>
 
@@ -42,7 +49,7 @@
                                 <i class="glyphicon glyphicon-map-marker left"></i>
                                 <input class="form-control" id="origin"
                                        type="text" placeholder="75 Saint Alphonsus Street"
-                                        ng-model="model.booking.originAddr" ng-change="autoComplete()">
+                                        ng-model="model.booking.originAddr" ng-change="model.autoComplete()">
                             </div>
                         </div>
 
@@ -52,34 +59,47 @@
                                 <i class="glyphicon glyphicon-map-marker left"></i>
                                 <input class="form-control" id="destination"
                                        type="text" placeholder="45 Brooklyne Street"
-                                       ng-model="model.booking.destAddr" ng-change="autoComplete"()>
+                                       ng-model="model.booking.destAddr" ng-change="model.autoComplete"()>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Day</label>
+
                             <div class="col-sm-10">
-                                <input ng-model="model.booking.day" type="date" class="form-control">
+                                <p class="input-group">
+                                    <input type="text" class="form-control" id="day" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="model.day" is-open="model.popup1.opened" datepicker-options="model.dateOptions" ng-required="true" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <a type="button" class="btn btn-default" ng-click="model.open1()"><i class="glyphicon glyphicon-calendar"></i></a>
+                                    </span>
+                                </p>
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <label class="col-sm-2">Time</label>
                             <div class="col-sm-10">
-                                <input ng-model="model.booking.time" type="time" class="form-control">
+                                <uib-timepicker ng-model="model.booking.time" ng-change="model.changed()" hour-step="model.hstep" minute-step="model.mstep" show-meridian="model.ismeridian"></uib-timepicker>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2">Count</label>
                             <div class="col-sm-10">
-                                <input ng-model="model.booking.count" type="number" class="form-control" placeholder="5">
+                                <input ng-model="model.booking.count" type="number" min="1" max="{{model.maxCount}}" class="form-control" placeholder="5">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <a type="submit" ng-click="model.booking.addPlace()" class="btn btn-primary myButton">Add Place</a>
+                                <a type="submit" ng-click="model.details()" class="btn btn-primary myButton">Details</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a type="submit" ng-click="model.confirmBooking(model.booking)" class="btn btn-primary myButton">Confirm Booking</a>
                             </div>
                         </div>
 
@@ -88,35 +108,10 @@
                 </div>
 
             </div>
-
-            <div class="table-responsive" ng-show="places.length>0">
-                <br>
-                <table class="table table-stripped" id="myTable">
-                    <thead>
-                        <tr>
-                            <th>Origin</th>
-                            <th>Destination</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="place in places">
-                            <td>
-                                {{place.origin}}
-                            </td>
-                            <td>
-                                {{place.destination}}
-                            </td>
-                            <td><a type="submit" ng-click="details($index)" class="btn btn-primary myButton">Details</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-            <a type="submit" ng-show="show==1" ng-click="show=0;" class="btn btn-danger">Hide Details</a>
-            <a type="submit" ng-show="show==0" ng-click="show=1;" class="btn btn-success">Show Details</a>
-            <div class="row" ng-show="show==1">
+            <br>
+            <a type="submit" ng-show="model.show==1" ng-click="model.show=0;" class="btn btn-danger">Hide Details</a>
+            <a type="submit" ng-show="model.show==0" ng-click="model.show=1;" class="btn btn-success">Show Details</a>
+            <div class="row" ng-show="model.show==1">
                 <div class="col-md-4" id="Mymap"></div>
 
                 <div class="col-md-8 table-responsive" id="details">
@@ -125,19 +120,23 @@
                         <tbody>
                         <tr>
                             <td>Origin :</td>
-                            <td>{{legs.start_address}} ({{legs.start_location.lat}},{{legs.start_location.lng}})</td>
+                            <td>{{model.legs.start_address}} ({{model.legs.start_location.lat}},{{legs.start_location.lng}})</td>
                         </tr>
                         <tr>
                             <td>Destination :</td>
-                            <td>{{legs.end_address}} ({{legs.end_location.lat}},{{legs.end_location.lng}})</td>
+                            <td>{{model.legs.end_address}} ({{model.legs.end_location.lat}},{{model.legs.end_location.lng}})</td>
                         </tr>
                         <tr>
                             <td>Distance :</td>
-                            <td>{{legs.distance.text}}</td>
+                            <td>{{model.legs.distance.text}}</td>
                         </tr>
                         <tr>
                             <td>Time :</td>
-                            <td>{{legs.duration.text}}</td>
+                            <td>{{model.legs.duration.text}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fare :</td>
+                            <td>{{model.fare}} $</td>
                         </tr>
                         </tbody>
                     </table>

@@ -21,15 +21,24 @@
         /*-----------bookings event Handler's implementation-----------*/
 
         function init(){
-            var curUser = UserService.getCurrentUser();
+            var curUser = null;
 
-            BookingService
-                .getAllBookingForCustomerByUsername(curUser.username)
-                .then (
-                    function (response){
-                        vm.bookings = response.data;
-                    }
-                );
+            UserService
+                .getCurrentUser()
+                .then(function(res){
+                    curUser = res.data;
+
+                    BookingService
+                        .getAllBookingForCustomerByUsername(curUser.username)
+                        .then (
+                            function (response){
+                                console.log(response.data);
+                                vm.bookings = response.data;
+                            }
+                        );
+                });
+
+
         }
 
         init();

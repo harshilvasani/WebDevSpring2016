@@ -37,7 +37,7 @@ module.exports = function(app , db, mongoose) {
         var myBranches = [];
         var deferred = q.defer();
 
-        console.log("------------------------------------------------------------------------"+company);
+        //console.log("------------------------------------------------------------------------"+company);
         branches.find({company : company},
             function (err,results){
                 if(!err){

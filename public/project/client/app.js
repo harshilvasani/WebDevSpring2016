@@ -3,5 +3,5 @@
     "use strict";
 
     angular
-        .module("VehicleBookingApp", ["ngRoute"]);
+        .module("VehicleBookingApp", ["ngRoute",'ngAnimate', 'ui.bootstrap']);
 })();

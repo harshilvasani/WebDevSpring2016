@@ -132,12 +132,12 @@
                 }
             })
 
-            .when("/bookingDtails",{
-                templateUrl: "views/Bookings/details.view.html",
+            .when("/bookingDetails/:bookingId",{
+                templateUrl: "views/Bookings/bookingDetails.view.html",
                 resolve: {
                     checkLoggedIn : checkLoggedIn
-                }
-                // controller
+                },
+                controller : "BookingDetailsController"
             })
             .when("/vehicleBooking/:vehicleId",{
                 templateUrl: "views/Bookings/vehicleBooking.view.html",

@@ -27,7 +27,7 @@ module.exports = function(mongoose) {
         day: {type: String,
             description : "02/15/2016"},
 
-        time: {type: String,
+        time: {type: Date,
             description : "10:00 am"},
 
         charges: {type: String,
