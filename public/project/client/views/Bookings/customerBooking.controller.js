@@ -12,13 +12,13 @@
 
         //Event Handler's declaration
         vm.details = details;
-
+        var curUser = null;
         vm.index = -1;
 
         /*-----------bookings event Handler's implementation-----------*/
 
         function init(){
-            var curUser = null;
+
             var bookings = [];
             UserService
                 .getCurrentUser()
@@ -82,14 +82,14 @@
 
                 }
             }
-
             BookingService
-                .getAllBookingForCompany(curUser.company)
+                .getAllBookingForCustomerByUsername(curUser.username)
                 .then (
                     function (response){
                         vm.bookings = response.data;
                     }
                 );
+
         }
     }
 })();

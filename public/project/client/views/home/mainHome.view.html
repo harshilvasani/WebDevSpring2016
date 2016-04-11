@@ -1,11 +1,12 @@
 <section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="mainHomeController as model">
-            <div class="row" id="section1">
-                <div class="col-md-6">
-                    <h1>Search</h1>
+            <div id="logIn">
+                <div class="row">
+                    <h1>Find!! Compare!! Book!! Vehicle</h1>
                     <hr>
-                    <h5>Location(compulsary) (Enter : Boston, MA, United States)</h5>
-                    <h5>Company/Vehicle(optional)</h5>
+
+                    <div class="col-md-12">
                     <form class="searchTab">
+
                         <label>Company Location</label>
                         <div class="form-group left-inner-addon right-inner-addon">
                             <i class="glyphicon glyphicon-map-marker left"></i>
@@ -15,27 +16,6 @@
                                    ng-change="model.autoComplete()">
                         </div>
 
-                        <br>
-                        <br>
-                        <br>
-
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label>Booking Date:</label>
-                                <div class="left-inner-addon">
-                                    <i class="glyphicon glyphicon-calendar left"></i>
-                                    <input type="date" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label>Booking Time:</label>
-                                <div class="left-inner-addon">
-                                    <i class="glyphicon glyphicon-time left"></i>
-                                    <input type="time" class="form-control">
-                                </div>
-                            </div>
-                        </div>
 
                         <br>
 
@@ -68,15 +48,18 @@
                     </form>
 
                 </div>
+                <br>
+                </div>
 
-                <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12" id="myTable" ng-show="model.searches.length >= 0">
+                        <h3>Search Results</h3>
+                        <hr>
+                     <div class="table-responsive" >
 
-                     <div class="row table-responsive" ng-show="model.searches.length >= 0">
 
-                         <h3>Search Results</h3>
-                         <hr>
-                       <<h5 ng-show="model.searches.length == 0"> No Results Found</h5>
-                         <table class="table " id="myTable">
+                       <h5 ng-show="model.searches.length == 0"> No Results Found</h5>
+                         <table class="table " >
                              <thead>
                              <tr>
                                  <th>Company</th>
@@ -109,5 +92,6 @@
 
 
                  </div>
+                </div>
             </div>
 </section>

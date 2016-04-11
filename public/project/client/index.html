@@ -79,31 +79,6 @@
     <div ng-include="'views/header/header.view.html'"></div>
     <!-- END NAV-->
 
-    <div id="myNav">
-    <div class="row" id="myNav2">
-        <div class="col-md-3 col-sm-12 ">
-            <h3>Search Page</h3>
-            <hr>
-            <a href="#/mainHome" class="btn btn-primary">Search Page</a>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <h3>Links for CRUD</h3>
-            <hr>
-            <!--<a href="#/user" class="btn btn-primary">User CRUD</a>-->
-            <a ng-click="model.checkUserForVehicle()" class="btn btn-primary">Vehicle CRUD</a>
-            <a ng-click="model.checkUserForBooking()" class="btn btn-primary">Booking CRUD</a>
-            <a ng-click="model.checkUserForBranch()" class="btn btn-primary">Branch CRUD</a>
-            <a href="#/company" class="btn btn-primary">Company CRUD</a>
-        </div>
-        <div class="col-md-3 col-sm-12">
-            <h3>GoogleMap API Link</h3>
-            <hr>
-            <a href="#/vehicleBooking" class="btn btn-primary">Vehicle Booking</a>
-        </div>
-
-    </div>
-    </div>
-
     <!-- BEGIN HEADER-->
     <div class="row">
         <div ng-view></div>
