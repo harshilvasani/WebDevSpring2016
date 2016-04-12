@@ -2,33 +2,9 @@ var q = require("q");
 
 module.exports = function(app, db, mongoose) {
 
-    //var users = require("./user.mock.json");
-
     var UserSchema  = require("./user.schema.server.js")(mongoose);
 
     var users = mongoose.model("users", UserSchema);
-
-   /* users.remove({roles: []},
-        function (err,results){
-            if(!err){
-                console.log(results);
-            }
-            else{
-                console.log(err);
-            }
-        });*/
-    /*users.create({"firstName": "Alice",
-        "lastName": "Wonderland",
-        "username": "alice",
-        "password": "alice",
-        "email": ["alice@wonderland"],
-        "roles": ["student"]},
-        function (err,results){
-            if(!err){
-                console.log(results);
-            }
-        }
-    );*/
 
     var api = {
         findAllUsers : findAllUsers,
@@ -82,12 +58,14 @@ module.exports = function(app, db, mongoose) {
         var deferred = q.defer();
         users.create(user,function (err,results){
 
-            //console.log(results);
+
             if(!err) {
+               // console.log(results);
                 deferred.resolve(results);
             }
             else {
-                deferred.resolve(null);
+               // console.log(err);
+                deferred.resolve(err);
             }});
 
         return deferred.promise;
@@ -101,7 +79,7 @@ module.exports = function(app, db, mongoose) {
                 deferred.resolve(results);
             }
             else{
-                deferred.resolve(null);
+                deferred.resolve(err);
             }
         });
 
@@ -111,23 +89,21 @@ module.exports = function(app, db, mongoose) {
     function updateUser(userId, user) {
         var deferred = q.defer();
 
-       // console.log("in updateUser " + user.firstName);
-
         users.update(
             {_id : userId},
 
-            {$set: {"password" : user.password,
-                "firstName" : user.firstName,
+            {$set: {"firstName" : user.firstName,
                 "lastName" : user.lastName,
-                "email" : user.email
+                "email" : user.email,
+                "roles" : user.roles
             }},
 
             function (err,results){
             if(!err) {
-                deferred.resolve(results[0]);
+                deferred.resolve(results);
             }
             else {
-                deferred.resolve(null);
+                deferred.resolve("error" + err);
             }
         });
 

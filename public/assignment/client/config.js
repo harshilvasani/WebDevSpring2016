@@ -35,8 +35,12 @@
 
 
             .when("/admin", {
-                templateUrl: "views/admin/admin.view.html"
-                //  controller
+                templateUrl: "views/admin/admin.view.html",
+                controller : "AdminController",
+                controllerAs : "model",
+                resolve: {
+                    checkLoggedIn : checkLoggedIn
+                }
             })
 
             .when("/forms", {
@@ -79,6 +83,7 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
+
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();

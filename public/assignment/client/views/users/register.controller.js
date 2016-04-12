@@ -28,7 +28,7 @@
                             "roles": ["student"]	}
             }
             UserService
-                .createUser(newUser)
+                .register(newUser)
                 .then(
                   function(doc){
                       UserService.setCurrentUser(newUser);

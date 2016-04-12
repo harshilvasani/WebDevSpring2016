@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="AdminController as model">
     <h1 class="page-header">Admin</h1>
     <h2 class="page-header">Users</h2>
     <div class="table-responsive">
@@ -6,17 +6,31 @@
             <thead>
             <tr class="active">
                 <th>
-                    <span type="button" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="userNameBottom == 1" ng-click="userNameBottom = 0"></span>
+                    <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="userNameBottom == 0" ng-click="userNameBottom = 1"></span>
                     Username
                 </th>
+
                 <th>
-                    <span type="button" class="glyphicon glyphicon-triangle-bottom"></span>
                     Password
                 </th>
+
                 <th>
-                    <span type="button" class="glyphicon glyphicon-triangle-bottom"></span>
+                    <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="firstNameBottom == 1" ng-click="firstNameBottom = 0;"></span>
+                    <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="firstNameBottom == 0" ng-click="firstNameBottom = 1;"></span>
+                    First Name
+                </th>
+
+                <th>
+                    <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="lastNameBottom == 1" ng-click="lastNameBottom = 0"></span>
+                    <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="lastNameBottom == 0" ng-click="lastNameBottom = 1"></span>
+                    Last Name
+                </th>
+
+                <th>
                     Role
                 </th>
+
                 <th> <span type="button"></span>
                     Action
                 </th>
@@ -27,52 +41,47 @@
             <tr>
                 <td>
                     <div class="row-fluid form-inline">
-                        <input class="form-control input-sm" type="text" id="inputUsername4" placeholder="username">
+                        <input ng-model="model.user.username" class="form-control input-sm" type="text"  placeholder="username">
                     </div>
                 </td>
                 <td>
                     <div class="row-fluid form-inline">
-                        <input class="form-control input-sm" type="text" id="inputPassword4" placeholder="password">
+                        <input ng-model="model.user.password" class="form-control input-sm" type="text" placeholder="password">
                     </div>
                 </td>
                 <td>
                     <div class="row-fluid form-inline">
-                        <input class="form-control input-sm" type="text" id="inputRole4" placeholder="role1,role2">
+                        <input ng-model="model.user.firstName" class="form-control input-sm" type="text"  placeholder="First Name">
                     </div>
                 </td>
                 <td>
-                    <span type="button" class="glyphicon glyphicon-plus btn btn-default"> </span>
-                    <span type="button" class="glyphicon glyphicon-ok btn btn-default"></span>
+                    <div class="row-fluid form-inline">
+                        <input ng-model="model.user.lastName" class="form-control input-sm" type="text" placeholder="Last Name">
+                    </div>
+                </td>
+                <td>
+                    <div class="row-fluid form-inline">
+                        <input ng-model="model.user.roles" class="form-control input-sm" type="text" id="inputRole4" placeholder="role1,role2">
+                    </div>
+                </td>
+                <td>
+                    <span type="button" class="glyphicon glyphicon-plus btn btn-primary" ng-click="model.createUser(model.user)"> </span>
+                    <span type="button" class="glyphicon glyphicon-ok btn btn-success" ng-click="model.updateUser(model.user)"></span>
                 </td>
 
             </tr>
-            <tr>
-                <td>Alice</td>
+            <tr ng-repeat="user in model.users">
+                <td>{{user.username}}</td>
                 <td></td>
-                <td>student</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.roles.join(",")}}</td>
                 <td>
-                    <span type="button" class="glyphicon glyphicon-remove btn btn-default"> </span>
-                    <span type="button" class="glyphicon glyphicon-pencil btn btn-default"></span>
+                    <span type="button" class="glyphicon glyphicon-remove btn btn-danger" ng-click="model.deleteUser($index)"> </span>
+                    <span type="button" class="glyphicon glyphicon-pencil btn btn-info" ng-click="model.selectUser($index)"></span>
                 </td>
             </tr>
-            <tr>
-                <td>Bob</td>
-                <td></td>
-                <td>faculty | admin</td>
-                <td>
-                    <span type="button" class="glyphicon glyphicon-remove btn btn-default"> </span>
-                    <span type="button" class="glyphicon glyphicon-pencil btn btn-default"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Charlie</td>
-                <td></td>
-                <td></td>
-                <td>
-                    <span type="button" class="glyphicon glyphicon-remove btn btn-default"> </span>
-                    <span type="button" class="glyphicon glyphicon-pencil btn btn-default"></span>
-                </td>
-            </tr>
+
             </tbody>
         </table>
     </div>
