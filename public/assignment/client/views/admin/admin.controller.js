@@ -11,6 +11,7 @@
 
         var vm = this;
         //Event Handler's declaration
+        vm.Sort = Sort;
         vm.createUser = createUser;
         vm.selectUser = selectUser;
         vm.deleteUser = deleteUser;
@@ -18,9 +19,9 @@
 
         vm.index = -1;
 
-        $scope.firstNameBottom = 1;
-        $scope.lastNameBottom = 1;
-        $scope.userNameBottom = 1;
+        $scope.firstNameBottom = 0;
+        $scope.lastNameBottom = 0;
+        $scope.userNameBottom = 0;
 
 
         function init(){
@@ -29,10 +30,72 @@
                 .then(
                     function (res){
                         vm.users = res.data;
+
+
                     }
                 );
         }
         init();
+
+        function Sort(prop,dir){
+
+            if(prop == "username"){
+                if(dir == 0){
+                    $scope.userNameBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.userNameBottom = -1 * dir;
+                }
+                $scope.lastNameBottom = 0;
+                $scope.firstNameBottom = 0;
+
+            }
+
+            else if(prop == "firstName"){
+                if(dir == 0){
+                    $scope.firstNameBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.firstNameBottom = -1 * dir;
+                }
+                $scope.lastNameBottom = 0;
+                $scope.userNameBottom = 0;
+
+            }
+
+            else if(prop == "lastName"){
+                if(dir == 0){
+                    $scope.lastNameBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.lastNameBottom = -1 * dir;
+                }
+                $scope.firstNameBottom = 0;
+                $scope.userNameBottom = 0;
+
+            }
+
+            vm.users.sort( predicatBy(prop, dir));
+        }
+
+        function predicatBy(prop, dir){
+
+            return function(a,b){
+                if( a[prop] > b[prop]){
+                    return dir;
+                }else if( a[prop] < b[prop] ){
+                    return -1*dir;
+                }
+                return 0;
+            }
+        }
+
+//Usage
+
+
 
         //Event Handler's implementation
         function createUser(newUser){
@@ -75,7 +138,6 @@
                 UserService
                     .updateUserByAdmin(user._id,user)
                     .then(function(res){
-                        alert();
                         init();
                         vm.index = -1;
                         vm.user = null;

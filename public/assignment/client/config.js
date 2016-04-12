@@ -8,8 +8,10 @@
     function Configure($routeProvider) {
         $routeProvider
             .when("/home",{
-                templateUrl: "views/home/home.view.html"
-                // controller
+                templateUrl: "views/home/home.view.html",
+                resolve: {
+                    checkLoggedIn : checkLoggedIn
+                }
             })
 
             .when("/register", {
@@ -108,7 +110,7 @@
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();
-                    if(currentUser.roles.indexOf("admin") >=0){
+                    if(currentUser.roles.indexOf('admin') < 0){
                         $location.url("/home");
                     }
                 } else {
