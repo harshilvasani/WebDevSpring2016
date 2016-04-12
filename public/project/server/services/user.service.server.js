@@ -21,9 +21,9 @@ module.exports = function(app,userModel) {
 
     function loggedin(req,res){
 
-        if(req.session.currentUser != null){
-            //console.log(req.session.currentUser);
-            res.json(req.session.currentUser);
+        if(req.session.currentActor != null){
+            //console.log(req.session.currentActor);
+            res.json(req.session.currentActor);
         }
         else
             res.json(null);
@@ -33,7 +33,7 @@ module.exports = function(app,userModel) {
     function getCurOwner(req,res){
 
         if(req.session.currentOwner != null){
-            //console.log(req.session.currentUser);
+            //console.log(req.session.currentActor);
             res.json(req.session.currentOwner);
         }
         else
@@ -130,7 +130,7 @@ module.exports = function(app,userModel) {
                 function (doc) {
                     var user = doc;
 
-                    req.session.currentUser = user;
+                    req.session.currentActor = user;
 
                     if (user.role == 'owner'){
                         req.session.currentOwner = user;
@@ -155,7 +155,7 @@ module.exports = function(app,userModel) {
                 function (doc) {
                     var NewUser = doc;
 
-                    req.session.currentUser = newUser;
+                    req.session.currentActor = newUser;
 
                     if (newUser.role == 'owner'){
                         req.session.currentOwner = newUser;
@@ -178,7 +178,7 @@ module.exports = function(app,userModel) {
             .updateUser(userId,updatedUser)
             .then(
                 function (doc) {
-                    req.session.currentUser = updatedUser;
+                    req.session.currentActor = updatedUser;
 
                     if (updatedUser.role == 'owner'){
                         req.session.currentOwner = updatedUser;
