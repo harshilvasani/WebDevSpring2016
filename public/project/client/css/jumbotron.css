@@ -157,7 +157,7 @@ table tbody td.branchHead a{
 
 #user,#company,#ownerImg,#custImg {
     background-color: rgba(200, 200, 200, .75);
-    width: 100%;
+    width: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
