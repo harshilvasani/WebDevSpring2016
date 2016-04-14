@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
+var fs = require('fs');
+
 var connectionString = 'mongodb://127.0.0.1:27017/CS5610';
 
 // use remote connection string
@@ -24,9 +26,39 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 // connect to the database
 var db = mongoose.connect(connectionString);
 
+
+
 var app = express();
 
+var multer = require('multer');
+var upload = multer({ dest: './uploads',
+    rename: function (fieldname, filename){
+    return filename }});
 
+
+var ImageSchema = new mongoose.Schema({
+ img: { data: Buffer, contentType: String }
+}, {collection : "image"});
+
+var ImageModel = mongoose.model("ImageModel", ImageSchema)
+var newItem = new ImageModel();
+
+app.get('/api/photo',function(req,res){
+
+    newItem.img.data = fs.readFileSync("har.png");
+    newItem.img.contentType = 'image/png';
+    newItem.save();
+    res.json("done..");
+});
+
+app.get('/api/getPhoto', function (req, res, next) {
+    ImageModel.find( function (err, doc) {
+        if (err)
+            return next(err);
+        res.contentType(doc[0].img.contentType);
+        res.send(doc[0].img.data);
+    });
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));

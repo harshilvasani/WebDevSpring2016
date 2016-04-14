@@ -18,7 +18,7 @@
                     if (res.data != "" && res.data != null){
                         vm.curOwner = res.data;
 
-                        console.log(vm.curOwner);
+                       // console.log(vm.curOwner);
                         getCompany();
 
                         getBranches();
@@ -31,7 +31,7 @@
                             .then(function (res){
                                 vm.curOwner = res.data;
 
-                                console.log(vm.curOwner);
+                            //    console.log(vm.curOwner);
 
                                 getCompany();
 
@@ -39,7 +39,7 @@
 
                                 UserService.setCurrentOwner(vm.curOwner)
                                     .then(function(res){
-                                        alert("in Owner Controller setCurrentOwner");
+                                       // alert("in Owner Controller setCurrentOwner");
                                     });
 
                             });

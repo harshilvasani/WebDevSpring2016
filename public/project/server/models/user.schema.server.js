@@ -41,6 +41,9 @@ module.exports = function(mongoose) {
         branchId: {type: String,
             description : "B-01"},
 
+        img: { data: Buffer, contentType: String }
+
+
         // store user documents in this collection
     }, {collection: 'actor'});
 

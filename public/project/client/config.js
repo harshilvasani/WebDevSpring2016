@@ -22,17 +22,14 @@
 
             .when("/ownerInfo",{
                 templateUrl: "views/registration/company/ownerInfo.view.html",
-                // controller
             })
 
             .when("/companyInfo",{
                 templateUrl: "views/registration/company/companyInfo.view.html",
-                // controller
             })
 
             .when("/branchInfo",{
                 templateUrl: "views/registration/company/branchInfo.view.html",
-                // controller
             })
 
             .when("/customerRegistration",{
@@ -43,16 +40,15 @@
             .when("/ownerProfile",{
                 templateUrl: "views/profile/owner.view.html",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkOwnerLoggedIn : checkOwnerLoggedIn
                 }
-                // controller
             })
 
             .when("/managerProfile",{
                 templateUrl: "views/profile/manager.view.html",
                 controller: "ManagerProfileController",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkManagerLoggedIn : checkManagerLoggedIn
                 }
             })
 
@@ -60,7 +56,7 @@
                 templateUrl: "views/profile/customer.view.html",
                 controller: "CustomerProfileController",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkCustomerLoggedIn : checkCustomerLoggedIn
                 }
             })
 
@@ -68,7 +64,7 @@
                 templateUrl: "views/EditProfile/managerEdit.view.html",
                 controller : "ManagerEditProfileController",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkManagerLoggedIn : checkManagerLoggedIn
                 }
             })
 
@@ -76,22 +72,21 @@
                 templateUrl: "views/EditProfile/customerEdit.view.html",
                 controller : "CustomerEditProfileController",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkCustomerLoggedIn : checkCustomerLoggedIn
                 }
             })
 
             .when("/ownerInfoEdit",{
                 templateUrl: "views/EditProfile/company/ownerInfoEdit.view.html",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkOwnerLoggedIn : checkOwnerLoggedIn
                 }
-                // controller
             })
 
             .when("/companyInfoEdit",{
                 templateUrl: "views/EditProfile/company/companyInfoEdit.view.html",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkOwnerLoggedIn : checkOwnerLoggedIn
                 }
                 // controller
             })
@@ -99,9 +94,8 @@
             .when("/branchInfoEdit",{
                 templateUrl: "views/EditProfile/company/branchInfoEdit.view.html",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkOwnerLoggedIn : checkOwnerLoggedIn
                 }
-                // controller
             })
 
             .when("/branchBooking",{
@@ -109,9 +103,8 @@
                 controller : "BranchBookingController",
                 controllerAs : "model",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkManagerLoggedIn : checkManagerLoggedIn
                 }
-                // controller
             })
 
             .when("/companyBooking",{
@@ -119,7 +112,7 @@
                 controller : "CompanyBookingController",
                 controllerAs : "model",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkOwnerLoggedIn : checkOwnerLoggedIn
                 }
             })
 
@@ -128,7 +121,7 @@
                 controller : "CustomerBookingController",
                 controllerAs : "model",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkCustomerLoggedIn : checkCustomerLoggedIn
                 }
             })
 
@@ -143,30 +136,8 @@
                 templateUrl: "views/Bookings/vehicleBooking.view.html",
                 controller : "VehicleBookingController",
                 resolve: {
-                    checkLoggedIn : checkLoggedIn
+                    checkCustomerLoggedIn : checkCustomerLoggedIn
                 }
-            })
-
-            .when("/user",{
-                templateUrl: "views/login/userCRUD.view.html",
-                controller : "UserController",
-                controllerAs : "model",
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
-            })
-
-            .when("/branch",{
-                templateUrl: "views/Branches/branches.view.html",
-                controller : "BranchController",
-                resolve: {
-                    checkLoggedIn : checkLoggedIn
-                }
-            })
-
-            .when("/company",{
-                templateUrl: "views/Company/company.view.html",
-                controller : "CompanyController"
             })
 
             .otherwise({
@@ -182,14 +153,104 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
-               // console.log(currentUser);
+                // console.log(currentUser);
                 if(currentUser) {
                     UserService.setCurrentUser(currentUser);
 
-                  /*  if (currentUser.role == 'owner'){
-                        UserService.setCurrentOwner(currentUser);
-                    }*/
+                    /*  if (currentUser.role == 'owner'){
+                     UserService.setCurrentOwner(currentUser);
+                     }*/
                     deferred.resolve();
+                } else {
+                    deferred.reject();
+                    console.log("session not found");
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkOwnerLoggedIn(UserService, $q, $location) {
+        console.log("IN  Project's checkOwnerLoggedIn");
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+                 //console.log(currentUser);
+                if(currentUser) {
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+
+                    if(currentUser.role == 'customer'){
+                        $location.url("/customerProfile");
+                    }
+
+                    if(currentUser.role == 'manager'){
+                        $location.url("/managerProfile");
+                    }
+                } else {
+                    deferred.reject();
+                    console.log("session not found");
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkManagerLoggedIn(UserService, $q, $location) {
+        console.log("IN  Project's checkManagerLoggedIn");
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+                //console.log(currentUser);
+                if(currentUser) {
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+
+                    if(currentUser.role == 'customer'){
+                        $location.url("/customerProfile");
+                    }
+
+                    if(currentUser.role == 'owner'){
+                        $location.url("/ownerProfile");
+                    }
+                } else {
+                    deferred.reject();
+                    console.log("session not found");
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkCustomerLoggedIn(UserService, $q, $location) {
+        console.log("IN  Project's checkCustomerLoggedIn");
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+                //console.log(currentUser);
+                if(currentUser) {
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+
+                    if(currentUser.role == 'owner'){
+                        $location.url("/ownerProfile");
+                    }
+
+                    if(currentUser.role == 'manager'){
+                        $location.url("/managerProfile");
+                    }
                 } else {
                     deferred.reject();
                     console.log("session not found");
