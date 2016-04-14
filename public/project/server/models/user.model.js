@@ -1,4 +1,5 @@
 var q = require("q");
+var fs = require('fs');
 
 module.exports = function(app, db, mongoose) {
 
@@ -113,6 +114,11 @@ module.exports = function(app, db, mongoose) {
     }
 
     function createUser(user) {
+
+        //actors.img.data = fs.readFileSync(imgPath);
+        //actors.img.data = user.img;
+        //actors.img.contentType = 'image/*';
+
         var deferred = q.defer();
         actors.create(user,function (err,results){
 

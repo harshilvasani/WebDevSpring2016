@@ -54,7 +54,7 @@
                     .then(
                         function (response){
                             vm.curCompany = response.data;
-                            console.log(vm.curCompany);
+                          //  console.log(vm.curCompany);
                             getBranches();
                             CompanyService.setCurrentCompany(vm.curCompany)
                                 .then(function(res){
@@ -74,7 +74,7 @@
                         function (response){
                             //alert();
                             vm.curBranches = response.data;
-                            console.log(vm.curBranches);
+                            //console.log(vm.curBranches);
                             BranchService.setCurrentBranches(vm.curBranches)
                                 .then(function(res){
 

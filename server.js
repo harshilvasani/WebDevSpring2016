@@ -36,7 +36,7 @@ var upload = multer({ dest: './uploads',
     return filename }});
 
 
-var ImageSchema = new mongoose.Schema({
+/*var ImageSchema = new mongoose.Schema({
  img: { data: Buffer, contentType: String }
 }, {collection : "image"});
 
@@ -59,6 +59,7 @@ app.get('/api/getPhoto', function (req, res, next) {
         res.send(doc[0].img.data);
     });
 });
+*/
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));

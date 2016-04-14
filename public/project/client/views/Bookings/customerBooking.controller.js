@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("CustomerBookingController", CustomerBookingController);
 
-    function CustomerBookingController(BookingService,UserService, $location) {
+    function CustomerBookingController(BookingService,UserService, $location, VehicleService) {
 
         var vm = this;
 
@@ -59,12 +59,12 @@
                         .findVehicleByCompany_Branch_Type(bookings[i].company, bookings[i].branchId, bookings[i].type )
                         .then(function (res){
                             vehicle = res.data;
-                            console.log(vehicle);
-                            console.log(vehicle.count);
+                            //console.log(vehicle);
+                            //console.log(vehicle.count);
 
                             vehicle.count += bookings[i].count;
 
-                            console.log(vehicle.count);
+                            //console.log(vehicle.count);
                             VehicleService
                                 .updateVehicle(vehicle._id, vehicle)
                                 .then(function (res){

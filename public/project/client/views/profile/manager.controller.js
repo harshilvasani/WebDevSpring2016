@@ -28,7 +28,7 @@
             UserService
                 .getCurrentUser()
                 .then(function (res){
-                    console.log(res.data);
+                   // console.log(res.data);
                     vm.curManager = res.data;
 
                     VehicleService
