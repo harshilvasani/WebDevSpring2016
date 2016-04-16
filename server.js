@@ -66,7 +66,11 @@ app.use(bodyParser.urlencoded({extended : true}));
 var urlencodedParser = bodyParser.urlencoded({extended: true});
 //app.use(multer());
 //console.log( process.env.SESSION_SECRET);
-app.use(session({ secret:  process.env.SESSION_SECRET ,
+if(!process.env.SESSION_SECRET){
+    process.env.SESSION_SECRET = "secret_key";
+}
+
+app.use(session({ secret:  process.env.SESSION_SECRET,
     resave : true,
     saveUninitialized : true}));
 app.use(cookieParser());
