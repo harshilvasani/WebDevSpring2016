@@ -240,7 +240,7 @@ module.exports = function(app,userModel,LocalStrategy) {
                     user = doc;
                     //req.session.currentUser = user;
                     console.log(user);
-                    if(user )//&& bcrypt.compareSync(password,user.password))
+                    if(user && bcrypt.compareSync(password,user.password))
                     {
                         console.log("localStrategy   ------------");
                         return done(null, user);
