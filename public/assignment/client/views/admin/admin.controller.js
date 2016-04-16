@@ -30,7 +30,7 @@
                 .then(
                     function (res){
                         vm.users = res.data;
-
+                        Sort("username",0);
 
                     }
                 );

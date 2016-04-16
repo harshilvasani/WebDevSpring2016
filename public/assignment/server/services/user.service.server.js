@@ -1,6 +1,7 @@
 module.exports = function(app,userModel,LocalStrategy) {
 
     var passport = require('passport');
+    var bcrypt = require('bcrypt-nodejs');
     var auth = authorized;
     passport.use(new LocalStrategy(localStrategy));
 
@@ -82,6 +83,7 @@ module.exports = function(app,userModel,LocalStrategy) {
                     if(user) {
                         res.json(null);
                     } else {
+                        newUser.password = bcrypt.hashSync(newUser.password)
                         return userModel.createUser(newUser);
                     }
                 },
@@ -123,6 +125,8 @@ module.exports = function(app,userModel,LocalStrategy) {
                     // if the user does not already exist
                     if(user == null) {
                         // create a new user
+                        newUser.password = bcrypt.hashSync(newUser.password);
+
                         return userModel.createUser(newUser)
                             .then(
                                 // fetch all the users
@@ -230,16 +234,20 @@ module.exports = function(app,userModel,LocalStrategy) {
         var credentials = {"username" : username,
             "password" : password};
         userModel
-            .findUserByCredentials(credentials)
+            .findUserByUsername(username)
             .then(
                 function (doc) {
                     user = doc;
                     //req.session.currentUser = user;
-                    if (!user) {
+                    console.log(user);
+                    if(user && bcrypt.compareSync(password,user.password))
+                    {
+                        console.log("localStrategy   ------------");
+                        return done(null, user);
+                    }
+                    else {
                         return done(null, false);
                     }
-                    return done(null, user);
-
                 },
                 // reject promise if error
                 function(err) {
@@ -253,6 +261,7 @@ module.exports = function(app,userModel,LocalStrategy) {
     function updateUserAdmin(req, res) {
 
         var newUser = req.body;
+        newUser.password = bcrypt.hashSync(newUser.password);
 
         if(newUser.roles && newUser.roles.length > 1) {
             newUser.roles = newUser.roles.split(",");
@@ -278,7 +287,7 @@ module.exports = function(app,userModel,LocalStrategy) {
     function updateUser(req, res) {
 
         var newUser = req.body;
-
+        newUser.password = bcrypt.hashSync(newUser.password);
         /*if(!isAdmin(req.user)) {
          delete newUser.roles;
          }
