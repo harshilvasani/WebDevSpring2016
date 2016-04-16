@@ -15,6 +15,10 @@
     padding-top: 24px;
 }
 
+#myTable{
+    white-space: nowrap;
+}
+
 .myButton{
     width: 100%;
     background-color: #428bca;
