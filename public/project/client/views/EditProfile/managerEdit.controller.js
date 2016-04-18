@@ -48,10 +48,13 @@
 
                         console.log(response.data);
                         BranchService
-                            .updateBranch(response.data._id,response.data);
+                            .updateBranch(response.data._id,response.data)
+                            .then(function(res){
+                                $location.path("/managerProfile");
+                            });
                     }
                 );
-            $location.path("/managerProfile");
+
         }
     }
 

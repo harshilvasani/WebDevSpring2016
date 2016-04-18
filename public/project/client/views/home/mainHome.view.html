@@ -23,16 +23,14 @@
                             <div class="col-md-6">
                                 <label>Company:</label>
                                 <select class="form-control" ng-model="model.company">
-                                    <option>company-1</option>
-                                    <option>company-2</option>
+                                    <option ng-repeat="company in model.companys">{{company.companyName}}</option>
                                     <option>None</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label>Vehice:</label>
                                 <select class="form-control" ng-model="model.type">
-                                    <option>truck</option>
-                                    <option>bus</option>
+                                    <option ng-repeat="vehicle in model.vehicles">{{vehicle}}</option>
                                     <option>None</option>
                                 </select>
                             </div>

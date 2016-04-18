@@ -3,12 +3,12 @@ module.exports = function(app,userModel,LocalStrategy) {
     var passport = require('passport');
     var bcrypt = require('bcrypt-nodejs');
     var auth = authorized;
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('assignment',new LocalStrategy(localStrategy));
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    app.post("/api/assignment/login", passport.authenticate('local'), login);
+    app.post("/api/assignment/login", passport.authenticate('assignment'), login);
     app.get("/api/assignment/loggedin",               loggedin);
     app.post("/api/assignment/logout",                logout);
     app.get("/api/assignment/admin/user/:id",         findUserById);
@@ -51,7 +51,7 @@ module.exports = function(app,userModel,LocalStrategy) {
     }
 
     function loggedin(req, res) {
-        res.send(req.isAuthenticated() ? req.user : null);
+        res.send(req.isAuthenticated() ? req.curr : null);
     }
 
     /*
@@ -239,10 +239,9 @@ module.exports = function(app,userModel,LocalStrategy) {
                 function (doc) {
                     user = doc;
                     //req.session.currentUser = user;
-                    console.log(user);
+
                     if(user && bcrypt.compareSync(password,user.password))
                     {
-                        console.log("localStrategy   ------------");
                         return done(null, user);
                     }
                     else {
@@ -299,8 +298,8 @@ module.exports = function(app,userModel,LocalStrategy) {
             .updateUser(req.params.id, newUser)
             .then(
                 function(doc){
-                    console.log(doc);
-                    req.user = user;
+                   // console.log(doc);
+                    req.user = newUser;
                     res.json(doc);
                 },
                 function(err){

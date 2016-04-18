@@ -6,13 +6,34 @@
         .module("VehicleBookingApp")
         .controller("mainHomeController", mainHomeController);
 
-    function mainHomeController(UserService,VehicleService,$location) {
+    function mainHomeController(UserService,VehicleService,$location, CompanyService) {
 
         var vm = this;
         vm.autoComplete = autoComplete;
         vm.search = search;
         vm.book = book;
 
+        function init(){
+           // alert();
+            CompanyService
+                .findAllCompanys()
+                .then(function(res){
+                    vm.companys = res.data;
+                })
+
+            VehicleService
+                .findAllVehicles()
+                .then(function(res){
+                    var V = [];
+                    for(var i in res.data){
+                        if(V.indexOf(res.data[i].type)< 0){
+                            V.push(res.data[i].type);
+                        }
+                    }
+                    vm.vehicles = V;
+                })
+        }
+        init();
         function autoComplete() {
 
             var input_origin = document.getElementById('origin');/** @type {!HTMLInputElement} **/
@@ -42,6 +63,7 @@
                         .findAllManagersByLocation(city,state)//,renderAllBrances);
                         .then(
                             function(response){
+                                //console.log(response.data);
                                 renderAllBrances(response.data);
                             }
                         );

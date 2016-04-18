@@ -20,14 +20,12 @@ module.exports = function(app, db, mongoose) {
 
     function findAllVehicles(){
 
-        var vehicles = [];
         var deferred = q.defer();
 
         vehicles.find(function (err,results){
                 if(!err){
                     console.log(results);
-                    vehicles = results;
-                    deferred.resolve(vehicles);
+                    deferred.resolve(results);
                 }
             });
 

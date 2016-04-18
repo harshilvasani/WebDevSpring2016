@@ -17,15 +17,12 @@ module.exports = function(app , db, mongoose) {
     return api;
 
     function findAllCompanys() {
-
-        var companys = [];
+        console.log("findAllCompanys client");
         var deferred = q.defer();
 
         companys.find(function (err,results){
             if(!err){
-                // console.log(results);
-                companys = results;
-                deferred.resolve(companys);
+                deferred.resolve(results);
             }
         });
 
@@ -33,15 +30,16 @@ module.exports = function(app , db, mongoose) {
     }
 
     function findCompany(company){
-        var company = null;
+        var myCompany = null;
         var deferred = q.defer();
 
-        companys.find({company : company},
+       // console.log(company + " in model");
+        companys.find({companyName : company},
             function (err,results){
             if(!err){
-                // console.log(results);
-                company = results;
-                deferred.resolve(company[0]);
+               // console.log(results);
+                myCompany = results;
+                deferred.resolve(myCompany[0]);
             }
         });
 

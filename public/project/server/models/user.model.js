@@ -22,6 +22,8 @@ module.exports = function(app, db, mongoose) {
 
     var api = {
         findUserByCredentials: findUserByCredentials,
+        findUserByUsername: findUserByUsername,
+        findUserById: findUserById,
         findAllUsers: findAllUsers,
         findAllManagersByCompany : findAllManagersByCompany,
         findAllManagersByLocation : findAllManagersByLocation,
@@ -38,6 +40,38 @@ module.exports = function(app, db, mongoose) {
         var deferred = q.defer();
 
         actors.find({$and: [{username : username},{password : password}]},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    user = results;
+                    deferred.resolve(user[0]);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function findUserByUsername(username) {
+        var user=null;
+        var deferred = q.defer();
+
+        actors.find({username : username},
+            function (err,results){
+                if(!err){
+                    // console.log(results);
+                    user = results;
+                    deferred.resolve(user[0]);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function findUserById(Id) {
+        var user=null;
+        var deferred = q.defer();
+
+        actors.find({_id : Id},
             function (err,results){
                 if(!err){
                     // console.log(results);
@@ -124,7 +158,7 @@ module.exports = function(app, db, mongoose) {
 
             //console.log(results);
             if(!err) {
-                console.log(results);
+                console.log(results[0]);
                 deferred.resolve(results);
             }
             else {
@@ -144,7 +178,7 @@ module.exports = function(app, db, mongoose) {
             actors.update(
                 {_id : userId},
 
-                {$set: {"password" : user.password,
+                {$set: {
                     "firstName" : user.firstName,
                     "lastName" : user.lastName,
                     "email" : user.email,
@@ -170,7 +204,7 @@ module.exports = function(app, db, mongoose) {
             actors.update(
                 {_id : userId},
 
-                {$set: {"password" : user.password,
+                {$set: {
                     "firstName" : user.firstName,
                     "lastName" : user.lastName,
                     "email" : user.email,
@@ -198,7 +232,7 @@ module.exports = function(app, db, mongoose) {
             actors.update(
                 {_id : userId},
 
-                {$set: {"password" : user.password,
+                {$set: {
                     "firstName" : user.firstName,
                     "lastName" : user.lastName,
                     "email" : user.email,

@@ -34,10 +34,11 @@
                 .updateUser(vm.customer._id,updatedUser)
                 .then(function(res){
 
+                    UserService.setCurrentUser(updatedUser);
+                    $location.path("/customerProfile");
                 });
 
-            UserService.setCurrentUser(updatedUser);
-                $location.path("/customerProfile");
+
 
         }
 

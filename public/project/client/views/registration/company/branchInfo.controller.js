@@ -83,11 +83,11 @@
                                 var newBranch = branches[i];//new Branch
                                 newBranch.company = company.companyName;
 
-                                UserService.createUser(newManager);
+                                UserService.createManager(newManager);
                                 BranchService.createBranch(newBranch);
                             }
 
-                            UserService.createUser(owner);
+
                             CompanyService.createCompany(company);
 
                             UserService.setCurrentUser(owner);
@@ -107,7 +107,23 @@
 
                                 });
 
-                            $location.path("/ownerProfile");
+                            UserService.createUser(owner)
+                                .then(function(res){
+                                    UserService
+                                        .findUserByCredentials(owner.username,owner.password)
+                                        .then(
+                                            function(response){
+                                                var loggedUser = response.data;
+                                                //   console.log(loggedUser);
+                                                if(loggedUser != null){
+
+                                                    UserService.setCurrentUser(loggedUser);
+                                                    $location.path("/ownerProfile");
+                                                }}
+                                        );
+                                });
+
+                            //
                         });
                 });
         }

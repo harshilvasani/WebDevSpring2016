@@ -65,7 +65,7 @@
         function saveBranch(allBranches){
             BranchService.setCurrentBranches(allBranches)
                 .then(function(res){
-
+                    console.log(res.data);
                 });
         }
 
@@ -95,9 +95,8 @@
                     CompanyService.getCurrentCompany()
                         .then(function(res){
                             company = res.data;
-
                             owner.company = company.companyName;
-
+                            console.log(managers);
                             for (var i in managers){
                                 managers[i].branchId = branches[i].branchId;
                                 managers[i].company = company.companyName;
@@ -107,13 +106,12 @@
                                 managers[i].password = branches[i].password;
 
                                 branches[i].company = company.companyName;
-
+                               // console.log(company.companyName);
                                 UserService
-                                    .updateUser(managers[i]._id,managers[i]);
+                                    .updateManager(managers[i]._id,managers[i]);
 
                                 BranchService
                                     .updateBranch(branches[i]._id,branches[i]);
-
                             }
 
                             for(var i in branches){
@@ -126,17 +124,27 @@
                                     newBranch.company = company.companyName;
 
                                     UserService
-                                        .createUser(newManager);
+                                        .createManager(newManager)
+                                        .then(function(res){
+
+                                        });
+
                                     BranchService
                                         .createBranch(newBranch);
                                 }
                             }
 
-                            UserService.updateUser(owner._id,owner);
+                            UserService.updateUser(owner._id,owner)
+                                .then(function(res){
 
-                            CompanyService.updateCompany(company._id,company);
+
+                                });
 
                             UserService.setCurrentUser(owner);
+                            CompanyService.updateCompany(company._id,company)
+                                .then(function(res){
+
+                            });
 
                             UserService.setCurrentOwner(owner)
                                 .then(function(res){

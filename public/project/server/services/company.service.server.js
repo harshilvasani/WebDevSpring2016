@@ -24,13 +24,14 @@ module.exports = function(app,companyModel) {
     }
 
     function findAllCompanys(req,res){
-
+        console.log("findAllCompanys");
         companyModel
             .findAllCompanys()
             .then(
                 function (doc) {
+                    console.log(doc);
                     var companys = doc;
-                    res.json(companys);
+                    res.json(doc);
                 },
                 // reject promise if error
                 function (err) {
@@ -43,7 +44,7 @@ module.exports = function(app,companyModel) {
 
         var company = req.params.company;
 
-
+        console.log(company);
         companyModel
             .findCompany(company)
             .then(

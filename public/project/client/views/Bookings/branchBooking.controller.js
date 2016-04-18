@@ -46,9 +46,11 @@
 
         function deleteOldBookings(bookings){
             for(var i in bookings){
-                var date = new Date(bookings[i].day);
 
-                var curDate = (new Date).getTime();
+                var date = new Date(bookings[i].day).getTime();
+
+                var curDate = (new Date((new Date).getDate()-1)).getTime();
+
                 if(curDate > date){
 
                     var vehicle = null;

@@ -15,23 +15,19 @@
 
             UserService.getCurrentOwner()
                 .then(function(res){
-                    if (res.data != "" && res.data != null){
+
+                    if (res.data != "" && res.data != null && res.data.company){
                         vm.curOwner = res.data;
-
-                       // console.log(vm.curOwner);
+                        console.log(res.data.company);
+                        console.log(vm.curOwner);
                         getCompany();
-
-                        getBranches();
-
                     }
-
                     else{
                         UserService
                             .getCurrentUser()
                             .then(function (res){
                                 vm.curOwner = res.data;
-
-                            //    console.log(vm.curOwner);
+                                console.log(vm.curOwner);
 
                                 getCompany();
 
@@ -54,11 +50,10 @@
                     .then(
                         function (response){
                             vm.curCompany = response.data;
-                          //  console.log(vm.curCompany);
-                            getBranches();
+                            console.log(vm.curCompany);
                             CompanyService.setCurrentCompany(vm.curCompany)
                                 .then(function(res){
-
+                                    getBranches();
                                 });
 
                         }
