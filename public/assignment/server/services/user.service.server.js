@@ -51,7 +51,7 @@ module.exports = function(app,userModel,LocalStrategy) {
     }
 
     function loggedin(req, res) {
-        res.send(req.isAuthenticated() ? req.curr : null);
+        res.send(req.isAuthenticated() ? req.user : null);
     }
 
     /*

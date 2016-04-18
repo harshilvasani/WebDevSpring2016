@@ -19,6 +19,7 @@
 
         function init(){
 
+            vm.bookings.length = [];
             var bookings = [];
             UserService
                 .getCurrentUser()

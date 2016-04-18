@@ -3,10 +3,11 @@
         <div id="customerBooking">
             <h1>Bookings</h1>
 
-            <div class="container">
+            <div class="container" ng-show="model.bookings.length >= 0">
                 <div class="row">
                     <hr>
                     <div class="table-responsive">
+                        <h3 ng-show="model.bookings.length == 0"> No Bookings Found</h3>
                         <table class="table" id="myTable">
                         <thead>
                         <tr>
