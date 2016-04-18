@@ -54,19 +54,6 @@ module.exports = function(app,userModel,LocalStrategy) {
         res.send(req.isAuthenticated() ? req.user : null);
     }
 
-    /*
-     function loggedin(req,res){
-
-     if(req.session.currentUser != null){
-     //console.log(req.session.currentUser);
-     res.json(req.session.currentUser);
-     }
-     else
-     res.json(null);
-
-     }
-     */
-
     function logout(req, res) {
         req.logOut();
         res.send(200);

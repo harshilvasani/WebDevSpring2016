@@ -8,26 +8,20 @@ module.exports = function(app,userModel,LocalStrategy) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    app.post("/api/project/login", passport.authenticate('project'), login);
-    app.post("/api/project/logout", logout);
-
-    app.get("/api/project/user", findAllUsers);
-
-    //app.get("/api/project/user/username/:username/password/:password", auth, findUserByCredentials);
-    app.get("/api/project/company/:company/manager", findAllManagersByCompany);
-    app.get("/api/project/city/:city/state/:state/manager", findAllManagersByLocation);
-    app.get("/api/project/company/:company/city/:city/state/:state/manager", findAllManagersByLocationandComapany);
-    app.post("/api/project/user", createUser);
-    app.put("/api/project/user/:id", updateUser);
-
-    app.post("/api/project/manager", createManager);
-    app.put("/api/project/manager/:id", updateManager);
-
-    app.delete("/api/project/user/:id", deleteUser);
-    app.get("/api/project/loggedin", loggedin);
-
-    app.get("/api/project/getCurOwner", getCurOwner);
-    app.post("/api/project/setCurOwner", setCurOwner);
+    app.post  ("/api/project/login", passport.authenticate('project'), login);
+    app.post  ("/api/project/logout",                          logout);
+    app.get   ("/api/project/user",                            findAllUsers);
+    app.get   ("/api/project/company/:company/manager",        findAllManagersByCompany);
+    app.get   ("/api/project/city/:city/state/:state/manager", findAllManagersByLocation);
+    app.get   ("/api/project/company/:company/city/:city/state/:state/manager", findAllManagersByLocationandComapany);
+    app.post  ("/api/project/user",                            createUser);
+    app.put   ("/api/project/user/:id",                 auth,  updateUser);
+    app.post  ("/api/project/manager",                  auth,  createManager);
+    app.put   ("/api/project/manager/:id",              auth,  updateManager);
+    app.delete("/api/project/user/:id",                 auth,  deleteUser);
+    app.get   ("/api/project/loggedin",                        loggedin);
+    app.get   ("/api/project/getCurOwner",              auth,  getCurOwner);
+    app.post  ("/api/project/setCurOwner",              auth,  setCurOwner);
 
     function serializeUser(user, done) {
         done(null, user);
