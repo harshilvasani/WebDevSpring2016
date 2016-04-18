@@ -20,8 +20,8 @@ module.exports = function(app,userModel,LocalStrategy) {
     app.put   ("/api/project/manager/:id",              auth,  updateManager);
     app.delete("/api/project/user/:id",                 auth,  deleteUser);
     app.get   ("/api/project/loggedin",                        loggedin);
-    app.get   ("/api/project/getCurOwner",              auth,  getCurOwner);
-    app.post  ("/api/project/setCurOwner",              auth,  setCurOwner);
+    app.get   ("/api/project/getCurOwner",                     getCurOwner);
+    app.post  ("/api/project/setCurOwner",                     setCurOwner);
 
     function serializeUser(user, done) {
         done(null, user);
