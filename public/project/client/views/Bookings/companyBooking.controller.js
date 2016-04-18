@@ -19,7 +19,7 @@
         function init(){
 
             var bookings = [];
-            vm.bookings.length = [];
+            vm.bookings = [];
             UserService
                 .getCurrentUser()
                 .then(function(res){

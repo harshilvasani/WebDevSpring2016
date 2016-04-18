@@ -69,19 +69,19 @@
 
 <body>
 
-<div ng-controller="MainController as model">
+<div  ng-controller="MainController as model">
     <!-- BEGIN NAV-->
     <div ng-include="'views/header/header.view.html'"></div>
     <!-- END NAV-->
 
     <!-- BEGIN HEADER-->
     <div class="row">
-        <div ng-view></div>
+        <div class="fade" ng-view></div>
     </div>
     <!-- END HEADER-->
 
     <!-- BEGIN TESTIMONIALS SECTION-->
-    <div ng-include="'views/footer/footer.view.html'"></div>
+    <!--
     <!-- END TESTIMONIALS SECTION-->
 
 
