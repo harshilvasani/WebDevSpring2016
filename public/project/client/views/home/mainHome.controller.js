@@ -12,9 +12,11 @@
         vm.autoComplete = autoComplete;
         vm.search = search;
         vm.book = book;
+        vm.warn=0;
 
         function init(){
            // alert();
+
             CompanyService
                 .findAllCompanys()
                 .then(function(res){
@@ -78,6 +80,9 @@
                             }
                         );
                 }
+            }
+            else{
+                vm.warn=1;
             }
         }
 

@@ -14,6 +14,8 @@
         vm.details = details;
         vm.confirmBooking = confirmBooking;
         vm.open1 = open1;
+        model.warnO=0;
+        model.warnD=0;
 
         var originArray;
         var destinationArray;
@@ -100,7 +102,9 @@
                 $http(req).success(render);
             }
             else{
-                alert("Enter origin and/or destination");
+               // alert("Enter origin and/or destination");
+                model.warnO=1;
+                model.warnD=1;
             }
         }
 

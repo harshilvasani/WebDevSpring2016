@@ -1,19 +1,29 @@
 <section id="intro" class="section section-bg-overlay section-bottom-rise" ng-controller="mainHomeController as model">
             <div id="logIn">
                 <div class="row">
-                    <h1 class="title">Find!! Compare!! Book!! Vehicle</h1>
+                    <h1 class="title">Find!! Compare!! Book!!</h1>
                     <hr>
 
                     <div class="col-md-12">
                     <form class="searchTab">
 
                         <label>Company Location</label>
-                        <div class="form-group left-inner-addon right-inner-addon">
+                        <div ng-show="model.warn==1" class="alert alert-warning">
+                            <a class="close" ng-click="model.warn=0" aria-label="close">&times;</a>
+                            <strong>Warning!</strong><br> <p>I/P Format :
+                            City, State, Country</p>
+                        </div>
+
+                        <div ng-class="{'has-warning' : model.warn==1}"
+                                class="form-group left-inner-addon right-inner-addon">
                             <i class="glyphicon glyphicon-map-marker left"></i>
                             <a ng-click="model.search(origin)" class="glyphicon glyphicon-search right btn btn-primary"></a>
-                            <input ng-model="model.origin" id="origin" class="controls location form-control "
+                            <input
+                                   ng-model="model.origin" id="origin"
+                                   class="controls location form-control "
                                    type="text" placeholder="Enter a city in United States"
                                    ng-change="model.autoComplete()">
+
                         </div>
 
 

@@ -252,7 +252,7 @@ table tbody td.branchHead a{
 }
 .menu > li {
     display: block;
-    float: left;
+    float: right;
     position: relative;
 }
 .menu > li:first-child {
@@ -449,4 +449,7 @@ table tbody td.branchHead a{
     -ms-transition-delay: 0s;
     -o-transition-delay: 0s;
     transition-delay: 0s;
+}
+.navbar-collapse.in {
+    overflow-y: visible;
 }
