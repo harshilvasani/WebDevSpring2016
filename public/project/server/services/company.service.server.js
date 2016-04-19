@@ -24,12 +24,12 @@ module.exports = function(app,companyModel) {
     }
 
     function findAllCompanys(req,res){
-        console.log("findAllCompanys");
+       // console.log("findAllCompanys");
         companyModel
             .findAllCompanys()
             .then(
                 function (doc) {
-                    console.log(doc);
+                   // console.log(doc);
                     var companys = doc;
                     res.json(doc);
                 },
@@ -44,7 +44,7 @@ module.exports = function(app,companyModel) {
 
         var company = req.params.company;
 
-        console.log(company);
+     //   console.log(company);
         companyModel
             .findCompany(company)
             .then(

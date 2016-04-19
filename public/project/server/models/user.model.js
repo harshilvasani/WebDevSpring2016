@@ -158,11 +158,11 @@ module.exports = function(app, db, mongoose) {
 
             //console.log(results);
             if(!err) {
-                console.log(results[0]);
+             //   console.log(results[0]);
                 deferred.resolve(results);
             }
             else {
-                console.log(err);
+             //   console.log(err);
                 deferred.resolve(null);
             }});
 

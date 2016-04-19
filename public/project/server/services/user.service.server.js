@@ -16,7 +16,7 @@ module.exports = function(app,userModel,LocalStrategy) {
     app.get   ("/api/project/company/:company/city/:city/state/:state/manager", findAllManagersByLocationandComapany);
     app.post  ("/api/project/user",                            createUser);
     app.put   ("/api/project/user/:id",                 auth,  updateUser);
-    app.post  ("/api/project/manager",                  auth,  createManager);
+    app.post  ("/api/project/manager",                         createManager);
     app.put   ("/api/project/manager/:id",              auth,  updateManager);
     app.delete("/api/project/user/:id",                 auth,  deleteUser);
     app.get   ("/api/project/loggedin",                        loggedin);
@@ -86,7 +86,7 @@ module.exports = function(app,userModel,LocalStrategy) {
     }
 
     function loggedin(req, res) {
-        console.log(req.user);
+        //console.log(req.user);
         res.send(req.isAuthenticated() ? req.user : null);
     }
 

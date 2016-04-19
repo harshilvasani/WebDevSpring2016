@@ -24,7 +24,7 @@ module.exports = function(app, db, mongoose) {
 
         vehicles.find(function (err,results){
                 if(!err){
-                    console.log(results);
+                   // console.log(results);
                     deferred.resolve(results);
                 }
             });
@@ -41,7 +41,7 @@ module.exports = function(app, db, mongoose) {
         vehicles.find({_id : Id},
             function (err,results){
                 if(!err){
-                    console.log(results[0]);
+                    //console.log(results[0]);
                     myVehicle = results[0];
                     deferred.resolve(myVehicle);
                 }
@@ -93,11 +93,11 @@ module.exports = function(app, db, mongoose) {
 
            // console.log(results);
             if(!err) {
-                console.log(results);
+               // console.log(results);
                 deferred.resolve(results);
             }
             else {
-                console.log(err);
+              //  console.log(err);
                 deferred.resolve(null);
             }});
 

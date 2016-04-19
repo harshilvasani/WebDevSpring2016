@@ -123,7 +123,7 @@ module.exports = function(app,bookingModel) {
     function updateBookingById(req,res){
         var bookingId = req.params.bookingId;
         var updatedBooking = req.body;
-        console.log(req.body);
+      //  console.log(req.body);
 
         bookingModel
             .updateBookingById(bookingId,updatedBooking)

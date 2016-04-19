@@ -28,7 +28,7 @@ module.exports = function(app,vehicleModel) {
 
     function findVehicleById(req,res){
         var vehicleId = req.params.vehicleId;
-        console.log(vehicleId);
+       // console.log(vehicleId);
         vehicleModel
             .findVehicleById(vehicleId)
             .then(

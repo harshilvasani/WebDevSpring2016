@@ -85,7 +85,7 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
-
+                console.log($location.url());
                 if(currentUser || $location.url()=='/home') {
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();

@@ -73,11 +73,11 @@ module.exports = function(app , db, mongoose) {
 
             // console.log(results);
             if(!err) {
-                console.log(results);
+               // console.log(results);
                 deferred.resolve(results);
             }
             else {
-                console.log(err);
+               // console.log(err);
                 deferred.resolve(null);
             }});
 

@@ -82,6 +82,9 @@
             if(vm.index != -1)
             {
                 vehicle._id = vm.vehicles[vm.index]._id;
+                vehicle.company = vm.vehicles[vm.index].company;
+                vehicle.branchId = vm.vehicles[vm.index].branchId;
+
                 VehicleService
                     .updateVehicle(vm.vehicles[vm.index]._id,vehicle)
                     .then(
