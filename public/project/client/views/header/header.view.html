@@ -40,7 +40,12 @@
             </ul>
 
             <ul ng-show="currentUser" class="menu nav navbar-nav navbar-right">
-                <li ><a ng-click="model.setProfile()">Welcome, {{currentUser.username}}!!</a></li>
+                <li ><a>User <i class="fa fa-user" aria-hidden="true"></i></a>
+                    <ul class="submenu">
+                        <li ><a ng-click="model.setProfile()">{{currentUser.username}}!!</a></li>
+                        <li  ng-click="model.logout()"><a><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul ng-show="currentUser" class="menu nav navbar-nav navbar-right">
@@ -52,9 +57,7 @@
                 </li>
             </ul>
 
-            <ul ng-show="currentUser" class="menu nav navbar-nav navbar-right">
-                <li  ng-click="model.logout()"><a><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
-            </ul>
+
 
         </div><!--/.navbar-collapse -->
     </div>
