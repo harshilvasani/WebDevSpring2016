@@ -13,7 +13,8 @@ module.exports = function(app, db, mongoose) {
         findVehicleByCompanyandBranchandType: findVehicleByCompanyandBranchandType,
         createVehicle: createVehicle,
         updateVehicle: updateVehicle,
-        deleteVehicle: deleteVehicle
+        deleteVehicle: deleteVehicle,
+        deleteVehicleByCompany_Branch : deleteVehicleByCompany_Branch
     }
 
     return api;
@@ -109,6 +110,23 @@ module.exports = function(app, db, mongoose) {
 
         vehicles.remove({_id : vehicleId},function (err,results){
             if(!err) {
+                deferred.resolve(results);
+            }
+            else{
+                deferred.resolve(null);
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    function deleteVehicleByCompany_Branch(company,branchId) {
+        var deferred = q.defer();
+
+        vehicles.remove({$and: [{company : company},{branchId : branchId}]},function (err,results){
+            console.log(results);
+            if(!err) {
+
                 deferred.resolve(results);
             }
             else{

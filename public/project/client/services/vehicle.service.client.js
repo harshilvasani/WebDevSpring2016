@@ -15,7 +15,8 @@
             findAllVehicles : findAllVehicles,
             createVehicle : createVehicle,
             updateVehicle : updateVehicle,
-            deleteVehicle : deleteVehicle
+            deleteVehicle : deleteVehicle,
+            deleteVehicleByCompany_Branch : deleteVehicleByCompany_Branch
         }
 
         return api;
@@ -43,6 +44,10 @@
 
         function deleteVehicle(vehicleId) {
             return $http.delete("/api/project/vehicle/" + vehicleId);
+        }
+
+        function deleteVehicleByCompany_Branch(company, branchId) {
+            return $http.delete("/api/project/company/" + company  +"/branch/" + branchId);
         }
 
         function updateVehicle(vehicleId, vehicle) {

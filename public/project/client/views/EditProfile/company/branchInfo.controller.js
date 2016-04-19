@@ -6,7 +6,7 @@
         .module("VehicleBookingApp")
         .controller("BranchInfoEditController", BranchInfoEditController);
 
-    function BranchInfoEditController(BranchService, CompanyService, UserService, $location) {
+    function BranchInfoEditController(BranchService, CompanyService, UserService, VehicleService, $location) {
 
         var vm = this;
 
@@ -74,6 +74,8 @@
         }
 
         function removeBranch(index){
+            VehicleService
+                .deleteVehicleByCompany_Branch(vm.branches[index].company,vm.branches[index].branchId)
             BranchService
                 .deleteBranch(vm.branches[index]._id);
             UserService

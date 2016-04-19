@@ -8,6 +8,7 @@ module.exports = function(app,vehicleModel) {
     app.post("/api/project/vehicle", createVehicle);
     app.put("/api/project/vehicle/:id", updateVehicle);
     app.delete("/api/project/vehicle/:id", deleteVehicle);
+    app.delete("/api/project/company/:company/branch/:branchId", deleteVehicleByCompany_Branch);
 
 
     function findAllVehicles(req,res){
@@ -46,7 +47,7 @@ module.exports = function(app,vehicleModel) {
     function findAllVehicleByCompanyandBranch(req,res){
         var company = req.params.company;
         var branchId = req.params.branchId;
-
+        console.log(company + " " + branchId);
         vehicleModel
             .findAllVehicleByCompanyandBranch(company,branchId)
             .then(
@@ -120,6 +121,24 @@ module.exports = function(app,vehicleModel) {
 
         vehicleModel
             .deleteVehicle(vehicleId)
+            .then(
+                function (doc) {
+                    vehicles = doc;
+                    res.json(vehicles);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function deleteVehicleByCompany_Branch(req,res){
+        var company = req.params.company;
+        var branchId = req.params.branchId;
+
+        vehicleModel
+            .deleteVehicleByCompany_Branch(company,branchId)
             .then(
                 function (doc) {
                     vehicles = doc;
