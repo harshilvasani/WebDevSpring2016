@@ -71,18 +71,39 @@
                          <table class="table " >
                              <thead>
                              <tr>
-                                 <th>Company</th>
-                                 <th>Branch</th>
-                                 <th>Vehicle-type</th>
-                                 <th>Count</th>
-                                 <th>Fare ($/hr)</th>
+                                 <th ng-click="model.Sort('company', companyBottom)">
+                                     <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="companyBottom == -1"></span>
+                                     <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="companyBottom == 1"></span>
+                                     Company {{companyBottom}}
+                                 </th>
+                                 <th ng-click="model.Sort('branchId', branchIdBottom)">
+                                     <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="branchIdBottom == -1"></span>
+                                     <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="branchIdBottom == 1"></span>
+                                     Branch
+                                 </th>
+                                 <th ng-click="model.Sort('type', typeBottom)">
+                                     <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="typeBottom == -1"></span>
+                                     <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="typeBottom == 1"></span>
+                                     Vehicle-type
+                                 </th>
+
+                                 <th ng-click="model.Sort('count', countBottom)">
+                                     <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="countBottom == -1"></span>
+                                     <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="countBottom == 1"></span>
+                                     Count
+                                 </th>
+                                 <th ng-click="model.Sort('fare', fareBottom)">
+                                     <span type="button" class="glyphicon glyphicon-triangle-bottom" ng-show="fareBottom == -1"></span>
+                                     <span type="button" class="glyphicon glyphicon-triangle-top" ng-show="fareBottom == 1"></span>
+                                     Fare ($/hr)
+                                 </th>
                                  <th></th>
                              </tr>
                              </thead>
                              <tbody>
 
                              <tr ng-repeat="search in model.searches">
-                                 <td>{{search.company}}</td>
+                                 <td >{{search.company}}</td>
                                  <td>{{search.branchId}}</td>
                                  <td>{{search.type}}</td>
                                  <td>{{search.count}}</td>

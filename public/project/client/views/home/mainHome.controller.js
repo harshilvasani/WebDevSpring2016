@@ -6,13 +6,20 @@
         .module("VehicleBookingApp")
         .controller("mainHomeController", mainHomeController);
 
-    function mainHomeController(UserService,VehicleService,$location, CompanyService) {
+    function mainHomeController($scope,UserService,VehicleService,$location, CompanyService) {
 
         var vm = this;
         vm.autoComplete = autoComplete;
         vm.search = search;
         vm.book = book;
         vm.warn=0;
+        vm.Sort = Sort;
+
+        $scope.companyBottom = 0;
+        $scope.branchIdBottom = 0;
+        $scope.countBottom = 0;
+        $scope.typeBottom = 0;
+        $scope.fareBottom = 0;
 
         function init(){
            // alert();
@@ -34,8 +41,100 @@
                     }
                     vm.vehicles = V;
                 })
+
+
         }
         init();
+
+        function Sort(prop,dir){
+
+            if(prop == "company"){
+                if(dir == 0){
+                    $scope.companyBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.companyBottom = -1 * dir;
+                }
+                $scope.branchIdBottom = 0;
+                $scope.countBottom = 0;
+                $scope.typeBottom = 0;
+                $scope.fareBottom = 0;
+
+            }
+
+            else if(prop == "branchId"){
+                if(dir == 0){
+                    $scope.branchIdBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.branchIdBottom = -1 * dir;
+                }
+                $scope.countBottom = 0;
+                $scope.companyBottom = 0;
+                $scope.typeBottom = 0;
+                $scope.fareBottom = 0;
+
+            }
+
+            else if(prop == "count"){
+                if(dir == 0){
+                    $scope.countBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.countBottom = -1 * dir;
+                }
+                $scope.companyBottom = 0;
+                $scope.typeBottom = 0;
+                $scope.fareBottom = 0;
+                $scope.branchIdBottom = 0
+            }
+
+            else if(prop == "type"){
+                if(dir == 0){
+                    $scope.typeBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.typeBottom = -1 * dir;
+                }
+                $scope.companyBottom = 0;
+                $scope.countBottom = 0;
+                $scope.fareBottom = 0;
+                $scope.branchIdBottom = 0
+            }
+
+            else if(prop == "fare"){
+                if(dir == 0){
+                    $scope.fareBottom = -1;
+                    dir = 1;
+                }
+                else{
+                    $scope.fareBottom = -1 * dir;
+                }
+                $scope.companyBottom = 0;
+                $scope.typeBottom = 0;
+                $scope.countBottom = 0;
+                $scope.branchIdBottom = 0
+            }
+
+            vm.searches.sort( predicatBy(prop, dir));
+        }
+
+        function predicatBy(prop, dir){
+
+            return function(a,b){
+                if( a[prop] > b[prop]){
+                    return dir;
+                }else if( a[prop] < b[prop] ){
+                    return -1*dir;
+                }
+                return 0;
+            }
+        }
+
         function autoComplete() {
 
             var input_origin = document.getElementById('origin');/** @type {!HTMLInputElement} **/
