@@ -14,8 +14,8 @@
         vm.details = details;
         vm.confirmBooking = confirmBooking;
         vm.open1 = open1;
-        model.warnO=0;
-        model.warnD=0;
+        vm.warnO=0;
+        vm.warnD=0;
 
         var originArray;
         var destinationArray;
@@ -103,8 +103,8 @@
             }
             else{
                // alert("Enter origin and/or destination");
-                model.warnO=1;
-                model.warnD=1;
+                vm.warnO=1;
+                vm.warnD=1;
             }
         }
 
