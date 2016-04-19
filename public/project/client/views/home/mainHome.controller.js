@@ -119,7 +119,11 @@
                 $scope.countBottom = 0;
                 $scope.branchIdBottom = 0
             }
-
+            if(prop == "fare"){
+                for (var i in vm.searches){
+                    vm.searches[i].fare = parseFloat(vm.searches[i].fare);
+                }
+            }
             vm.searches.sort( predicatBy(prop, dir));
         }
 
