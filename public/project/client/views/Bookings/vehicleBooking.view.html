@@ -43,14 +43,13 @@
                             </div>
                         </div>
 
+                        <div ng-show="model.warnO==1" class="alert alert-warning">
+                            <a class="close" ng-click="model.warnO=0" aria-label="close">&times;</a>
+                            <strong>Warning!</strong><br> <p>Origin can't be empty</p>
+                        </div>
+
                         <div ng-class="{'has-warning' : model.warnO==1}" class="form-group">
                             <label class="col-sm-2">Start Location</label>
-
-                            <div ng-show="model.warnO==1" class="alert alert-warning">
-                                <a class="close" ng-click="model.warnO=0" aria-label="close">&times;</a>
-                                <strong>Warning!</strong><br> <p>Origin can't be empty</p>
-                            </div>
-
                             <div class="left-inner-addon col-sm-10">
                                 <i class="glyphicon glyphicon-map-marker left"></i>
                                 <input class="form-control" id="origin"
@@ -59,13 +58,12 @@
                             </div>
                         </div>
 
+                        <div ng-show="model.warnD==1" class="alert alert-warning">
+                            <a class="close" ng-click="model.warnD=0" aria-label="close">&times;</a>
+                            <strong>Warning!</strong><br> <p>Dest. can't be empty</p>
+                        </div>
+
                         <div ng-class="{'has-warning' : model.warnD==1}"class="form-group">
-
-                            <div ng-show="model.warnD==1" class="alert alert-warning">
-                                <a class="close" ng-click="model.warnD=0" aria-label="close">&times;</a>
-                                <strong>Warning!</strong><br> <p>Dest. can't be empty</p>
-                            </div>
-
                             <label class="col-sm-2">Destination Location</label>
                             <div class="left-inner-addon col-sm-10">
                                 <i class="glyphicon glyphicon-map-marker left"></i>
