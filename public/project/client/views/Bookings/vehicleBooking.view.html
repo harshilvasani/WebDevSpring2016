@@ -48,9 +48,9 @@
                             <strong>Warning!</strong><br> <p>Origin can't be empty</p>
                         </div>
 
-                        <div ng-class="{'has-warning' : model.warnO==1}" class="form-group">
+                        <div  class="form-group">
                             <label class="col-sm-2">Start Location</label>
-                            <div class="left-inner-addon col-sm-10">
+                            <div ng-class="{'has-warning' : model.warnO==1}" class="left-inner-addon col-sm-10">
                                 <i class="glyphicon glyphicon-map-marker left"></i>
                                 <input class="form-control" id="origin"
                                        type="text" placeholder="75 Saint Alphonsus Street"
@@ -63,9 +63,9 @@
                             <strong>Warning!</strong><br> <p>Dest. can't be empty</p>
                         </div>
 
-                        <div ng-class="{'has-warning' : model.warnD==1}"class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-2">Destination Location</label>
-                            <div class="left-inner-addon col-sm-10">
+                            <div ng-class="{'has-warning' : model.warnD==1}" class="left-inner-addon col-sm-10">
                                 <i class="glyphicon glyphicon-map-marker left"></i>
                                 <input class="form-control" id="destination"
                                        type="text" placeholder="45 Brooklyne Street"

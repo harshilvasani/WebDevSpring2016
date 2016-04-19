@@ -10,8 +10,8 @@
                         <label>Company Location</label>
                         <div ng-show="model.warn==1" class="alert alert-warning">
                             <a class="close" ng-click="model.warn=0" aria-label="close">&times;</a>
-                            <strong>Warning!</strong><br> <p>I/P Format :
-                            City, State, Country</p>
+                            <strong>Warning!</strong><br>Location Can't Be Empty<br>
+                            <p>I/P Format : City, State, Country</p>
                         </div>
 
                         <div ng-class="{'has-warning' : model.warn==1}"
