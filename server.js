@@ -22,12 +22,12 @@ if(process.env.MLAB_USER_HARSHILVASANI) {
     //     process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
     //     process.env.OPENSHIFT_APP_NAME;
 
-    var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
-    var password = process.env.MLAB_PASSWORD_WEBDEV;
+    var username = process.env.MLAB_USER_HARSHILVASANI; // get from environment
+    var password = process.env.MLAB_PWD_HARSHILVASANI;
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += 'ds141534.mlab.com:41534/heroku_rq8bm6xt';
 }
-console.log(process.env.MLAB_USERNAME_WEBDEV)
+console.log(process.env.MLAB_USER_HARSHILVASANI)
 console.log(connectionString)
 // connect to the database
 var db = mongoose.connect(connectionString);
