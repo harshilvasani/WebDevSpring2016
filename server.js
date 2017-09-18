@@ -25,7 +25,7 @@ if(process.env.MLAB_USER_HARSHILVASANI) {
     var username = process.env.MLAB_USER_HARSHILVASANI; // get from environment
     var password = process.env.MLAB_PWD_HARSHILVASANI;
     connectionString = 'mongodb://' + username + ':' + password;
-    connectionString += 'ds141534.mlab.com:41534/heroku_rq8bm6xt';
+    connectionString += '@ds141534.mlab.com:41534/heroku_rq8bm6xt';
 }
 console.log(process.env.MLAB_USER_HARSHILVASANI)
 console.log(connectionString)
