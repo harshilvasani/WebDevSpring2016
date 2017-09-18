@@ -27,7 +27,8 @@ if(process.env.MLAB_USERNAME_WEBDEV) {
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += 'ds141534.mlab.com:41534/heroku_rq8bm6xt';
 }
-
+console.log(process.env.MLAB_USERNAME_WEBDEV)
+console.log(connectionString)
 // connect to the database
 var db = mongoose.connect(connectionString);
 
