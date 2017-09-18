@@ -105,12 +105,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(__dirname + '/public'));
-var ipaddress = '127.0.0.1';
+//var ipaddress = '127.0.0.1';
 var port = process.env.PORT || 3000;
 
-if(process.env.PORT){
-    ipaddress = 'www.harshil-vasani.herokuapp.com'
-}
+//if(process.env.PORT){
+//    ipaddress = 'www.harshil-vasani.herokuapp.com'
+//}
 console.log(process.env.PORT);
 
 //console.log(process.env.PASSPORT_SECRET);
@@ -137,4 +137,4 @@ app.post('/maps', urlencodedParser, function (req, results) {
     });
 
 });
-app.listen(port, ipaddress);
+app.listen(port);
