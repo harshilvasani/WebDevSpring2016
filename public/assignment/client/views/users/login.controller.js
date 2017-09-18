@@ -12,9 +12,10 @@
 
         //Event Handler's declaration
         vm.login = login;
-
+    alert('dsd')
         //Event Handler's implementation
         function login(user){
+            alert('login')
              UserService
                 .findUserByCredentials({"username":user.username,"password":user.password})
                 .then(

@@ -38,13 +38,15 @@ module.exports = function(app, db, mongoose) {
     function findUserByCredentials(username, password) {
         var user=null;
         var deferred = q.defer();
-
         actors.find({$and: [{username : username},{password : password}]},
             function (err,results){
                 if(!err){
-                    // console.log(results);
+                    console.log(results);
                     user = results;
                     deferred.resolve(user[0]);
+                }
+                else{
+                    console.log(err)
                 }
             });
 
