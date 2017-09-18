@@ -15,7 +15,7 @@ var connectionString = 'mongodb://127.0.0.1:27017/CS5610';
 
 // use remote connection string
 // if running in remote server
-if(process.env.MLAB_USERNAME_WEBDEV) {
+if(process.env.MLAB_USER_HARSHILVASANI) {
     // connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
     //     process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
     //     process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
@@ -105,9 +105,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(__dirname + '/public'));
-var ipaddress = 'harshil-vasani.herokuapp.com' || '127.0.0.1';
+var ipaddress = '127.0.0.1';
 var port = process.env.PORT || 3000;
 
+if(process.env.PORT){
+    ipaddress = 'www.harshil-vasani.herokuapp.com'
+}
 console.log(process.env.PORT);
 
 //console.log(process.env.PASSPORT_SECRET);
